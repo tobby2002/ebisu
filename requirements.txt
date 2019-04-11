@@ -3,8 +3,11 @@ numpy
 ta-lib
 pandas
 bravado
-websocket-client
 hyperopt
 pyti
 google-api-python-client
 oauth2client
+dill
+bitmex-market-maker==1.5
+bitmex-ws==0.3.1
+websocket-client==0.46.0
