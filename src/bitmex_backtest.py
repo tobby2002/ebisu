@@ -125,7 +125,7 @@ class BitMexBackTest(BitMexStub):
                 self.set_trail_price(high[-1])
 
             self.market_price = close[-1]
-            self.time = timestamp.tz_convert('Asia/Tokyo')
+            self.time = timestamp.tz_convert('Asia/Seoul')
             self.index = timestamp
             self.strategy(open, close, high, low, volume)
 
