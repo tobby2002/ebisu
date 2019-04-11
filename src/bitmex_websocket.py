@@ -65,8 +65,11 @@ class BitMexWs:
         """
         認証情報を設定する
         """
-        api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.testnet else os.environ.get("BITMEX_APIKEY")
-        api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.testnet else os.environ.get("BITMEX_SECRET")
+        # api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.testnet else os.environ.get("BITMEX_APIKEY")
+        # api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.testnet else os.environ.get("BITMEX_SECRET")
+
+        api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
+        api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
 
         if len(api_key) > 0 and len(api_secret):
             nonce = generate_nonce()
