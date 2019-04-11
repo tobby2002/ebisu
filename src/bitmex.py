@@ -70,8 +70,10 @@ class BitMex:
         """
         if self.private_client is not None and self.public_client is not None:
             return
-        api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.demo else os.environ.get("BITMEX_APIKEY")
-        api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.demo else os.environ.get("BITMEX_SECRET")
+        # api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.demo else os.environ.get("BITMEX_APIKEY")
+        # api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.demo else os.environ.get("BITMEX_SECRET")
+        api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
+        api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
         self.private_client = bitmex_api(test=self.demo, api_key=api_key, api_secret=api_secret)
         self.public_client = bitmex_api(test=self.demo)
 
@@ -482,7 +484,7 @@ class BitMex:
                 break
 
             source = to_data_frame(source)
-            data = pd.concat([data, source])
+            data = pd.concat([data, source], sort=True)
 
             if right_time > source.iloc[-1].name + delta(fetch_bin_size):
                 left_time = source.iloc[-1].name + delta(fetch_bin_size)
@@ -511,11 +513,11 @@ class BitMex:
                 d2 = self.fetch_ohlcv(allowed_range[self.bin_size][0],
                                       d1.iloc[-1].name + delta(allowed_range[self.bin_size][0]), end_time)
 
-                self.data = pd.concat([d1, d2])
+                self.data = pd.concat([d1, d2], sort=True)
             else:
                 self.data = d1
         else:
-            self.data = pd.concat([self.data, new_data])
+            self.data = pd.concat([self.data, new_data], sort=True)
 
         # 最後の行は不確定情報のため、排除する
         re_sample_data = resample(self.data, self.bin_size)[:-1]
