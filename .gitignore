@@ -10,4 +10,4 @@ ohlc/
 credentials.json
 token.json
 venv/
-logger*.txt
+log/
