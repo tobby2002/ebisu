@@ -222,7 +222,8 @@ def delta(bin_size='1h'):
 
 def notify(message: object, fileName: object = None) -> object:
     url = 'https://notify-api.line.me/api/notify'
-    api_key = os.environ.get('LINE_APIKEY')
+    # api_key = os.environ.get('LINE_APIKEY')
+    api_key = ''
     if api_key is None or len(api_key) == 0:
         return
 
