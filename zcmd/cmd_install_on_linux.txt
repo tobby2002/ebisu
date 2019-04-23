@@ -1,0 +1,47 @@
+bash
+sudo passwd root
+
+adduser neo
+chown neo:neo /home/neo
+usermod -d /home/neo neo
+
+su - neo
+pwd
+cd /home/neo/
+mkdir server
+
+python3 --version
+sudo apt install python3-pip
+
+pip3 install --upgrade pip
+sudo pip3 install -U setuptools
+
+cd server
+git init
+git clone https://github.com/tobby2002/ebisu.git
+
+pip3 install --upgrade pip
+mkdir venv
+apt-get install python3-venv
+python3 -m venv venv
+ls -la
+source venv/bin/activate
+
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
+
+wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+tar xvzf ta-lib-0.4.0-src.tar.gz
+cd ta-lib
+sed -i.bak "s|0.00000001|0.000000000000000001 |g" src/ta_func/ta_utility.h
+./configure --prefix=/usr
+make
+make install
+cd ..
+ls -la
+rm -rf ./ta-lib*
+ls -la
+
+pip3 install -r requirements.txt
+
+python3 main.py --strategy Doten
