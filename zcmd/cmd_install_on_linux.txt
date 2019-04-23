@@ -21,7 +21,6 @@ git init
 git clone https://github.com/tobby2002/ebisu.git
 
 pip3 install --upgrade pip
-mkdir venv
 apt-get install python3-venv
 python3 -m venv venv
 ls -la
@@ -30,6 +29,10 @@ source venv/bin/activate
 pip3 install --upgrade pip
 pip3 install -r requirements.txt
 
+apt-get install build-essential
+pip3 install TA-Lib==0.4.17
+
+## 아래는 생략가능 만일 위의  TA-Lib==0.4.17 가 설치된다면
 wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
 tar xvzf ta-lib-0.4.0-src.tar.gz
 cd ta-lib
@@ -43,5 +46,32 @@ rm -rf ./ta-lib*
 ls -la
 
 pip3 install -r requirements.txt
-
 python3 main.py --strategy Doten
+
+vi /etc/supervisor/conf.d/bitbot001.conf
+[program:bitbot001]
+command = /root/ebisu/venv/bin/python main.py --strategy OCC
+directory = /root/ebisu/
+user = root
+
+
+######################## example of supervisord #####################
+# supervisord 설정
+#http://hochulshin.com/python-supervisord/
+
+sudo apt-get update
+sudo apt-get install -y supervisor
+vi /etc/supervisor/conf.d/alphav001.conf
+
+[program:alphav001]
+command = /root/neoserver/miracletrader/.env/bin/python freqtrade/main.py -s BinHV45J
+directory = /root/neoserver/miracletrader/
+user = root
+
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start all
+
+python code를 update시 재구동
+sudo supervisorctl restart alphav001
+

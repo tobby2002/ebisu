@@ -1,0 +1,173 @@
+    5  passwd
+    6  pwd
+   39  mkdir neoserver
+   40  cd neoserver
+   12  git init
+   13  git clone https://github.com/tobby2002/miracletrader.git
+   17  cd neoserver/miracletrader/
+   20  source ./venv/bin/activate
+   23  pip list
+   66  alias python=python3
+   72  alias pip=pip3
+
+   24  apt install python-pip
+   25  apt install python3-pip
+
+   26  pip3 list
+   28  pip3 install -U pip
+   55  pip3 list
+   56  python ./freqtrade/main.py -s BinHV27 backtesting
+   57  python3 ./freqtrade/main.py -s BinHV27 backtesting
+   58  pip3 install -e .
+   59  pip3 install setuptools
+   60  pip3 install -e .
+   63  python3 -m pip install -e .
+   64  python3 ./freqtrade/main.py -s BinHV27 backtesting
+   65  python --version
+   67  source ~/.bashrc
+   69  source ~/.bash_aliases
+   74  pip install --upgrade pip
+   75  source ./venv/bin/activate
+   76  pip install --upgrade pip
+   77  pip install -r requirements.txt
+   79  ./setup.sh
+   80  .setup.sh
+   81  touch tradesv3.sqlite
+   82  touch tradesv3.dryrun.sqlite
+   83  sudo apt-get update
+   84  sudo add-apt-repository ppa:jonathonf/python-3.6
+   85  sudo apt-get update
+   86  sudo apt-get install python3.6 python3.6-venv python3.6-dev build-essential autoconf libtool pkg-config make wget git
+   87  python3 -m venv .env
+   89  source .env/bin/activate
+   90  pwd
+   91  pip3 install --upgrade pip
+   92  pip3 install -r requirements.txt
+   93  wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+   94  tar xvzf ta-lib-0.4.0-src.tar.gz
+   95  cd ta-lib
+   96  sed -i.bak "s|0.00000001|0.000000000000000001 |g" src/ta_func/ta_utility.h
+   97  ./configure --prefix=/usr
+   98  make
+   99  make install
+  100  cd ..
+  101  ls -la
+  102  rm -rf ./ta-lib*
+  103  ls -la
+  104  python3 -m venv .env
+  105  pip3 install -e .
+  106  pwd
+  107  vi ~/.config/systemd/user
+  108  pwd
+  109  cd ~/.config/systemd/
+  110  cp freqtrade.service /etc/systemd/system/
+  111  cd /etc/systemd/system/
+  112  ls -la
+  113  cd ~/neoserver/miracletrader/
+  114  pwd
+  115  systemctl --user start freqtrade
+  116  systemctl start freqtrade
+  117  freqtrade
+  118  ps -ef | grep freqtrade
+  119  vi config.json
+  120  ç
+  121  freqtrade/main.py -s BinHV27 backtesting
+  122  freqtrade/main.py -h
+  123  freqtrade/main.py -s BinHV27
+  126  vi config.json
+  127  freqtrade/main.py -s BinHV27 &
+  128  cd /root/neoserver/
+  129  ls
+  130  cd miracletrader/
+  131  pwd
+  132  ps -ef | grep freqtrade
+  133  history
+  130  rm -rf tradesv3.sqlite  -->  refresh trades of process and restart bot
+
+systemctl start freqtrade
+freqtrade -s BinHV27 &
+
+
+# data download but now something error of ddos connect
+python scripts/download_backtest_data.py --exchange binance --days 653 --exchange binance --timeframe 1m 5m
+
+
+### server kill
+pkill -9 python
+### server restart
+cd /root/neoserver/miracletrader
+source .env/bin/activate
+systemctl start freqtrade
+freqtrade/main.py -s BinHV45 &
+
+python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --realistic-simulation --refresh-pairs-cached (x)
+
+python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+
+python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --datadir freqtrade/user_data/data/
+
+python freqtrade/main.py backtesting --timerange 20181010-201801015 --ticker-interval 5m --strategy-list BinHV27 BinHV45 CombinedBinHAndCluc AverageStrategy Quickie --export trades --refresh-pairs-cached
+
+python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20181020-20181025 --ticker-interval 1m --refresh-pairs-cached
+
+cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+source .env/bin/activate
+
+1. nissi_v01bot
+796861799:AAGBTac8K3cNua2k9cRUCY6DfyPK1Wlfjpw
+
+2. nissi_v02bot
+722132763:AAEdrsGYie_q5SaxhSa5-7XJxRD6zUJRvUk
+3. nissi_v03bot
+758403550:AAH3MaOy6_kZNeIFEZw8dLZag0Z4PpL-CW8
+4. nissi_v04BinHVC
+656177856:AAHcRIMpQAnI4USMEfwSV7-M2VSbHXSwMkA
+
+# supervisord 설정
+#http://hochulshin.com/python-supervisord/
+
+sudo apt-get update
+sudo apt-get install -y supervisor
+vi /etc/supervisor/conf.d/alphav001.conf
+
+[program:alphav001]
+command = /root/neoserver/miracletrader/.env/bin/python freqtrade/main.py -s BinHV45J
+directory = /root/neoserver/miracletrader/
+user = root
+
+ll
+vi config.json
+
+cp -rf config.json.poloniex.BTC config.json
+
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start all
+
+python code를 update시 재구동
+sudo supervisorctl restart alphav001
+
+# http://html5around.com/wordpress/tutorials/ubuntu-sqlite3-install-use/
+$ sudo apt-get install sqlite3 libsqlite3-dev
+$ sqlite3 ## sqlite 명령 프롬프트가 뜨는지 확인해 봅니다.
+sqlite>.quit ## 명령 프롬프트 빠져 나가기
+
+# debug 시 config.json 파일 못찾는다고 할때는
+--> /절대path압력/config.json
+python freqtrade/main.py -c /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/config.json
+
+cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+source venv/bin/activate
+python freqtrade/main.py --strategy BinHV45
+
+sqlite3
+.open tradesv3.sqlite
+.tables
+.schema trades
+select * from trades;
+update trades set ticker_interval = 5 where id = 1;
+update trades set strategy = 'CombinedBinHAndCluc' where id = 1;
+INSERT INTO trades (exchange, pair, is_open, fee_open, fee_close, open_rate, stake_amount, amount, open_date) VALUES ('binance', 'BTC_ETC', 1, 0.001, 0.001, 0.00258580, 0.002, 0.7715262081, '2018-10-01 12:44:24.000000')
+.quit
+
+

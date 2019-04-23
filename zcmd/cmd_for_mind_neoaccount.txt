@@ -1,0 +1,162 @@
+neo@vultr:~$ history
+    1  pwd
+    2  brew services
+    3  neo123
+    4  brew services
+    5  brew install mongodb
+    6  brew services start mongodb
+    7  ps -ef | grep mongod
+    8  sudo service mongod start
+    9  vi /etc/sudoers
+   10  sudo vi /etc/sudoers
+   11  lsb_release -a
+   12  service mongod start
+   13  pwd
+   14  echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+   15  sudo apt update
+   16  su -
+   17  whoami
+   18  npm install pm2 -g
+   19  exit
+   20  brew services
+   21  brew services list
+   22  history
+   23  pm2 list
+   24  cd /home/
+   25  ls
+   26  cd neo
+   27  ls
+   28  cd frontend/
+   29  ls
+   30  ls -la
+   31  git init
+   32  git clone https://github.com/tobby2002/mind-site
+   33  git init .
+   34  git init
+   35  pwd
+   36  sudo chown neo /home/neo/frontend
+   37  sudo chown neo /home/neo/
+   38  git init
+   39  git clone https://github.com/tobby2002/mind-site.git
+   40  ls -la
+   41  cd mind-site/
+   42  ls
+   43  sudo npm install -g n
+   44  node -v
+   45  npm -v
+   46  npm install
+   47  pm2 keystone.js 
+   48  ls -la
+   49  vi .env
+   50  vi .env_for_server 
+   51  mv .env .env_for_local
+   52  ls
+   53  ls -la
+   54  mv .env_for_server .env
+   55  pm2 keystone.js 
+   56  pm2 start keystone.js 
+   57  vi .env
+   58  ps -ef | grep keystone
+   59  ls -la
+   60  pm2 stop all
+   61  su - 
+   62  pwd
+   63  ls
+   64  ls -la
+   65  ps -ef | grep mongod
+   66  cd backend
+   67  ls -la
+   68  cd ai2
+   69  cd ai2_jairocnn/
+   70  ls
+   71  find / -name 'mondo*.conf'
+   72  locate mongo
+   73  locate mongorestore
+   74  /usr/bin/mongorestore
+   75  locate mongodump
+   76  find / -name 'mongodump'
+   77  /var/lib/mongorestore
+   78  ls -la /var/lib
+   79  /var/lib/mongodb/mongorestore --db admin 
+   80  /var/lib/mongodb/bin/mongorestore --db admin 
+   81  pwd
+   82  cd /var/lib/mongodb
+   83  ls
+   84  cd /home/neo/backend/ai2_jairocnn
+   85  cd /etc
+   86  ls
+   87  ls -la
+   88  find / -name '*mongorestore*'
+   89  locate -b '\mongo'
+   90  /usr/bin/mongorestore
+   91  cd /usr/bin/
+   92  ls
+   93  ls -la
+   94  cd mongodb
+   95  cd mongo
+   96  /usr/bin/mongo
+   97  /usr/bin/mongodump
+   98  /usr/bin/./mongorestore
+   99  which mongo
+  100  which mongodump
+  101  which mongorestore
+  102  locate -b '\mongo'
+  103  cd /usr/local/Cellar/mongodb/
+  104  cd /usr/local
+  105  ls
+  106  cd bin
+  107  ls -la
+  108  cd ..
+  109  pwd
+  110  cd /usr/bin/
+  111  ls -la
+  112  cd /usr/local/Cellar/mongodb
+  113  su -
+  114  brew uninstall mongodb
+  115  cd /home/neo/.linuxbrew/Cellar/mongodb
+  116  cd /home/neo
+  117  ls -la
+  118  cd .linuxbrew/
+  119  ls
+  120  cd Cellar/
+  121  ls
+  122  cd ..
+  123  ls
+  124  cd bin
+  125  ls
+  126  ps -ef | grep mongod
+  127  sudo apt update
+  128  pkill -f mongod
+  129  kill 29311
+  130  kill -9 29311
+  131  sudo kill -9 29311
+  132  ps -ef | grep mongod
+  133  brew uninstall mongodb
+  134  sudo apt install -y mongodb
+  135  sudo systemctl status mongodb
+  136  brew services start mongodb
+  137  sudo systemctl status mongodb
+  138  mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+  139  sudo systemctl status mongodb
+  140  sudo systemctl stop mongodb
+  141  sudo systemctl start mongodb
+  142  ps -ef | grep mongod
+  143  use admin
+  144  mongo
+  145  sudo vi /etc/mongod.conf
+  146  sudo vi /etc/mongodb.conf
+  147  sudo systemctl restart mongodb
+  148  pwd
+  149  cd /home/neo/frontend/mind-site/
+  150  ls -la
+  151  node keystone.js 
+  152  ls -la
+  153  vi keystone.js 
+  154  node keystone.js 
+  155  ps -ef | grep keystone
+  156  vi keystone.js 
+  157  node keystone.js 
+  158  vi keystone.js 
+  159  node keystone.js 
+  160  sudo node keystone.js
+  161  history

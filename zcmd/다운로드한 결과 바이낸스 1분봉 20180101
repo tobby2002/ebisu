@@ -1,0 +1,2573 @@
+Last login: Wed Oct 17 22:16:56 on ttys003
+neoui-MacBook-Pro:~ neo$ pwd
+/Users/neo
+neoui-MacBook-Pro:~ neo$ history
+    1  vim config/database.yml
+    2  bundle exec rake db:setup
+    3  ps -ef | grep mysql
+    4  mysql.server start
+    5  sudo mysql.server start
+    6  history
+    7  brew service mysql start
+    8  brew services start mysql
+    9  ps -ef | grep mysql
+   10  sudo brew services stop  mysql
+   11  brew services stop mysql
+   12  brew services start mysql
+   13  ps -ef | grep mysql
+   14  netstat
+   15  lsof -i:3306
+   16  brew services start mysql
+   17  history
+   18  bundle exec rake db:setup
+   19  history
+   20  bundle exec rake db:setup
+   21  mysql -u root -p
+   22  mysql -u root -p
+   23  vi /tmp/mysql.sock
+   24  mysql -u root -p
+   25  mysqladmin -u root -p 12345
+   26  pwd
+   27  cd /tmp
+   28  ls -la
+   29  cd /var/lib/mysql/
+   30  vi /etc/my.cnf
+   31  sudo rm /usr/local/mysql
+   32  sudo rm -rf /usr/local/mysql*
+   33  sudo rm -rf /Library/StartupItems/MySQLCOM
+   34  출처: http://codingisgame.tistory.com/12 [Coding or Gaming]sudo rm -rf /Library/PreferencePanes/My*
+   35  출처: http://codingisgame.tistory.com/12 [Coding or Gaming]
+   36  sudo rm -rf /Library/StartupItems/MySQLCOM
+   37  출처: http://codingisgame.tistory.com/12 [Coding or Gaming]sudo rm -rf /usr/local/mysql*
+   38  sudo rm -rf /usr/local/mysql*
+   39  sudo rm -rf /Library/StartupItems/MySQLCOM
+   40  sudo rm -rf /usr/local/mysql*
+   41  sudo rm /usr/local/mysql
+   42  sudo rm -rf /Library/PreferencePanes/My*
+   43  vim /etc/hostconfig
+   44  rm -rf ~/Library/PreferencePanes/My*
+   45  sudo rm -rf /Library/Receipts/mysql*
+   46  sudo rm -rf /Library/Receipts/MySQL*
+   47  sudo rm -rf /var/db/receipts/com.mysql.*
+   48  history
+   49  brew services start mysql
+   50  brew service stop mysql
+   51  brew services stop mysql
+   52  brew services list
+   53  brew services start mysql
+   54  brew services list
+   55  ls -al /usr/local/var/mysql
+   56  brew services stop mysql
+   57  rm -rf /usr/local/var/mysql
+   58  brew uninstall mysql
+   59  brew uninstall --force mysql
+   60  brew services list
+   61  brew list | grep mysql
+   62  brew install mysql
+   63  mysql -uroot
+   64  brew services start mysql
+   65  mysql -uroot
+   66  mysql_secure_installation
+   67  mysql_secure_installation
+   68  CREATE DATABASE peatio_v2_development default CHARACTER SET UTF8;
+   69  history
+   70  mysql -uroot
+   71  mysql -uroot -p12345678
+   72  pwd
+   73  history
+   74  cd /Users/neo/RubymineProjects/Peatio_V2-stable
+   75  pwd
+   76  bundle exec rake db:setup
+   77  start all daemons
+   78  pwd
+   79  bundle exec rake daemons:start
+   80  bundle exec rails server
+   81  history
+   82  bundle exec rails server
+   83  history
+   84  bundle exec rake db:setup
+   85  history
+   86  bundle exec rake db:setup
+   87  history
+   88  brew services list
+   89  ps -ef | grep rabbitmq
+   90  bundle exec rake db:setup
+   91  history
+   92  brew services restart mysql
+   93  brew list
+   94  brew services list
+   95  brew services restart mysql
+   96  brew services list
+   97  brew services restart mysql
+   98  brew services restart mysql
+   99  history
+  100  bundle exec rake db:setup
+  101  bundle exec rake daemons:start
+  102  bundle exec rake db:setup
+  103  bundle exec rails server
+  104  vi /etc/my.cnf
+  105  vi /etc/mysql/my.cnf
+  106  ls $(brew --prefix mysql)/support-files/my-*
+  107  sudo /usr/libexec/locate.updatedb
+  108  mysql_secure_installation
+  109  mysql -uroot -p12345678
+  110  history
+  111  mysql -uroot -p12345678
+  112  history
+  113  brew services list
+  114  bundle exec rake daemons:start
+  115  pwd
+  116  cd RubymineProjects/Peatio_V2-stable
+  117  pwd
+  118  bundle exec rake daemons:start
+  119  bundle exec rake daemons:start
+  120  bundle exec rails server
+  121  history
+  122  bundle exec rake daemons:start
+  123  bundle exec rails server
+  124  bundle exec rails server
+  125  bundle exec rake daemons:start
+  126  bundle exec rails server
+  127  bundle exec rails server
+  128  pwd
+  129  ls -la
+  130  cd WebstormProjects/
+  131  ll
+  132  ls
+  133  cd ..
+  134  cd RubymineProjects/
+  135  ll
+  136  ls
+  137  cd Peatio_V2-stable
+  138  pwd
+  139  mysql -uroot -p12345678
+  140  mysql -uroot -p12345678
+  141  select user, host, plugin from mysql.user;
+  142  mysql -uroot -p12345678
+  143  netstat -ntl
+  144  vim /etc/mysql/mysql.conf.d/mysqld.cnf
+  145  vi /usr/local/opt/mysql/my.cnf
+  146  sudo fs_usage | grep my.cnf
+  147  cd /usr/local/etc/
+  148  pwd
+  149  ls -la
+  150  vi /usr/local/etc/my.cnf
+  151  brew services restart mysql
+  152  vi /usr/local/etc/my.cnf
+  153  mysql --verbose --help | grep my.cnf
+  154  출처: http://harrythegreat.tistory.com/entry/mac-brew에서-설치한-mysql-mycnf가-안먹을때 [유목코딩]
+  155  mysql --verbose --help | grep my.cnf
+  156  vi /usr/local/etc/my.cnf
+  157  vi /etc/mysql/my.cnf
+  158  mdfind -name homebrew.mxcl.mysql.plist
+  159  출처: http://harrythegreat.tistory.com/entry/mac-brew에서-설치한-mysql-mycnf가-안먹을때 [유목코딩]
+  160  mdfind -name homebrew.mxcl.mysql.plist
+  161  vi /usr/local/Cellar/mysql/8.0.12/homebrew.mxcl.mysql.plist
+  162  vi /Users/neo/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+  163  sudo lsof -i -n -P | grep TCP | grep mysql
+  164  mysql --verbose --help | grep my.cnf
+  165  출처: http://harrythegreat.tistory.com/entry/mac-brew에서-설치한-mysql-mycnf가-안먹을때 [유목코딩]
+  166  mysql --verbose --help | grep my.cnf
+  167  vi /usr/local/etc/my.cnf
+  168  vi /usr/local/Cellar/mysql/8.0.12/homebrew.mxcl.mysql.plist
+  169  brew services restart mysql
+  170  history
+  171  brew services restart mysql
+  172  mysql --version
+  173  select user, host, plugin from mysql.user;
+  174  brew services restart mysql
+  175  history
+  176  vi /usr/local/etc/my.cnf
+  177  brew services restart mysql
+  178  history
+  179  history
+  180  mysql
+  181  mysql -uroot -p12345678
+  182  npm install
+  183  cp instance.json.dist instance.json
+  184  cp conf.json.dist conf.json
+  185  sqlite3 bot.db
+  186  mysql -uroot -p12345678
+  187  brew services list
+  188  brew services list
+  189  brew services list
+  190  brew services list
+  191  yarn dev
+  192  cp conf-sample.js conf.js
+  193  npm install
+  194  zenbot list-selectors
+  195  npm link
+  196  npm install
+  197  npm audit fix
+  198  npm audit fix --force
+  199  npm install --only=production
+  200  cd exchange/
+  201  npm install --only=production
+  202  pwd
+  203  cd ..
+  204  pwd
+  205  node gekko --ui
+  206  cd /usr/local/bin
+  207  pwd
+  208  pwd
+  209  zenbot list-strategies
+  210  mongo
+  211  pwd
+  212  exit
+  213  quasar dev
+  214  node alpha --ui
+  215  mysql
+  216  mysql -uroot -p12345678
+  217  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high
+  218  pwd
+  219  brew services list
+  220  cd /Users/neo/PycharmProjectPro/CATEd-master
+  221  pwd
+  222  pwd
+  223  source ./venv/bin/activate
+  224  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high
+  225  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high
+  226  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  227  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders
+  228  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  229  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  230  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  231  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  232  mysql -uroot -p12345678
+  233  mysql -uroot -p12345678
+  234  mysql -uroot -p12345678
+  235  mysql -uroot -p12345678
+  236  cd /Users/neo/PycharmProjectPro/CryptoStats-master
+  237  pwd
+  238  source ./venv/bin/activate
+  239  /Users/neo/PycharmProjectPro/CryptoStats-master
+  240  celery -A crypto worker -l info -B &
+  241  celery -A crypto worker -l info -B
+  242  brew services list
+  243  pwd
+  244  celery -A crypto worker -l info -B
+  245  ps -ef | grep celery
+  246  pkill -9 -f work celery
+  247  pkill -9 -f 'work celery'
+  248  ps -ef | grep celery
+  249  ps -ef | grep mysql
+  250  cd /etc/
+  251  ls -la
+  252  vi /usr/local/etc/my.cnf
+  253  vi /usr/local/etc/my.cnf
+  254  brew services mysql restart
+  255  brew services restart mysql
+  256  vi /usr/local/etc/my.cnf
+  257  brew services restart mysql
+  258  vi /usr/local/etc/my.cnf
+  259  brew services restart mysql
+  260  vi /usr/local/etc/my.cnf
+  261  brew services restart mysql
+  262  vi /usr/local/etc/my.cnf
+  263  brew services restart mysql
+  264  vi /usr/local/etc/my.cnf
+  265  brew services restart mysql
+  266  ps -ef | grep celery
+  267  pkill -9 celeryd
+  268  ps -ef | grep celery
+  269  redis-cli FLUSHALL
+  270  ps -ef | grep celery
+  271  brew service stop celery
+  272  brew services list
+  273  ps auxww | grep '[c]elery worker' | awk '{print $2}' | xargs kill
+  274  ps -ef | grep celery
+  275  celery multi kill worker
+  276  celery multi kill worker1
+  277  pkill -9 -f 'celery worker'
+  278  ps -ef | grep celery
+  279  pkill -9 -f 'celery worker'
+  280  mysql -uroot -p12345678
+  281  mysql -uroot -p12345678
+  282  mysql -uroot -p12345678
+  283  python manage.py makemigrations
+  284  python manage.py makemigrations
+  285  python manage.py migrate
+  286  python manage.py makemigrations ticker_app
+  287  python manage.py makemigrations trade
+  288  python manage.py makemigrations tradeBOT
+  289  python manage.py migrate
+  290  python manage.py sqlmigrate trade 0001
+  291  python manage.py loaddata dump.json
+  292  cd /Users/neo/PycharmProjectPro/CryptoStats-master
+  293  pwd
+  294  source ./venv/bin/activate
+  295  python manage.py loaddata dump.json
+  296  source ./venv/bin/activate
+  297  celery -A crypto worker -l info -B &
+  298  python manage.py loaddata dump.json &
+  299  cd /Users/neo/PycharmProjectPro/CATEd
+  300  source ./venv/bin/activate
+  301  clear
+  302  brew services list
+  303  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  304  clear
+  305  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  306  clear
+  307  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  308  clear
+  309  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  310  clear
+  311  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  312  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  313  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  314  cd /Users/neo/PycharmProjectPro/CATEd
+  315  source ./venv/bin/activate
+  316  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  317  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  318  clear
+  319  clear
+  320  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  321  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  322  cd /Users/neo/PycharmProjectPro/CATEd
+  323  source ./venv/bin/activate
+  324  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  325  clear
+  326  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  327  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  328  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  329  /Users/neo/PycharmProjectPro/CATEd/tradeBOT
+  330  cd ..
+  331  wpd
+  332  pwd
+  333  cd /Users/neo/PycharmProjectPro/CATEd
+  334  pwd
+  335  source ./venv/bin/activate
+  336  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  337  clear
+  338  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  339  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  340  cd /Users/neo/PycharmProjectPro/CATEd
+  341  source ./venv/bin/activate
+  342  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  343  clear
+  344  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  345  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  346  ps -ef | grep celery
+  347  pkill -9 -f 'celery worker'
+  348  ps -ef | grep celery
+  349  celery beat &
+  350  cd /Users/neo/PycharmProjectPro/CATEd
+  351  source ./venv/bin/activate
+  352  celery beat &
+  353  ps -ef | grep celery
+  354  pkill -9 -f 'celery worker'
+  355  ps -ef | grep celery
+  356  ps -ef | grep celery
+  357  pkill -9 -f 'celery worker'
+  358  ps -ef | grep celery
+  359  ps -ef | grep beat
+  360  ps -ef | grep celery
+  361  kill -9 41035
+  362  ps -ef | grep celery
+  363  sudo lsof -i :80
+  364  ps -ef | grep celery
+  365  pkill -9 -f 'celery worker'
+  366  ps -ef | grep celery
+  367  pkill -9 -f 'celery worker'
+  368  ps -ef | grep celery
+  369  pkill -9 -f 'celery worker'
+  370  pkill -9 -f 'celery worker'
+  371  ps -ef | grep celery
+  372  brew install postgresql
+  373  brew services start postgresql
+  374  postgress -V
+  375  postgres -V
+  376  pg_ctl -D /usr/local/var/postgres
+  377  pg_ctl -D /usr/local/var/postgres start
+  378  sudo ./setup.py install
+  379  gem install jekyll:2.5.3
+  380  gem install jekyll-multiple-languages-plugin:1.2.9
+  381  ln -s _config.demo.yml _config.yml
+  382  jekyll server --watch
+  383  brew services list
+  384  rabbitmq-server
+  385  rabbitmq-server
+  386  open /Applications/Bitcoin-Qt.app
+  387  brew services start rabbitmq
+  388  brew update
+  389  brew install gradle
+  390  brew upgrade gradle
+  391  cd /Library/
+  392  ls -la
+  393  pwd
+  394  cd /
+  395  pwd
+  396  ls -la
+  397  pwd
+  398  cd /Users/neo/PycharmProjectPro/CryptoStats-master
+  399  pwd
+  400  pwd
+  401  source ./venv/bin/activate
+  402  pwd
+  403  celery -A crypto worker -l info -B
+  404  source activate catalyst
+  405  conda info --envs
+  406  source activate catalyst-master
+  407  pwd
+  408  catalyst --help
+  409  catalyst-mater --help
+  410  pwd
+  411  cd catalyst/
+  412  pwd
+  413  ls -la
+  414  catalyst ingest-exchange --help
+  415  pwd
+  416  catalyst --version
+  417  conda env create -f python3.6-environment.yml
+  418  exit
+  419  pwd
+  420  jupyter notebook
+  421  pip install plotly
+  422  catalyst ingest-exchange -x bitfinex -f minute -i ltc_usd
+  423  catalyst run -f dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  424  catalyst run -f dual_moving_./catalyst/examples/average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  425  catalyst run -f dual_moving_./catalyst/examples/dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  426  catalyst run -f ./catalyst/examples/dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  427  catalyst run -f ./catalyst/examples/dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  428  pip list
+  429  pip list
+  430  pip install -U numpy
+  431  pip list
+  432  pip uninstall numpy
+  433  pip install numpy=1.14.0
+  434  pip install numpy-1.14.0
+  435  pip install numpy==1.14.0
+  436  pip uninstall setuptools
+  437  pip install setuptools==38.5.1
+  438  pip list
+  439  jupyter notebook
+  440  ssh root@107.191.53.74
+  441  ssh root@66.42.53.13
+  442  ssh root@66.42.53.13
+  443  ssh root@66.42.53.13
+  444  pip list
+  445  pip install --upgrade pip
+  446  git init .
+  447  ls -la
+  448  pwd
+  449  pip install -r requirements.txt
+  450  python3 ./freqtrade/main.py -s BinHV27 backtesting
+  451  pwd
+  452  python ./freqtrade/main.py -s BinHV27 backtesting
+  453  python .freqtrade/main.py -s BinHV27 backtesting
+  454  python ./freqtrade/main.py -s BinHV27 backtesting
+  455  pip list
+  456  pip3 install -e .
+  457  python ./freqtrade/main.py -s BinHV27 backtesting
+  458  git init
+  459  git commit -m "first commit"
+  460  git remote add origin https://github.com/tobby2002/miracletrader.git
+  461  git push -u origin master
+  462  git config --global user.email "
+  463  git config --global user.email "tobby2002@gmail.com"
+  464  git init
+  465  git add .
+  466  git config --global user.email "tobby2002@gmail.com"
+  467  git push -u origin master
+  468  git init
+  469  git add .
+  470  git commit -m "first miracle"
+  471  git push -u origin master
+  472  git push -u origin master
+  473  git commit -m "first 2"
+  474  git push -u origin master
+  475  git init
+  476  git add .
+  477  git commit -m "first 1"
+  478  git push -u origin master
+  479  khistory
+  480  history
+  481  freqtrade backtesting -l
+  482  freqtrade backtesting
+  483  freqtrade backtesting -l
+  484  ssh root@66.42.53.13
+  485  ssh root@66.42.53.13
+  486  ssh root@66.42.53.13
+  487  cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+  488  pwd
+  489  source ./venv/bin/activate
+  490  /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+  491  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --realistic-simulation --refresh-pairs-cached
+  492  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  493  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached
+  494  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached
+  495  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  496  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  497  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180901- --ticker-interval 5m --refresh-pairs-cached
+  498  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  499  pwd
+  500  history
+neoui-MacBook-Pro:~ neo$ cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ source ./venv/bin/activate
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ history
+    5  sudo mysql.server start
+    6  history
+    7  brew service mysql start
+    8  brew services start mysql
+    9  ps -ef | grep mysql
+   10  sudo brew services stop  mysql
+   11  brew services stop mysql
+   12  brew services start mysql
+   13  ps -ef | grep mysql
+   14  netstat
+   15  lsof -i:3306
+   16  brew services start mysql
+   17  history
+   18  bundle exec rake db:setup
+   19  history
+   20  bundle exec rake db:setup
+   21  mysql -u root -p
+   22  mysql -u root -p
+   23  vi /tmp/mysql.sock
+   24  mysql -u root -p
+   25  mysqladmin -u root -p 12345
+   26  pwd
+   27  cd /tmp
+   28  ls -la
+   29  cd /var/lib/mysql/
+   30  vi /etc/my.cnf
+   31  sudo rm /usr/local/mysql
+   32  sudo rm -rf /usr/local/mysql*
+   33  sudo rm -rf /Library/StartupItems/MySQLCOM
+   34  출처: http://codingisgame.tistory.com/12 [Coding or Gaming]sudo rm -rf /Library/PreferencePanes/My*
+   35  출처: http://codingisgame.tistory.com/12 [Coding or Gaming]
+   36  sudo rm -rf /Library/StartupItems/MySQLCOM
+   37  출처: http://codingisgame.tistory.com/12 [Coding or Gaming]sudo rm -rf /usr/local/mysql*
+   38  sudo rm -rf /usr/local/mysql*
+   39  sudo rm -rf /Library/StartupItems/MySQLCOM
+   40  sudo rm -rf /usr/local/mysql*
+   41  sudo rm /usr/local/mysql
+   42  sudo rm -rf /Library/PreferencePanes/My*
+   43  vim /etc/hostconfig
+   44  rm -rf ~/Library/PreferencePanes/My*
+   45  sudo rm -rf /Library/Receipts/mysql*
+   46  sudo rm -rf /Library/Receipts/MySQL*
+   47  sudo rm -rf /var/db/receipts/com.mysql.*
+   48  history
+   49  brew services start mysql
+   50  brew service stop mysql
+   51  brew services stop mysql
+   52  brew services list
+   53  brew services start mysql
+   54  brew services list
+   55  ls -al /usr/local/var/mysql
+   56  brew services stop mysql
+   57  rm -rf /usr/local/var/mysql
+   58  brew uninstall mysql
+   59  brew uninstall --force mysql
+   60  brew services list
+   61  brew list | grep mysql
+   62  brew install mysql
+   63  mysql -uroot
+   64  brew services start mysql
+   65  mysql -uroot
+   66  mysql_secure_installation
+   67  mysql_secure_installation
+   68  CREATE DATABASE peatio_v2_development default CHARACTER SET UTF8;
+   69  history
+   70  mysql -uroot
+   71  mysql -uroot -p12345678
+   72  pwd
+   73  history
+   74  cd /Users/neo/RubymineProjects/Peatio_V2-stable
+   75  pwd
+   76  bundle exec rake db:setup
+   77  start all daemons
+   78  pwd
+   79  bundle exec rake daemons:start
+   80  bundle exec rails server
+   81  history
+   82  bundle exec rails server
+   83  history
+   84  bundle exec rake db:setup
+   85  history
+   86  bundle exec rake db:setup
+   87  history
+   88  brew services list
+   89  ps -ef | grep rabbitmq
+   90  bundle exec rake db:setup
+   91  history
+   92  brew services restart mysql
+   93  brew list
+   94  brew services list
+   95  brew services restart mysql
+   96  brew services list
+   97  brew services restart mysql
+   98  brew services restart mysql
+   99  history
+  100  bundle exec rake db:setup
+  101  bundle exec rake daemons:start
+  102  bundle exec rake db:setup
+  103  bundle exec rails server
+  104  vi /etc/my.cnf
+  105  vi /etc/mysql/my.cnf
+  106  ls $(brew --prefix mysql)/support-files/my-*
+  107  sudo /usr/libexec/locate.updatedb
+  108  mysql_secure_installation
+  109  mysql -uroot -p12345678
+  110  history
+  111  mysql -uroot -p12345678
+  112  history
+  113  brew services list
+  114  bundle exec rake daemons:start
+  115  pwd
+  116  cd RubymineProjects/Peatio_V2-stable
+  117  pwd
+  118  bundle exec rake daemons:start
+  119  bundle exec rake daemons:start
+  120  bundle exec rails server
+  121  history
+  122  bundle exec rake daemons:start
+  123  bundle exec rails server
+  124  bundle exec rails server
+  125  bundle exec rake daemons:start
+  126  bundle exec rails server
+  127  bundle exec rails server
+  128  pwd
+  129  ls -la
+  130  cd WebstormProjects/
+  131  ll
+  132  ls
+  133  cd ..
+  134  cd RubymineProjects/
+  135  ll
+  136  ls
+  137  cd Peatio_V2-stable
+  138  pwd
+  139  mysql -uroot -p12345678
+  140  mysql -uroot -p12345678
+  141  select user, host, plugin from mysql.user;
+  142  mysql -uroot -p12345678
+  143  netstat -ntl
+  144  vim /etc/mysql/mysql.conf.d/mysqld.cnf
+  145  vi /usr/local/opt/mysql/my.cnf
+  146  sudo fs_usage | grep my.cnf
+  147  cd /usr/local/etc/
+  148  pwd
+  149  ls -la
+  150  vi /usr/local/etc/my.cnf
+  151  brew services restart mysql
+  152  vi /usr/local/etc/my.cnf
+  153  mysql --verbose --help | grep my.cnf
+  154  출처: http://harrythegreat.tistory.com/entry/mac-brew에서-설치한-mysql-mycnf가-안먹을때 [유목코딩]
+  155  mysql --verbose --help | grep my.cnf
+  156  vi /usr/local/etc/my.cnf
+  157  vi /etc/mysql/my.cnf
+  158  mdfind -name homebrew.mxcl.mysql.plist
+  159  출처: http://harrythegreat.tistory.com/entry/mac-brew에서-설치한-mysql-mycnf가-안먹을때 [유목코딩]
+  160  mdfind -name homebrew.mxcl.mysql.plist
+  161  vi /usr/local/Cellar/mysql/8.0.12/homebrew.mxcl.mysql.plist
+  162  vi /Users/neo/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+  163  sudo lsof -i -n -P | grep TCP | grep mysql
+  164  mysql --verbose --help | grep my.cnf
+  165  출처: http://harrythegreat.tistory.com/entry/mac-brew에서-설치한-mysql-mycnf가-안먹을때 [유목코딩]
+  166  mysql --verbose --help | grep my.cnf
+  167  vi /usr/local/etc/my.cnf
+  168  vi /usr/local/Cellar/mysql/8.0.12/homebrew.mxcl.mysql.plist
+  169  brew services restart mysql
+  170  history
+  171  brew services restart mysql
+  172  mysql --version
+  173  select user, host, plugin from mysql.user;
+  174  brew services restart mysql
+  175  history
+  176  vi /usr/local/etc/my.cnf
+  177  brew services restart mysql
+  178  history
+  179  history
+  180  mysql
+  181  mysql -uroot -p12345678
+  182  npm install
+  183  cp instance.json.dist instance.json
+  184  cp conf.json.dist conf.json
+  185  sqlite3 bot.db
+  186  mysql -uroot -p12345678
+  187  brew services list
+  188  brew services list
+  189  brew services list
+  190  brew services list
+  191  yarn dev
+  192  cp conf-sample.js conf.js
+  193  npm install
+  194  zenbot list-selectors
+  195  npm link
+  196  npm install
+  197  npm audit fix
+  198  npm audit fix --force
+  199  npm install --only=production
+  200  cd exchange/
+  201  npm install --only=production
+  202  pwd
+  203  cd ..
+  204  pwd
+  205  node gekko --ui
+  206  cd /usr/local/bin
+  207  pwd
+  208  pwd
+  209  zenbot list-strategies
+  210  mongo
+  211  pwd
+  212  exit
+  213  quasar dev
+  214  node alpha --ui
+  215  mysql
+  216  mysql -uroot -p12345678
+  217  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high
+  218  pwd
+  219  brew services list
+  220  cd /Users/neo/PycharmProjectPro/CATEd-master
+  221  pwd
+  222  pwd
+  223  source ./venv/bin/activate
+  224  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high
+  225  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high
+  226  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  227  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders
+  228  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  229  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  230  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  231  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  232  mysql -uroot -p12345678
+  233  mysql -uroot -p12345678
+  234  mysql -uroot -p12345678
+  235  mysql -uroot -p12345678
+  236  cd /Users/neo/PycharmProjectPro/CryptoStats-master
+  237  pwd
+  238  source ./venv/bin/activate
+  239  /Users/neo/PycharmProjectPro/CryptoStats-master
+  240  celery -A crypto worker -l info -B &
+  241  celery -A crypto worker -l info -B
+  242  brew services list
+  243  pwd
+  244  celery -A crypto worker -l info -B
+  245  ps -ef | grep celery
+  246  pkill -9 -f work celery
+  247  pkill -9 -f 'work celery'
+  248  ps -ef | grep celery
+  249  ps -ef | grep mysql
+  250  cd /etc/
+  251  ls -la
+  252  vi /usr/local/etc/my.cnf
+  253  vi /usr/local/etc/my.cnf
+  254  brew services mysql restart
+  255  brew services restart mysql
+  256  vi /usr/local/etc/my.cnf
+  257  brew services restart mysql
+  258  vi /usr/local/etc/my.cnf
+  259  brew services restart mysql
+  260  vi /usr/local/etc/my.cnf
+  261  brew services restart mysql
+  262  vi /usr/local/etc/my.cnf
+  263  brew services restart mysql
+  264  vi /usr/local/etc/my.cnf
+  265  brew services restart mysql
+  266  ps -ef | grep celery
+  267  pkill -9 celeryd
+  268  ps -ef | grep celery
+  269  redis-cli FLUSHALL
+  270  ps -ef | grep celery
+  271  brew service stop celery
+  272  brew services list
+  273  ps auxww | grep '[c]elery worker' | awk '{print $2}' | xargs kill
+  274  ps -ef | grep celery
+  275  celery multi kill worker
+  276  celery multi kill worker1
+  277  pkill -9 -f 'celery worker'
+  278  ps -ef | grep celery
+  279  pkill -9 -f 'celery worker'
+  280  mysql -uroot -p12345678
+  281  mysql -uroot -p12345678
+  282  mysql -uroot -p12345678
+  283  python manage.py makemigrations
+  284  python manage.py makemigrations
+  285  python manage.py migrate
+  286  python manage.py makemigrations ticker_app
+  287  python manage.py makemigrations trade
+  288  python manage.py makemigrations tradeBOT
+  289  python manage.py migrate
+  290  python manage.py sqlmigrate trade 0001
+  291  python manage.py loaddata dump.json
+  292  cd /Users/neo/PycharmProjectPro/CryptoStats-master
+  293  pwd
+  294  source ./venv/bin/activate
+  295  python manage.py loaddata dump.json
+  296  source ./venv/bin/activate
+  297  celery -A crypto worker -l info -B &
+  298  python manage.py loaddata dump.json &
+  299  cd /Users/neo/PycharmProjectPro/CATEd
+  300  source ./venv/bin/activate
+  301  clear
+  302  brew services list
+  303  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  304  clear
+  305  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  306  clear
+  307  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  308  clear
+  309  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  310  clear
+  311  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  312  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  313  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  314  cd /Users/neo/PycharmProjectPro/CATEd
+  315  source ./venv/bin/activate
+  316  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  317  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  318  clear
+  319  clear
+  320  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  321  celery worker -A djangoTrade -n worker_set_orders -l info -c 1 -Q set_orders &
+  322  cd /Users/neo/PycharmProjectPro/CATEd
+  323  source ./venv/bin/activate
+  324  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  325  clear
+  326  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  327  celery worker -A djangoTrade -n worker_low -l info -c 2 -Q low &
+  328  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  329  /Users/neo/PycharmProjectPro/CATEd/tradeBOT
+  330  cd ..
+  331  wpd
+  332  pwd
+  333  cd /Users/neo/PycharmProjectPro/CATEd
+  334  pwd
+  335  source ./venv/bin/activate
+  336  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  337  clear
+  338  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  339  celery worker -A djangoTrade -n worker_high -l info -c 1 -Q high &
+  340  cd /Users/neo/PycharmProjectPro/CATEd
+  341  source ./venv/bin/activate
+  342  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  343  clear
+  344  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  345  celery worker -A djangoTrade -n worker_normal -l info -c 2 -Q normal &
+  346  ps -ef | grep celery
+  347  pkill -9 -f 'celery worker'
+  348  ps -ef | grep celery
+  349  celery beat &
+  350  cd /Users/neo/PycharmProjectPro/CATEd
+  351  source ./venv/bin/activate
+  352  celery beat &
+  353  ps -ef | grep celery
+  354  pkill -9 -f 'celery worker'
+  355  ps -ef | grep celery
+  356  ps -ef | grep celery
+  357  pkill -9 -f 'celery worker'
+  358  ps -ef | grep celery
+  359  ps -ef | grep beat
+  360  ps -ef | grep celery
+  361  kill -9 41035
+  362  ps -ef | grep celery
+  363  sudo lsof -i :80
+  364  ps -ef | grep celery
+  365  pkill -9 -f 'celery worker'
+  366  ps -ef | grep celery
+  367  pkill -9 -f 'celery worker'
+  368  ps -ef | grep celery
+  369  pkill -9 -f 'celery worker'
+  370  pkill -9 -f 'celery worker'
+  371  ps -ef | grep celery
+  372  brew install postgresql
+  373  brew services start postgresql
+  374  postgress -V
+  375  postgres -V
+  376  pg_ctl -D /usr/local/var/postgres
+  377  pg_ctl -D /usr/local/var/postgres start
+  378  sudo ./setup.py install
+  379  gem install jekyll:2.5.3
+  380  gem install jekyll-multiple-languages-plugin:1.2.9
+  381  ln -s _config.demo.yml _config.yml
+  382  jekyll server --watch
+  383  brew services list
+  384  rabbitmq-server
+  385  rabbitmq-server
+  386  open /Applications/Bitcoin-Qt.app
+  387  brew services start rabbitmq
+  388  brew update
+  389  brew install gradle
+  390  brew upgrade gradle
+  391  cd /Library/
+  392  ls -la
+  393  pwd
+  394  cd /
+  395  pwd
+  396  ls -la
+  397  pwd
+  398  cd /Users/neo/PycharmProjectPro/CryptoStats-master
+  399  pwd
+  400  pwd
+  401  source ./venv/bin/activate
+  402  pwd
+  403  celery -A crypto worker -l info -B
+  404  source activate catalyst
+  405  conda info --envs
+  406  source activate catalyst-master
+  407  pwd
+  408  catalyst --help
+  409  catalyst-mater --help
+  410  pwd
+  411  cd catalyst/
+  412  pwd
+  413  ls -la
+  414  catalyst ingest-exchange --help
+  415  pwd
+  416  catalyst --version
+  417  conda env create -f python3.6-environment.yml
+  418  exit
+  419  pwd
+  420  jupyter notebook
+  421  pip install plotly
+  422  catalyst ingest-exchange -x bitfinex -f minute -i ltc_usd
+  423  catalyst run -f dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  424  catalyst run -f dual_moving_./catalyst/examples/average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  425  catalyst run -f dual_moving_./catalyst/examples/dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  426  catalyst run -f ./catalyst/examples/dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  427  catalyst run -f ./catalyst/examples/dual_moving_average.py -x bitfinex -s 2017-9-22 -e 2017-9-23 --capital-base 1000 --quote-currency usd --data-frequency minute -o out.pickle
+  428  pip list
+  429  pip list
+  430  pip install -U numpy
+  431  pip list
+  432  pip uninstall numpy
+  433  pip install numpy=1.14.0
+  434  pip install numpy-1.14.0
+  435  pip install numpy==1.14.0
+  436  pip uninstall setuptools
+  437  pip install setuptools==38.5.1
+  438  pip list
+  439  jupyter notebook
+  440  ssh root@107.191.53.74
+  441  ssh root@66.42.53.13
+  442  ssh root@66.42.53.13
+  443  ssh root@66.42.53.13
+  444  pip list
+  445  pip install --upgrade pip
+  446  git init .
+  447  ls -la
+  448  pwd
+  449  pip install -r requirements.txt
+  450  python3 ./freqtrade/main.py -s BinHV27 backtesting
+  451  pwd
+  452  python ./freqtrade/main.py -s BinHV27 backtesting
+  453  python .freqtrade/main.py -s BinHV27 backtesting
+  454  python ./freqtrade/main.py -s BinHV27 backtesting
+  455  pip list
+  456  pip3 install -e .
+  457  python ./freqtrade/main.py -s BinHV27 backtesting
+  458  git init
+  459  git commit -m "first commit"
+  460  git remote add origin https://github.com/tobby2002/miracletrader.git
+  461  git push -u origin master
+  462  git config --global user.email "
+  463  git config --global user.email "tobby2002@gmail.com"
+  464  git init
+  465  git add .
+  466  git config --global user.email "tobby2002@gmail.com"
+  467  git push -u origin master
+  468  git init
+  469  git add .
+  470  git commit -m "first miracle"
+  471  git push -u origin master
+  472  git push -u origin master
+  473  git commit -m "first 2"
+  474  git push -u origin master
+  475  git init
+  476  git add .
+  477  git commit -m "first 1"
+  478  git push -u origin master
+  479  khistory
+  480  history
+  481  freqtrade backtesting -l
+  482  freqtrade backtesting
+  483  freqtrade backtesting -l
+  484  ssh root@66.42.53.13
+  485  ssh root@66.42.53.13
+  486  ssh root@66.42.53.13
+  487  cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+  488  pwd
+  489  source ./venv/bin/activate
+  490  /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+  491  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --realistic-simulation --refresh-pairs-cached
+  492  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  493  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached
+  494  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached
+  495  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  496  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  497  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180901- --ticker-interval 5m --refresh-pairs-cached
+  498  python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+  499  pwd
+  500  history
+  501  cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+  502  cd /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15
+  503  source ./venv/bin/activate
+  504  history
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached &
+[1] 98190
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/venv/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2018-10-18 04:27:19,739 - freqtrade.configuration - INFO - Verbosity set to 0
+2018-10-18 04:27:19,739 - freqtrade.configuration - INFO - Dry run is enabled
+2018-10-18 04:27:19,739 - freqtrade.configuration - INFO - Using DB: "sqlite://"
+2018-10-18 04:27:19,739 - freqtrade.configuration - WARNING - `ccxt_rate_limit` has been deprecated in favor of `ccxt_config` and `ccxt_async_config` and will be removed in a future version.
+2018-10-18 04:27:19,739 - freqtrade.configuration - INFO - Parameter -i/--ticker-interval detected ...
+2018-10-18 04:27:19,739 - freqtrade.configuration - INFO - Using ticker_interval: 5m ...
+2018-10-18 04:27:19,740 - freqtrade.configuration - INFO - Using max_open_trades: 10 ...
+2018-10-18 04:27:19,740 - freqtrade.configuration - INFO - Parameter --timerange detected: 20180101- ...
+2018-10-18 04:27:19,740 - freqtrade.configuration - INFO - Using data folder: user_data/data/binance ...
+2018-10-18 04:27:19,740 - freqtrade.configuration - INFO - Parameter -r/--refresh-pairs-cached detected ...
+2018-10-18 04:27:19,740 - freqtrade.configuration - INFO - Overriding ticker interval with Command line argument
+2018-10-18 04:27:19,740 - freqtrade.optimize.backtesting - INFO - Starting freqtrade in Backtesting mode
+2018-10-18 04:27:19,760 - freqtrade.strategy.resolver - INFO - Using resolved strategy BinHV45 from '/Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/user_data/strategies'
+2018-10-18 04:27:19,760 - freqtrade.strategy.resolver - INFO - Override strategy 'ticker_interval' with value in config file: 5m.
+2018-10-18 04:27:19,760 - freqtrade.exchange - INFO - Instance is running with dry_run enabled
+2018-10-18 04:27:19,771 - freqtrade.exchange - INFO - Using Exchange "Binance"
+2018-10-18 04:27:20,060 - freqtrade.optimize.backtesting - INFO - Using stake_currency: ETH ...
+2018-10-18 04:27:20,061 - freqtrade.optimize.backtesting - INFO - Using stake_amount: 5 ...
+2018-10-18 04:27:20,061 - freqtrade.optimize.backtesting - INFO - Using local backtesting data (using whitelist in given config) ...
+2018-10-18 04:27:20,064 - freqtrade.optimize - INFO - Download data for all pairs and store them in user_data/data/binance
+2018-10-18 04:27:20,064 - freqtrade.optimize - INFO - Download the pair: "SYS/ETH", Interval: 5m
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ 2018-10-18 04:30:07,537 - freqtrade.exchange - INFO - downloaded SYS/ETH with length 83466.
+dumping json to "user_data/data/binance/SYS_ETH-5m.json"
+2018-10-18 04:30:08,374 - freqtrade.optimize - INFO - Download the pair: "NEBL/ETH", Interval: 5m
+2018-10-18 04:30:08,565 - freqtrade.exchange - INFO - downloaded NEBL/ETH with length 2.
+dumping json to "user_data/data/binance/NEBL_ETH-5m.json"
+2018-10-18 04:30:09,409 - freqtrade.optimize - INFO - Download the pair: "WAVES/ETH", Interval: 5m
+2018-10-18 04:32:56,045 - freqtrade.exchange - INFO - downloaded WAVES/ETH with length 83467.
+dumping json to "user_data/data/binance/WAVES_ETH-5m.json"
+2018-10-18 04:32:56,891 - freqtrade.optimize - INFO - Download the pair: "NULS/ETH", Interval: 5m
+2018-10-18 04:35:43,472 - freqtrade.exchange - INFO - downloaded NULS/ETH with length 83467.
+dumping json to "user_data/data/binance/NULS_ETH-5m.json"
+2018-10-18 04:35:44,317 - freqtrade.optimize - INFO - Download the pair: "STRAT/ETH", Interval: 5m
+2018-10-18 04:38:30,772 - freqtrade.exchange - INFO - downloaded STRAT/ETH with length 83468.
+dumping json to "user_data/data/binance/STRAT_ETH-5m.json"
+2018-10-18 04:38:31,596 - freqtrade.optimize - INFO - Download the pair: "EDO/ETH", Interval: 5m
+2018-10-18 04:41:18,228 - freqtrade.exchange - INFO - downloaded EDO/ETH with length 83468.
+dumping json to "user_data/data/binance/EDO_ETH-5m.json"
+2018-10-18 04:41:19,041 - freqtrade.optimize - INFO - Download the pair: "ARK/ETH", Interval: 5m
+2018-10-18 04:43:36,927 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1532014800000 "
+2018-10-18 04:43:36,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:43:51,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534114800000 "
+2018-10-18 04:43:51,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:43:59,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534564800000 "
+2018-10-18 04:43:59,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:05,931 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1527064800000 "
+2018-10-18 04:44:05,931 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:06,932 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1528714800000 "
+2018-10-18 04:44:06,932 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:07,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534414800000 "
+2018-10-18 04:44:07,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:08,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1529164800000 "
+2018-10-18 04:44:08,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:09,931 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530214800000 "
+2018-10-18 04:44:09,932 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:10,931 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534264800000 "
+2018-10-18 04:44:10,931 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:12,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530064800000 "
+2018-10-18 04:44:12,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:14,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530364800000 "
+2018-10-18 04:44:14,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 04:44:16,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1532014800000 "
+2018-10-18 04:44:16,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:17,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534114800000 "
+2018-10-18 04:44:17,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:18,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534564800000 "
+2018-10-18 04:44:18,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:19,930 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1527064800000 "
+2018-10-18 04:44:19,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:20,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1528714800000 "
+2018-10-18 04:44:20,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:21,930 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534414800000 "
+2018-10-18 04:44:21,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:22,931 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1529164800000 "
+2018-10-18 04:44:22,931 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:23,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530214800000 "
+2018-10-18 04:44:23,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:24,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534264800000 "
+2018-10-18 04:44:24,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:25,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530064800000 "
+2018-10-18 04:44:25,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:26,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530364800000 "
+2018-10-18 04:44:26,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 2 times
+2018-10-18 04:44:27,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1532014800000 "
+2018-10-18 04:44:27,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:28,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534114800000 "
+2018-10-18 04:44:28,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:29,927 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534564800000 "
+2018-10-18 04:44:29,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:30,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1527064800000 "
+2018-10-18 04:44:30,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:31,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1528714800000 "
+2018-10-18 04:44:31,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:32,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534414800000 "
+2018-10-18 04:44:32,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:33,927 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1529164800000 "
+2018-10-18 04:44:33,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:34,930 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530214800000 "
+2018-10-18 04:44:34,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:35,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534264800000 "
+2018-10-18 04:44:35,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:36,929 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530064800000 "
+2018-10-18 04:44:36,929 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:37,932 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530364800000 "
+2018-10-18 04:44:37,932 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 1 times
+2018-10-18 04:44:38,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1532014800000 "
+2018-10-18 04:44:38,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:39,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534114800000 "
+2018-10-18 04:44:39,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:40,930 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534564800000 "
+2018-10-18 04:44:40,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:41,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1527064800000 "
+2018-10-18 04:44:41,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:43,930 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534414800000 "
+2018-10-18 04:44:43,930 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:44,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1529164800000 "
+2018-10-18 04:44:44,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:46,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1534264800000 "
+2018-10-18 04:44:46,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:47,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530064800000 "
+2018-10-18 04:44:47,928 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:48,930 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1530364800000 "
+2018-10-18 04:44:48,931 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 0 times
+2018-10-18 04:44:49,928 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=ARKETH&interval=5m&startTime=1532014800000 "
+2018-10-18 04:44:49,928 - freqtrade.exchange - WARNING - Giving up retrying: _async_get_candle_history()
+2018-10-18 04:44:49,929 - freqtrade.optimize - INFO - Failed to download the pair: "ARK/ETH", Interval: 5m
+2018-10-18 04:44:50,956 - freqtrade.optimize - WARNING - No data for pair: "ARK/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "LEND/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "VIA/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "PHX/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "XZC/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "SKY/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "ZEN/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "NXS/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "PIVX/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,957 - freqtrade.optimize - WARNING - No data for pair: "ARDR/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "MDA/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "XRP/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "TUSD/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "EOS/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "TRX/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "MOD/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "WABI/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "ADA/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "ETC/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "ICX/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "HOT/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "ARN/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,958 - freqtrade.optimize - WARNING - No data for pair: "BNB/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "ZRX/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "XLM/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "NPXS/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "NEO/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "LTC/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "REQ/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "ONT/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "PAX/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "IOTX/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "ZIL/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,959 - freqtrade.optimize - WARNING - No data for pair: "POA/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,960 - freqtrade.optimize - WARNING - No data for pair: "QKC/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,960 - freqtrade.optimize - WARNING - No data for pair: "QSP/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,960 - freqtrade.optimize - WARNING - No data for pair: "BRD/ETH", Interval: 5m. Use --refresh-pairs-cached to download the data
+2018-10-18 04:44:50,960 - freqtrade.optimize.backtesting - INFO - Running backtesting for Strategy BinHV45
+2018-10-18 04:44:51,447 - freqtrade.optimize.backtesting - INFO - Measuring data from 2018-01-01T00:00:00+00:00 up to 2018-10-17T19:30:00+00:00 (289 days)..
+Result for strategy BinHV45
+================================================== BACKTESTING REPORT =================================================
+| pair      |   buy count |   avg profit % |   cum profit % |   total profit ETH | avg duration   |   profit |   loss |
+|:----------|------------:|---------------:|---------------:|-------------------:|:---------------|---------:|-------:|
+| SYS/ETH   |         130 |           0.80 |         103.50 |         5.18032260 | 5:34:00        |      113 |     17 |
+| NEBL/ETH  |         201 |           0.76 |         152.65 |         7.64024360 | 3:11:00        |      168 |     33 |
+| WAVES/ETH |          80 |           0.31 |          24.96 |         1.24932660 | 3:37:00        |       65 |     15 |
+| NULS/ETH  |         220 |           0.41 |          91.22 |         4.56575910 | 3:17:00        |      178 |     42 |
+| STRAT/ETH |         121 |           0.69 |          83.18 |         4.16339850 | 4:55:00        |      101 |     20 |
+| EDO/ETH   |         183 |           0.99 |         181.42 |         9.08010280 | 4:05:00        |      156 |     27 |
+| TOTAL     |         935 |           0.68 |         636.95 |        31.87915320 | 3:59:00        |      781 |    154 |
+================================================== SELL REASON STATS ==================================================
+| Sell Reason   |   Count |
+|:--------------|--------:|
+| roi           |     781 |
+| stop_loss     |     154 |
+=============================================== LEFT OPEN TRADES REPORT ===============================================
+| pair   |   buy count |   avg profit % |   cum profit % |   total profit ETH | avg duration   |   profit |   loss |
+|:-------|------------:|---------------:|---------------:|-------------------:|:---------------|---------:|-------:|
+| TOTAL  |           0 |            nan |           0.00 |         0.00000000 | 0:00           |        0 |      0 |
+
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached &
+[2] 20613
+[1]   Done                    python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 5m --refresh-pairs-cached
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/venv/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2018-10-18 05:50:58,363 - freqtrade.configuration - INFO - Verbosity set to 0
+2018-10-18 05:50:58,363 - freqtrade.configuration - INFO - Dry run is enabled
+2018-10-18 05:50:58,363 - freqtrade.configuration - INFO - Using DB: "sqlite://"
+2018-10-18 05:50:58,363 - freqtrade.configuration - WARNING - `ccxt_rate_limit` has been deprecated in favor of `ccxt_config` and `ccxt_async_config` and will be removed in a future version.
+2018-10-18 05:50:58,363 - freqtrade.configuration - INFO - Parameter -i/--ticker-interval detected ...
+2018-10-18 05:50:58,363 - freqtrade.configuration - INFO - Using ticker_interval: 1m ...
+2018-10-18 05:50:58,364 - freqtrade.configuration - INFO - Using max_open_trades: 3 ...
+2018-10-18 05:50:58,364 - freqtrade.configuration - INFO - Parameter --timerange detected: 20180101- ...
+2018-10-18 05:50:58,364 - freqtrade.configuration - INFO - Created data directory: user_data/data/binance
+2018-10-18 05:50:58,364 - freqtrade.configuration - INFO - Using data folder: user_data/data/binance ...
+2018-10-18 05:50:58,364 - freqtrade.configuration - INFO - Parameter -r/--refresh-pairs-cached detected ...
+2018-10-18 05:50:58,364 - freqtrade.configuration - INFO - Overriding ticker interval with Command line argument
+2018-10-18 05:50:58,364 - freqtrade.optimize.backtesting - INFO - Starting freqtrade in Backtesting mode
+2018-10-18 05:50:58,370 - freqtrade.strategy.resolver - INFO - Using resolved strategy BinHV45 from '/Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/user_data/strategies'
+2018-10-18 05:50:58,371 - freqtrade.strategy.resolver - INFO - Override strategy 'ticker_interval' with value in config file: 1m.
+2018-10-18 05:50:58,371 - freqtrade.exchange - INFO - Instance is running with dry_run enabled
+2018-10-18 05:50:58,382 - freqtrade.exchange - INFO - Using Exchange "Binance"
+2018-10-18 05:50:58,654 - freqtrade.optimize.backtesting - INFO - Using stake_currency: ETH ...
+2018-10-18 05:50:58,654 - freqtrade.optimize.backtesting - INFO - Using stake_amount: 50 ...
+2018-10-18 05:50:58,654 - freqtrade.optimize.backtesting - INFO - Using local backtesting data (using whitelist in given config) ...
+2018-10-18 05:50:58,658 - freqtrade.optimize - INFO - Download data for all pairs and store them in user_data/data/binance
+2018-10-18 05:50:58,658 - freqtrade.optimize - INFO - Download the pair: "VET/ETH", Interval: 1m
+2018-10-18 06:04:57,863 - freqtrade.exchange - INFO - downloaded VET/ETH with length 417423.
+dumping json to "user_data/data/binance/VET_ETH-1m.json"
+2018-10-18 06:05:02,006 - freqtrade.optimize - INFO - Download the pair: "AION/ETH", Interval: 1m
+2018-10-18 06:19:02,704 - freqtrade.exchange - INFO - downloaded AION/ETH with length 417437.
+dumping json to "user_data/data/binance/AION_ETH-1m.json"
+2018-10-18 06:19:06,454 - freqtrade.optimize - INFO - Download the pair: "INS/ETH", Interval: 1m
+2018-10-18 06:33:07,332 - freqtrade.exchange - INFO - downloaded INS/ETH with length 417451.
+dumping json to "user_data/data/binance/INS_ETH-1m.json"
+2018-10-18 06:33:11,107 - freqtrade.optimize - INFO - Download the pair: "AE/ETH", Interval: 1m
+2018-10-18 06:47:11,731 - freqtrade.exchange - INFO - downloaded AE/ETH with length 417467.
+dumping json to "user_data/data/binance/AE_ETH-1m.json"
+2018-10-18 06:47:15,421 - freqtrade.optimize - INFO - Download the pair: "IOTA/ETH", Interval: 1m
+2018-10-18 07:01:16,264 - freqtrade.exchange - INFO - downloaded IOTA/ETH with length 417478.
+dumping json to "user_data/data/binance/IOTA_ETH-1m.json"
+2018-10-18 07:01:20,029 - freqtrade.optimize - INFO - Download the pair: "NANO/ETH", Interval: 1m
+2018-10-18 07:15:21,081 - freqtrade.exchange - INFO - downloaded NANO/ETH with length 417483.
+dumping json to "user_data/data/binance/NANO_ETH-1m.json"
+2018-10-18 07:15:24,883 - freqtrade.optimize - INFO - Download the pair: "BAT/ETH", Interval: 1m
+2018-10-18 07:29:25,841 - freqtrade.exchange - INFO - downloaded BAT/ETH with length 417500.
+dumping json to "user_data/data/binance/BAT_ETH-1m.json"
+2018-10-18 07:29:29,626 - freqtrade.optimize - INFO - Download the pair: "ELF/ETH", Interval: 1m
+2018-10-18 07:43:31,368 - freqtrade.exchange - INFO - downloaded ELF/ETH with length 417512.
+dumping json to "user_data/data/binance/ELF_ETH-1m.json"
+2018-10-18 07:43:35,193 - freqtrade.optimize - INFO - Download the pair: "NAS/ETH", Interval: 1m
+2018-10-18 07:57:37,199 - freqtrade.exchange - INFO - downloaded NAS/ETH with length 417528.
+dumping json to "user_data/data/binance/NAS_ETH-1m.json"
+2018-10-18 07:57:41,169 - freqtrade.optimize - INFO - Download the pair: "KNC/ETH", Interval: 1m
+2018-10-18 08:11:42,899 - freqtrade.exchange - INFO - downloaded KNC/ETH with length 417549.
+dumping json to "user_data/data/binance/KNC_ETH-1m.json"
+2018-10-18 08:11:46,613 - freqtrade.optimize - INFO - Download the pair: "LOOM/ETH", Interval: 1m
+2018-10-18 08:25:48,591 - freqtrade.exchange - INFO - downloaded LOOM/ETH with length 417556.
+dumping json to "user_data/data/binance/LOOM_ETH-1m.json"
+2018-10-18 08:25:52,408 - freqtrade.optimize - INFO - Download the pair: "LSK/ETH", Interval: 1m
+2018-10-18 08:39:54,360 - freqtrade.exchange - INFO - downloaded LSK/ETH with length 417575.
+dumping json to "user_data/data/binance/LSK_ETH-1m.json"
+2018-10-18 08:39:58,180 - freqtrade.optimize - INFO - Download the pair: "BQX/ETH", Interval: 1m
+2018-10-18 08:54:00,138 - freqtrade.exchange - INFO - downloaded BQX/ETH with length 417592.
+dumping json to "user_data/data/binance/BQX_ETH-1m.json"
+2018-10-18 08:54:03,853 - freqtrade.optimize - INFO - Download the pair: "XMR/ETH", Interval: 1m
+2018-10-18 09:08:05,565 - freqtrade.exchange - INFO - downloaded XMR/ETH with length 417605.
+dumping json to "user_data/data/binance/XMR_ETH-1m.json"
+2018-10-18 09:08:09,369 - freqtrade.optimize - INFO - Download the pair: "CMT/ETH", Interval: 1m
+2018-10-18 09:22:11,114 - freqtrade.exchange - INFO - downloaded CMT/ETH with length 417619.
+dumping json to "user_data/data/binance/CMT_ETH-1m.json"
+2018-10-18 09:22:14,876 - freqtrade.optimize - INFO - Download the pair: "WAN/ETH", Interval: 1m
+2018-10-18 09:36:16,763 - freqtrade.exchange - INFO - downloaded WAN/ETH with length 417626.
+dumping json to "user_data/data/binance/WAN_ETH-1m.json"
+2018-10-18 09:36:20,558 - freqtrade.optimize - INFO - Download the pair: "OMG/ETH", Interval: 1m
+2018-10-18 09:50:22,165 - freqtrade.exchange - INFO - downloaded OMG/ETH with length 417646.
+dumping json to "user_data/data/binance/OMG_ETH-1m.json"
+2018-10-18 09:50:25,948 - freqtrade.optimize - INFO - Download the pair: "QTUM/ETH", Interval: 1m
+2018-10-18 10:04:27,753 - freqtrade.exchange - INFO - downloaded QTUM/ETH with length 417659.
+dumping json to "user_data/data/binance/QTUM_ETH-1m.json"
+2018-10-18 10:04:31,593 - freqtrade.optimize - INFO - Download the pair: "GTO/ETH", Interval: 1m
+2018-10-18 10:18:33,364 - freqtrade.exchange - INFO - downloaded GTO/ETH with length 417667.
+dumping json to "user_data/data/binance/GTO_ETH-1m.json"
+2018-10-18 10:18:37,164 - freqtrade.optimize - INFO - Download the pair: "MTL/ETH", Interval: 1m
+2018-10-18 10:32:38,427 - freqtrade.exchange - INFO - downloaded MTL/ETH with length 417687.
+dumping json to "user_data/data/binance/MTL_ETH-1m.json"
+2018-10-18 10:32:42,155 - freqtrade.optimize - INFO - Download the pair: "VIBE/ETH", Interval: 1m
+2018-10-18 10:46:43,343 - freqtrade.exchange - INFO - downloaded VIBE/ETH with length 417702.
+dumping json to "user_data/data/binance/VIBE_ETH-1m.json"
+2018-10-18 10:46:47,068 - freqtrade.optimize - INFO - Download the pair: "KMD/ETH", Interval: 1m
+2018-10-18 11:00:48,579 - freqtrade.exchange - INFO - downloaded KMD/ETH with length 417718.
+dumping json to "user_data/data/binance/KMD_ETH-1m.json"
+2018-10-18 11:00:52,311 - freqtrade.optimize - INFO - Download the pair: "ZEC/ETH", Interval: 1m
+2018-10-18 11:14:53,847 - freqtrade.exchange - INFO - downloaded ZEC/ETH with length 417730.
+dumping json to "user_data/data/binance/ZEC_ETH-1m.json"
+2018-10-18 11:14:57,593 - freqtrade.optimize - INFO - Download the pair: "SC/ETH", Interval: 1m
+2018-10-18 11:28:59,354 - freqtrade.exchange - INFO - downloaded SC/ETH with length 417736.
+dumping json to "user_data/data/binance/SC_ETH-1m.json"
+2018-10-18 11:29:03,413 - freqtrade.optimize - INFO - Download the pair: "IOST/ETH", Interval: 1m
+2018-10-18 11:43:05,424 - freqtrade.exchange - INFO - downloaded IOST/ETH with length 417763.
+dumping json to "user_data/data/binance/IOST_ETH-1m.json"
+2018-10-18 11:43:09,417 - freqtrade.optimize - INFO - Download the pair: "FUEL/ETH", Interval: 1m
+2018-10-18 11:57:11,233 - freqtrade.exchange - INFO - downloaded FUEL/ETH with length 417765.
+dumping json to "user_data/data/binance/FUEL_ETH-1m.json"
+2018-10-18 11:57:15,051 - freqtrade.optimize - INFO - Download the pair: "SNGLS/ETH", Interval: 1m
+2018-10-18 12:11:16,713 - freqtrade.exchange - INFO - downloaded SNGLS/ETH with length 417786.
+dumping json to "user_data/data/binance/SNGLS_ETH-1m.json"
+2018-10-18 12:11:20,559 - freqtrade.optimize - INFO - Download the pair: "OST/ETH", Interval: 1m
+2018-10-18 12:25:22,130 - freqtrade.exchange - INFO - downloaded OST/ETH with length 417800.
+dumping json to "user_data/data/binance/OST_ETH-1m.json"
+2018-10-18 12:25:25,899 - freqtrade.optimize - INFO - Download the pair: "XVG/ETH", Interval: 1m
+2018-10-18 12:39:27,446 - freqtrade.exchange - INFO - downloaded XVG/ETH with length 417814.
+dumping json to "user_data/data/binance/XVG_ETH-1m.json"
+2018-10-18 12:39:31,381 - freqtrade.optimize - INFO - Download the pair: "MTH/ETH", Interval: 1m
+2018-10-18 13:00:47,970 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=MTHETH&interval=1m&startTime=1518334800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 13:00:47,970 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached &
+[3] 23360
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/venv/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2018-10-18 13:10:14,748 - freqtrade.configuration - INFO - Verbosity set to 0
+2018-10-18 13:10:14,749 - freqtrade.configuration - INFO - Dry run is enabled
+2018-10-18 13:10:14,749 - freqtrade.configuration - INFO - Using DB: "sqlite://"
+2018-10-18 13:10:14,749 - freqtrade.configuration - WARNING - `ccxt_rate_limit` has been deprecated in favor of `ccxt_config` and `ccxt_async_config` and will be removed in a future version.
+2018-10-18 13:10:14,749 - freqtrade.configuration - INFO - Parameter -i/--ticker-interval detected ...
+2018-10-18 13:10:14,749 - freqtrade.configuration - INFO - Using ticker_interval: 1m ...
+2018-10-18 13:10:14,750 - freqtrade.configuration - INFO - Using max_open_trades: 3 ...
+2018-10-18 13:10:14,750 - freqtrade.configuration - INFO - Parameter --timerange detected: 20180101- ...
+2018-10-18 13:10:14,750 - freqtrade.configuration - INFO - Using data folder: user_data/data/binance ...
+2018-10-18 13:10:14,750 - freqtrade.configuration - INFO - Parameter -r/--refresh-pairs-cached detected ...
+2018-10-18 13:10:14,750 - freqtrade.configuration - INFO - Overriding ticker interval with Command line argument
+2018-10-18 13:10:14,750 - freqtrade.optimize.backtesting - INFO - Starting freqtrade in Backtesting mode
+2018-10-18 13:10:14,756 - freqtrade.strategy.resolver - INFO - Using resolved strategy BinHV45 from '/Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/user_data/strategies'
+2018-10-18 13:10:14,756 - freqtrade.strategy.resolver - INFO - Override strategy 'ticker_interval' with value in config file: 1m.
+2018-10-18 13:10:14,756 - freqtrade.exchange - INFO - Instance is running with dry_run enabled
+2018-10-18 13:10:14,766 - freqtrade.exchange - INFO - Using Exchange "Binance"
+2018-10-18 13:10:15,038 - freqtrade.optimize.backtesting - INFO - Using stake_currency: ETH ...
+2018-10-18 13:10:15,038 - freqtrade.optimize.backtesting - INFO - Using stake_amount: 50 ...
+2018-10-18 13:10:15,038 - freqtrade.optimize.backtesting - INFO - Using local backtesting data (using whitelist in given config) ...
+2018-10-18 13:10:15,041 - freqtrade.optimize - INFO - Download data for all pairs and store them in user_data/data/binance
+2018-10-18 13:10:15,041 - freqtrade.optimize - INFO - Download the pair: "MTH/ETH", Interval: 1m
+2018-10-18 13:10:46,357 - freqtrade.exchange - INFO - downloaded MTH/ETH with length 417848.
+dumping json to "user_data/data/binance/MTH_ETH-1m.json"
+2018-10-18 13:10:50,408 - freqtrade.optimize - INFO - Download the pair: "THETA/ETH", Interval: 1m
+2018-10-18 13:25:37,214 - freqtrade.exchange - INFO - downloaded MTH/ETH with length 417860.
+dumping json to "user_data/data/binance/MTH_ETH-1m.json"
+2018-10-18 13:25:41,304 - freqtrade.optimize - INFO - Download the pair: "THETA/ETH", Interval: 1m
+2018-10-18 13:26:11,609 - freqtrade.exchange - INFO - downloaded THETA/ETH with length 417852.
+dumping json to "user_data/data/binance/THETA_ETH-1m.json"
+2018-10-18 13:26:15,619 - freqtrade.optimize - INFO - Download the pair: "WTC/ETH", Interval: 1m
+2018-10-18 14:45:27,954 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=THETAETH&interval=1m&startTime=1532404800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 14:45:27,954 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 14:45:28,037 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=WTCETH&interval=1m&startTime=1533094800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 14:45:28,037 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached &
+[4] 27715
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/venv/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2018-10-18 14:46:24,299 - freqtrade.configuration - INFO - Verbosity set to 0
+2018-10-18 14:46:24,300 - freqtrade.configuration - INFO - Dry run is enabled
+2018-10-18 14:46:24,300 - freqtrade.configuration - INFO - Using DB: "sqlite://"
+2018-10-18 14:46:24,300 - freqtrade.configuration - WARNING - `ccxt_rate_limit` has been deprecated in favor of `ccxt_config` and `ccxt_async_config` and will be removed in a future version.
+2018-10-18 14:46:24,300 - freqtrade.configuration - INFO - Parameter -i/--ticker-interval detected ...
+2018-10-18 14:46:24,300 - freqtrade.configuration - INFO - Using ticker_interval: 1m ...
+2018-10-18 14:46:24,300 - freqtrade.configuration - INFO - Using max_open_trades: 3 ...
+2018-10-18 14:46:24,301 - freqtrade.configuration - INFO - Parameter --timerange detected: 20180101- ...
+2018-10-18 14:46:24,301 - freqtrade.configuration - INFO - Using data folder: user_data/data/binance ...
+2018-10-18 14:46:24,301 - freqtrade.configuration - INFO - Parameter -r/--refresh-pairs-cached detected ...
+2018-10-18 14:46:24,301 - freqtrade.configuration - INFO - Overriding ticker interval with Command line argument
+2018-10-18 14:46:24,301 - freqtrade.optimize.backtesting - INFO - Starting freqtrade in Backtesting mode
+2018-10-18 14:46:24,307 - freqtrade.strategy.resolver - INFO - Using resolved strategy BinHV45 from '/Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/user_data/strategies'
+2018-10-18 14:46:24,307 - freqtrade.strategy.resolver - INFO - Override strategy 'ticker_interval' with value in config file: 1m.
+2018-10-18 14:46:24,307 - freqtrade.exchange - INFO - Instance is running with dry_run enabled
+2018-10-18 14:46:24,318 - freqtrade.exchange - INFO - Using Exchange "Binance"
+2018-10-18 14:46:24,664 - freqtrade.optimize.backtesting - INFO - Using stake_currency: ETH ...
+2018-10-18 14:46:24,664 - freqtrade.optimize.backtesting - INFO - Using stake_amount: 50 ...
+2018-10-18 14:46:24,665 - freqtrade.optimize.backtesting - INFO - Using local backtesting data (using whitelist in given config) ...
+2018-10-18 14:46:24,668 - freqtrade.optimize - INFO - Download data for all pairs and store them in user_data/data/binance
+2018-10-18 14:46:24,668 - freqtrade.optimize - INFO - Download the pair: "WTC/ETH", Interval: 1m
+2018-10-18 15:29:35,829 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=THETAETH&interval=1m&startTime=1521394800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 15:29:35,829 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 15:29:36,023 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=WTCETH&interval=1m&startTime=1533304800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 15:29:36,023 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 15:29:36,045 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=WTCETH&interval=1m&startTime=1530904800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 15:29:36,045 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ python freqtrade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pairs-cached &
+[5] 29276
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/venv/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2018-10-18 15:30:09,133 - freqtrade.configuration - INFO - Verbosity set to 0
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Dry run is enabled
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Using DB: "sqlite://"
+2018-10-18 15:30:09,134 - freqtrade.configuration - WARNING - `ccxt_rate_limit` has been deprecated in favor of `ccxt_config` and `ccxt_async_config` and will be removed in a future version.
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Parameter -i/--ticker-interval detected ...
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Using ticker_interval: 1m ...
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Using max_open_trades: 3 ...
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Parameter --timerange detected: 20180101- ...
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Using data folder: user_data/data/binance ...
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Parameter -r/--refresh-pairs-cached detected ...
+2018-10-18 15:30:09,134 - freqtrade.configuration - INFO - Overriding ticker interval with Command line argument
+2018-10-18 15:30:09,135 - freqtrade.optimize.backtesting - INFO - Starting freqtrade in Backtesting mode
+2018-10-18 15:30:09,141 - freqtrade.strategy.resolver - INFO - Using resolved strategy BinHV45 from '/Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/user_data/strategies'
+2018-10-18 15:30:09,142 - freqtrade.strategy.resolver - INFO - Override strategy 'ticker_interval' with value in config file: 1m.
+2018-10-18 15:30:09,142 - freqtrade.exchange - INFO - Instance is running with dry_run enabled
+2018-10-18 15:30:09,154 - freqtrade.exchange - INFO - Using Exchange "Binance"
+2018-10-18 15:30:09,413 - freqtrade.optimize.backtesting - INFO - Using stake_currency: ETH ...
+2018-10-18 15:30:09,414 - freqtrade.optimize.backtesting - INFO - Using stake_amount: 50 ...
+2018-10-18 15:30:09,414 - freqtrade.optimize.backtesting - INFO - Using local backtesting data (using whitelist in given config) ...
+2018-10-18 15:30:09,416 - freqtrade.optimize - INFO - Download data for all pairs and store them in user_data/data/binance
+2018-10-18 15:30:09,417 - freqtrade.optimize - INFO - Download the pair: "BCD/ETH", Interval: 1m
+2018-10-18 15:34:42,352 - freqtrade.exchange - INFO - downloaded THETA/ETH with length 417993.
+dumping json to "user_data/data/binance/THETA_ETH-1m.json"
+2018-10-18 15:34:46,352 - freqtrade.optimize - INFO - Download the pair: "WTC/ETH", Interval: 1m
+2018-10-18 15:35:16,412 - freqtrade.exchange - INFO - downloaded WTC/ETH with length 417948.
+dumping json to "user_data/data/binance/WTC_ETH-1m.json"
+2018-10-18 15:35:20,265 - freqtrade.optimize - INFO - Download the pair: "BCD/ETH", Interval: 1m
+2018-10-18 15:38:00,828 - freqtrade.exchange - INFO - downloaded WTC/ETH with length 417992.
+dumping json to "user_data/data/binance/WTC_ETH-1m.json"
+2018-10-18 15:38:04,657 - freqtrade.optimize - INFO - Download the pair: "BCD/ETH", Interval: 1m
+2018-10-18 16:09:10,771 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=BCDETH&interval=1m&startTime=1533424800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 16:09:10,771 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 16:09:10,959 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=BCDETH&interval=1m&startTime=1531264800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 16:09:10,959 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 16:09:10,959 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=BCDETH&interval=1m&startTime=1537504800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 16:09:10,959 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 16:09:20,267 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to RequestTimeout. Message: binance GET https://api.binance.com/api/v1/klines?symbol=WTCETH&interval=1m&startTime=1523164800000 "
+2018-10-18 16:09:20,268 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+rs-cached &trade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pair
+[6] 31764
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/venv/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2018-10-18 16:10:55,111 - freqtrade.configuration - INFO - Verbosity set to 0
+2018-10-18 16:10:55,112 - freqtrade.configuration - INFO - Dry run is enabled
+2018-10-18 16:10:55,112 - freqtrade.configuration - INFO - Using DB: "sqlite://"
+2018-10-18 16:10:55,112 - freqtrade.configuration - WARNING - `ccxt_rate_limit` has been deprecated in favor of `ccxt_config` and `ccxt_async_config` and will be removed in a future version.
+2018-10-18 16:10:55,112 - freqtrade.configuration - INFO - Parameter -i/--ticker-interval detected ...
+2018-10-18 16:10:55,112 - freqtrade.configuration - INFO - Using ticker_interval: 1m ...
+2018-10-18 16:10:55,113 - freqtrade.configuration - INFO - Using max_open_trades: 3 ...
+2018-10-18 16:10:55,113 - freqtrade.configuration - INFO - Parameter --timerange detected: 20180101- ...
+2018-10-18 16:10:55,113 - freqtrade.configuration - INFO - Using data folder: user_data/data/binance ...
+2018-10-18 16:10:55,113 - freqtrade.configuration - INFO - Parameter -r/--refresh-pairs-cached detected ...
+2018-10-18 16:10:55,113 - freqtrade.configuration - INFO - Overriding ticker interval with Command line argument
+2018-10-18 16:10:55,113 - freqtrade.optimize.backtesting - INFO - Starting freqtrade in Backtesting mode
+2018-10-18 16:10:55,120 - freqtrade.strategy.resolver - INFO - Using resolved strategy BinHV45 from '/Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/user_data/strategies'
+2018-10-18 16:10:55,121 - freqtrade.strategy.resolver - INFO - Override strategy 'ticker_interval' with value in config file: 1m.
+2018-10-18 16:10:55,121 - freqtrade.exchange - INFO - Instance is running with dry_run enabled
+2018-10-18 16:10:55,132 - freqtrade.exchange - INFO - Using Exchange "Binance"
+2018-10-18 16:10:55,417 - freqtrade.optimize.backtesting - INFO - Using stake_currency: ETH ...
+2018-10-18 16:10:55,417 - freqtrade.optimize.backtesting - INFO - Using stake_amount: 50 ...
+2018-10-18 16:10:55,417 - freqtrade.optimize.backtesting - INFO - Using local backtesting data (using whitelist in given config) ...
+2018-10-18 16:10:55,420 - freqtrade.optimize - INFO - Download data for all pairs and store them in user_data/data/binance
+2018-10-18 16:10:55,420 - freqtrade.optimize - INFO - Download the pair: "BCD/ETH", Interval: 1m
+2018-10-18 16:15:00,721 - freqtrade.exchange - INFO - downloaded BCD/ETH with length 417998.
+dumping json to "user_data/data/binance/BCD_ETH-1m.json"
+2018-10-18 16:15:04,785 - freqtrade.optimize - INFO - Download the pair: "GXS/ETH", Interval: 1m
+2018-10-18 16:19:36,748 - freqtrade.exchange - INFO - downloaded WTC/ETH with length 417997.
+dumping json to "user_data/data/binance/WTC_ETH-1m.json"
+2018-10-18 16:19:41,058 - freqtrade.optimize - INFO - Download the pair: "BCD/ETH", Interval: 1m
+2018-10-18 16:19:41,799 - freqtrade.exchange - INFO - downloaded BCD/ETH with length 43.
+dumping json to "user_data/data/binance/BCD_ETH-1m.json"
+2018-10-18 16:19:45,936 - freqtrade.optimize - INFO - Download the pair: "GXS/ETH", Interval: 1m
+2018-10-18 16:20:10,503 - freqtrade.exchange - INFO - downloaded BCD/ETH with length 418000.
+dumping json to "user_data/data/binance/BCD_ETH-1m.json"
+2018-10-18 16:20:15,064 - freqtrade.optimize - INFO - Download the pair: "GXS/ETH", Interval: 1m
+2018-10-18 16:22:54,960 - freqtrade.exchange - INFO - downloaded BCD/ETH with length 418000.
+dumping json to "user_data/data/binance/BCD_ETH-1m.json"
+2018-10-18 16:22:59,463 - freqtrade.optimize - INFO - Download the pair: "GXS/ETH", Interval: 1m
+2018-10-18 16:24:54,886 - freqtrade.exchange - INFO - downloaded BCD/ETH with length 418040.
+dumping json to "user_data/data/binance/BCD_ETH-1m.json"
+2018-10-18 16:24:58,758 - freqtrade.optimize - INFO - Download the pair: "GXS/ETH", Interval: 1m
+2018-10-18 16:29:03,532 - freqtrade.exchange - INFO - downloaded GXS/ETH with length 418044.
+dumping json to "user_data/data/binance/GXS_ETH-1m.json"
+2018-10-18 16:29:07,519 - freqtrade.optimize - INFO - Download the pair: "WINGS/ETH", Interval: 1m
+2018-10-18 16:33:44,601 - freqtrade.exchange - INFO - downloaded GXS/ETH with length 418042.
+dumping json to "user_data/data/binance/GXS_ETH-1m.json"
+2018-10-18 16:33:48,367 - freqtrade.optimize - INFO - Download the pair: "WINGS/ETH", Interval: 1m
+2018-10-18 16:34:13,891 - freqtrade.exchange - INFO - downloaded GXS/ETH with length 418050.
+dumping json to "user_data/data/binance/GXS_ETH-1m.json"
+2018-10-18 16:34:17,697 - freqtrade.optimize - INFO - Download the pair: "WINGS/ETH", Interval: 1m
+2018-10-18 17:01:57,914 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=GXSETH&interval=1m&startTime=1539844800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 17:01:57,914 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=WINGSETH&interval=1m&startTime=1538644800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=WINGSETH&interval=1m&startTime=1524304800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=WINGSETH&interval=1m&startTime=1531114800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - _async_get_candle_history() returned exception: "Could not load ticker history due to ExchangeNotAvailable. Message: binance https://api.binance.com/api/v1/klines?symbol=GXSETH&interval=1m&startTime=1524814800000 GET [Errno 54] Connection reset by peer"
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 17:01:57,966 - freqtrade.exchange - WARNING - retrying _async_get_candle_history() still for 3 times
+2018-10-18 17:02:19,272 - freqtrade.exchange - INFO - downloaded GXS/ETH with length 418083.
+dumping json to "user_data/data/binance/GXS_ETH-1m.json"
+2018-10-18 17:02:24,710 - freqtrade.optimize - INFO - Download the pair: "WINGS/ETH", Interval: 1m
+rs-cached &trade/main.py --strategy BinHV45 backtesting --timerange=20180101- --ticker-interval 1m --refresh-pair
+[7] 38353
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ /Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/venv/lib/python3.6/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2018-10-18 17:02:31,526 - freqtrade.configuration - INFO - Verbosity set to 0
+2018-10-18 17:02:31,527 - freqtrade.configuration - INFO - Dry run is enabled
+2018-10-18 17:02:31,527 - freqtrade.configuration - INFO - Using DB: "sqlite://"
+2018-10-18 17:02:31,527 - freqtrade.configuration - WARNING - `ccxt_rate_limit` has been deprecated in favor of `ccxt_config` and `ccxt_async_config` and will be removed in a future version.
+2018-10-18 17:02:31,527 - freqtrade.configuration - INFO - Parameter -i/--ticker-interval detected ...
+2018-10-18 17:02:31,527 - freqtrade.configuration - INFO - Using ticker_interval: 1m ...
+2018-10-18 17:02:31,528 - freqtrade.configuration - INFO - Using max_open_trades: 3 ...
+2018-10-18 17:02:31,528 - freqtrade.configuration - INFO - Parameter --timerange detected: 20180101- ...
+2018-10-18 17:02:31,528 - freqtrade.configuration - INFO - Using data folder: user_data/data/binance ...
+2018-10-18 17:02:31,528 - freqtrade.configuration - INFO - Parameter -r/--refresh-pairs-cached detected ...
+2018-10-18 17:02:31,528 - freqtrade.configuration - INFO - Overriding ticker interval with Command line argument
+2018-10-18 17:02:31,528 - freqtrade.optimize.backtesting - INFO - Starting freqtrade in Backtesting mode
+2018-10-18 17:02:31,534 - freqtrade.strategy.resolver - INFO - Using resolved strategy BinHV45 from '/Users/neo/PycharmProjectPro/freqtrade-pyup-scheduled-update-2018-10-15/user_data/strategies'
+2018-10-18 17:02:31,534 - freqtrade.strategy.resolver - INFO - Override strategy 'ticker_interval' with value in config file: 1m.
+2018-10-18 17:02:31,534 - freqtrade.exchange - INFO - Instance is running with dry_run enabled
+2018-10-18 17:02:31,544 - freqtrade.exchange - INFO - Using Exchange "Binance"
+2018-10-18 17:02:31,806 - freqtrade.optimize.backtesting - INFO - Using stake_currency: ETH ...
+2018-10-18 17:02:31,806 - freqtrade.optimize.backtesting - INFO - Using stake_amount: 50 ...
+2018-10-18 17:02:31,806 - freqtrade.optimize.backtesting - INFO - Using local backtesting data (using whitelist in given config) ...
+2018-10-18 17:02:31,809 - freqtrade.optimize - INFO - Download data for all pairs and store them in user_data/data/binance
+2018-10-18 17:02:31,809 - freqtrade.optimize - INFO - Download the pair: "AGI/ETH", Interval: 1m
+2018-10-18 17:04:18,562 - freqtrade.exchange - INFO - downloaded GXS/ETH with length 418054.
+dumping json to "user_data/data/binance/GXS_ETH-1m.json"
+2018-10-18 17:04:23,036 - freqtrade.optimize - INFO - Download the pair: "WINGS/ETH", Interval: 1m
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ 2018-10-18 17:08:26,991 - freqtrade.exchange - INFO - downloaded WINGS/ETH with length 418087.
+dumping json to "user_data/data/binance/WINGS_ETH-1m.json"
+2018-10-18 17:08:31,199 - freqtrade.optimize - INFO - Download the pair: "AGI/ETH", Interval: 1m
+2018-10-18 17:13:07,528 - freqtrade.exchange - INFO - downloaded WINGS/ETH with length 418087.
+dumping json to "user_data/data/binance/WINGS_ETH-1m.json"
+2018-10-18 17:13:11,424 - freqtrade.optimize - INFO - Download the pair: "AGI/ETH", Interval: 1m
+2018-10-18 17:13:36,648 - freqtrade.exchange - INFO - downloaded WINGS/ETH with length 418088.
+dumping json to "user_data/data/binance/WINGS_ETH-1m.json"
+2018-10-18 17:13:40,456 - freqtrade.optimize - INFO - Download the pair: "AGI/ETH", Interval: 1m
+2018-10-18 17:16:22,722 - freqtrade.exchange - INFO - downloaded WINGS/ETH with length 418085.
+dumping json to "user_data/data/binance/WINGS_ETH-1m.json"
+2018-10-18 17:16:26,751 - freqtrade.optimize - INFO - Download the pair: "AGI/ETH", Interval: 1m
+2018-10-18 17:16:30,747 - freqtrade.exchange - INFO - downloaded AGI/ETH with length 418090.
+dumping json to "user_data/data/binance/AGI_ETH-1m.json"
+2018-10-18 17:16:35,057 - freqtrade.optimize - INFO - Download the pair: "EVX/ETH", Interval: 1m
+2018-10-18 17:18:21,170 - freqtrade.exchange - INFO - downloaded WINGS/ETH with length 418095.
+dumping json to "user_data/data/binance/WINGS_ETH-1m.json"
+2018-10-18 17:18:25,136 - freqtrade.optimize - INFO - Download the pair: "AGI/ETH", Interval: 1m
+2018-10-18 17:22:29,673 - freqtrade.exchange - INFO - downloaded AGI/ETH with length 418096.
+dumping json to "user_data/data/binance/AGI_ETH-1m.json"
+2018-10-18 17:22:33,771 - freqtrade.optimize - INFO - Download the pair: "EVX/ETH", Interval: 1m
+2018-10-18 17:27:10,081 - freqtrade.exchange - INFO - downloaded AGI/ETH with length 418102.
+dumping json to "user_data/data/binance/AGI_ETH-1m.json"
+2018-10-18 17:27:14,245 - freqtrade.optimize - INFO - Download the pair: "EVX/ETH", Interval: 1m
+2018-10-18 17:27:39,256 - freqtrade.exchange - INFO - downloaded AGI/ETH with length 418102.
+dumping json to "user_data/data/binance/AGI_ETH-1m.json"
+2018-10-18 17:27:43,430 - freqtrade.optimize - INFO - Download the pair: "EVX/ETH", Interval: 1m
+2018-10-18 17:30:26,062 - freqtrade.exchange - INFO - downloaded AGI/ETH with length 418109.
+dumping json to "user_data/data/binance/AGI_ETH-1m.json"
+2018-10-18 17:30:30,168 - freqtrade.optimize - INFO - Download the pair: "EVX/ETH", Interval: 1m
+2018-10-18 17:30:34,120 - freqtrade.exchange - INFO - downloaded EVX/ETH with length 418099.
+dumping json to "user_data/data/binance/EVX_ETH-1m.json"
+2018-10-18 17:30:38,047 - freqtrade.optimize - INFO - Download the pair: "MFT/ETH", Interval: 1m
+2018-10-18 17:32:25,301 - freqtrade.exchange - INFO - downloaded AGI/ETH with length 418102.
+dumping json to "user_data/data/binance/AGI_ETH-1m.json"
+2018-10-18 17:32:29,400 - freqtrade.optimize - INFO - Download the pair: "EVX/ETH", Interval: 1m
+2018-10-18 17:32:30,207 - freqtrade.exchange - INFO - downloaded EVX/ETH with length 15.
+dumping json to "user_data/data/binance/EVX_ETH-1m.json"
+2018-10-18 17:32:34,059 - freqtrade.optimize - INFO - Download the pair: "MFT/ETH", Interval: 1m
+2018-10-18 17:36:33,703 - freqtrade.exchange - INFO - downloaded EVX/ETH with length 418116.
+dumping json to "user_data/data/binance/EVX_ETH-1m.json"
+2018-10-18 17:36:37,578 - freqtrade.optimize - INFO - Download the pair: "MFT/ETH", Interval: 1m
+2018-10-18 17:41:15,307 - freqtrade.exchange - INFO - downloaded EVX/ETH with length 418117.
+dumping json to "user_data/data/binance/EVX_ETH-1m.json"
+2018-10-18 17:41:19,225 - freqtrade.optimize - INFO - Download the pair: "MFT/ETH", Interval: 1m
+2018-10-18 17:41:44,472 - freqtrade.exchange - INFO - downloaded EVX/ETH with length 418116.
+dumping json to "user_data/data/binance/EVX_ETH-1m.json"
+2018-10-18 17:41:48,368 - freqtrade.optimize - INFO - Download the pair: "MFT/ETH", Interval: 1m
+2018-10-18 17:44:31,119 - freqtrade.exchange - INFO - downloaded EVX/ETH with length 418120.
+dumping json to "user_data/data/binance/EVX_ETH-1m.json"
+2018-10-18 17:44:35,034 - freqtrade.optimize - INFO - Download the pair: "MFT/ETH", Interval: 1m
+2018-10-18 17:44:39,116 - freqtrade.exchange - INFO - downloaded MFT/ETH with length 418116.
+dumping json to "user_data/data/binance/MFT_ETH-1m.json"
+2018-10-18 17:44:43,545 - freqtrade.optimize - INFO - Download the pair: "DOCK/ETH", Interval: 1m
+2018-10-18 17:46:35,155 - freqtrade.exchange - INFO - downloaded MFT/ETH with length 418116.
+dumping json to "user_data/data/binance/MFT_ETH-1m.json"
+2018-10-18 17:46:39,494 - freqtrade.optimize - INFO - Download the pair: "DOCK/ETH", Interval: 1m
+2018-10-18 17:50:38,481 - freqtrade.exchange - INFO - downloaded MFT/ETH with length 418125.
+dumping json to "user_data/data/binance/MFT_ETH-1m.json"
+2018-10-18 17:50:42,899 - freqtrade.optimize - INFO - Download the pair: "DOCK/ETH", Interval: 1m
+2018-10-18 17:55:20,577 - freqtrade.exchange - INFO - downloaded MFT/ETH with length 418127.
+dumping json to "user_data/data/binance/MFT_ETH-1m.json"
+2018-10-18 17:55:24,992 - freqtrade.optimize - INFO - Download the pair: "DOCK/ETH", Interval: 1m
+2018-10-18 17:55:49,547 - freqtrade.exchange - INFO - downloaded MFT/ETH with length 418128.
+dumping json to "user_data/data/binance/MFT_ETH-1m.json"
+2018-10-18 17:55:53,888 - freqtrade.optimize - INFO - Download the pair: "DOCK/ETH", Interval: 1m
+2018-10-18 17:58:36,027 - freqtrade.exchange - INFO - downloaded MFT/ETH with length 418137.
+dumping json to "user_data/data/binance/MFT_ETH-1m.json"
+2018-10-18 17:58:40,361 - freqtrade.optimize - INFO - Download the pair: "DOCK/ETH", Interval: 1m
+2018-10-18 17:58:44,697 - freqtrade.exchange - INFO - downloaded DOCK/ETH with length 418130.
+dumping json to "user_data/data/binance/DOCK_ETH-1m.json"
+2018-10-18 17:58:48,968 - freqtrade.optimize - INFO - Download the pair: "ENJ/ETH", Interval: 1m
+2018-10-18 18:00:40,019 - freqtrade.exchange - INFO - downloaded DOCK/ETH with length 418135.
+dumping json to "user_data/data/binance/DOCK_ETH-1m.json"
+2018-10-18 18:00:44,388 - freqtrade.optimize - INFO - Download the pair: "ENJ/ETH", Interval: 1m
+2018-10-18 18:04:43,180 - freqtrade.exchange - INFO - downloaded DOCK/ETH with length 418138.
+dumping json to "user_data/data/binance/DOCK_ETH-1m.json"
+2018-10-18 18:04:47,424 - freqtrade.optimize - INFO - Download the pair: "ENJ/ETH", Interval: 1m
+2018-10-18 18:09:24,821 - freqtrade.exchange - INFO - downloaded DOCK/ETH with length 418142.
+dumping json to "user_data/data/binance/DOCK_ETH-1m.json"
+2018-10-18 18:09:28,975 - freqtrade.optimize - INFO - Download the pair: "ENJ/ETH", Interval: 1m
+2018-10-18 18:09:53,876 - freqtrade.exchange - INFO - downloaded DOCK/ETH with length 418142.
+dumping json to "user_data/data/binance/DOCK_ETH-1m.json"
+2018-10-18 18:09:58,057 - freqtrade.optimize - INFO - Download the pair: "ENJ/ETH", Interval: 1m
+2018-10-18 18:12:40,214 - freqtrade.exchange - INFO - downloaded DOCK/ETH with length 418149.
+dumping json to "user_data/data/binance/DOCK_ETH-1m.json"
+2018-10-18 18:12:45,106 - freqtrade.optimize - INFO - Download the pair: "ENJ/ETH", Interval: 1m
+2018-10-18 18:12:48,834 - freqtrade.exchange - INFO - downloaded ENJ/ETH with length 418145.
+dumping json to "user_data/data/binance/ENJ_ETH-1m.json"
+2018-10-18 18:12:52,788 - freqtrade.optimize - INFO - Download the pair: "NCASH/ETH", Interval: 1m
+2018-10-18 18:14:44,453 - freqtrade.exchange - INFO - downloaded ENJ/ETH with length 418150.
+dumping json to "user_data/data/binance/ENJ_ETH-1m.json"
+2018-10-18 18:14:48,493 - freqtrade.optimize - INFO - Download the pair: "NCASH/ETH", Interval: 1m
+2018-10-18 18:18:47,294 - freqtrade.exchange - INFO - downloaded ENJ/ETH with length 418159.
+dumping json to "user_data/data/binance/ENJ_ETH-1m.json"
+2018-10-18 18:18:51,287 - freqtrade.optimize - INFO - Download the pair: "NCASH/ETH", Interval: 1m
+2018-10-18 18:23:29,050 - freqtrade.exchange - INFO - downloaded ENJ/ETH with length 418161.
+dumping json to "user_data/data/binance/ENJ_ETH-1m.json"
+2018-10-18 18:23:33,299 - freqtrade.optimize - INFO - Download the pair: "NCASH/ETH", Interval: 1m
+2018-10-18 18:23:58,031 - freqtrade.exchange - INFO - downloaded ENJ/ETH with length 418158.
+dumping json to "user_data/data/binance/ENJ_ETH-1m.json"
+2018-10-18 18:24:02,062 - freqtrade.optimize - INFO - Download the pair: "NCASH/ETH", Interval: 1m
+2018-10-18 18:26:44,486 - freqtrade.exchange - INFO - downloaded ENJ/ETH with length 418160.
+dumping json to "user_data/data/binance/ENJ_ETH-1m.json"
+2018-10-18 18:26:48,941 - freqtrade.optimize - INFO - Download the pair: "NCASH/ETH", Interval: 1m
+2018-10-18 18:26:52,323 - freqtrade.exchange - INFO - downloaded NCASH/ETH with length 418158.
+dumping json to "user_data/data/binance/NCASH_ETH-1m.json"
+2018-10-18 18:26:56,987 - freqtrade.optimize - INFO - Download the pair: "DLT/ETH", Interval: 1m
+2018-10-18 18:28:47,811 - freqtrade.exchange - INFO - downloaded NCASH/ETH with length 418160.
+dumping json to "user_data/data/binance/NCASH_ETH-1m.json"
+2018-10-18 18:28:52,528 - freqtrade.optimize - INFO - Download the pair: "DLT/ETH", Interval: 1m
+2018-10-18 18:32:50,710 - freqtrade.exchange - INFO - downloaded NCASH/ETH with length 418173.
+dumping json to "user_data/data/binance/NCASH_ETH-1m.json"
+2018-10-18 18:32:55,420 - freqtrade.optimize - INFO - Download the pair: "DLT/ETH", Interval: 1m
+2018-10-18 18:37:32,638 - freqtrade.exchange - INFO - downloaded NCASH/ETH with length 418172.
+dumping json to "user_data/data/binance/NCASH_ETH-1m.json"
+2018-10-18 18:37:37,331 - freqtrade.optimize - INFO - Download the pair: "DLT/ETH", Interval: 1m
+2018-10-18 18:38:01,420 - freqtrade.exchange - INFO - downloaded NCASH/ETH with length 418164.
+dumping json to "user_data/data/binance/NCASH_ETH-1m.json"
+2018-10-18 18:38:06,060 - freqtrade.optimize - INFO - Download the pair: "DLT/ETH", Interval: 1m
+2018-10-18 18:40:48,401 - freqtrade.exchange - INFO - downloaded NCASH/ETH with length 418181.
+dumping json to "user_data/data/binance/NCASH_ETH-1m.json"
+2018-10-18 18:40:53,090 - freqtrade.optimize - INFO - Download the pair: "DLT/ETH", Interval: 1m
+2018-10-18 18:40:56,772 - freqtrade.exchange - INFO - downloaded DLT/ETH with length 418176.
+dumping json to "user_data/data/binance/DLT_ETH-1m.json"
+2018-10-18 18:41:01,194 - freqtrade.optimize - INFO - Download the pair: "DGD/ETH", Interval: 1m
+2018-10-18 18:42:52,293 - freqtrade.exchange - INFO - downloaded DLT/ETH with length 418183.
+dumping json to "user_data/data/binance/DLT_ETH-1m.json"
+2018-10-18 18:42:56,689 - freqtrade.optimize - INFO - Download the pair: "DGD/ETH", Interval: 1m
+2018-10-18 18:46:55,642 - freqtrade.exchange - INFO - downloaded DLT/ETH with length 418181.
+dumping json to "user_data/data/binance/DLT_ETH-1m.json"
+2018-10-18 18:47:00,088 - freqtrade.optimize - INFO - Download the pair: "DGD/ETH", Interval: 1m
+2018-10-18 18:51:37,423 - freqtrade.exchange - INFO - downloaded DLT/ETH with length 418188.
+dumping json to "user_data/data/binance/DLT_ETH-1m.json"
+2018-10-18 18:51:41,915 - freqtrade.optimize - INFO - Download the pair: "DGD/ETH", Interval: 1m
+2018-10-18 18:52:06,122 - freqtrade.exchange - INFO - downloaded DLT/ETH with length 418179.
+dumping json to "user_data/data/binance/DLT_ETH-1m.json"
+2018-10-18 18:52:10,530 - freqtrade.optimize - INFO - Download the pair: "DGD/ETH", Interval: 1m
+2018-10-18 18:54:53,276 - freqtrade.exchange - INFO - downloaded DLT/ETH with length 418191.
+dumping json to "user_data/data/binance/DLT_ETH-1m.json"
+2018-10-18 18:54:57,661 - freqtrade.optimize - INFO - Download the pair: "DGD/ETH", Interval: 1m
+2018-10-18 18:55:01,348 - freqtrade.exchange - INFO - downloaded DGD/ETH with length 418190.
+dumping json to "user_data/data/binance/DGD_ETH-1m.json"
+2018-10-18 18:55:05,725 - freqtrade.optimize - INFO - Download the pair: "STORJ/ETH", Interval: 1m
+2018-10-18 18:56:56,855 - freqtrade.exchange - INFO - downloaded DGD/ETH with length 418187.
+dumping json to "user_data/data/binance/DGD_ETH-1m.json"
+2018-10-18 18:57:01,267 - freqtrade.optimize - INFO - Download the pair: "STORJ/ETH", Interval: 1m
+2018-10-18 19:01:00,364 - freqtrade.exchange - INFO - downloaded DGD/ETH with length 418192.
+dumping json to "user_data/data/binance/DGD_ETH-1m.json"
+2018-10-18 19:01:04,776 - freqtrade.optimize - INFO - Download the pair: "STORJ/ETH", Interval: 1m
+2018-10-18 19:05:41,909 - freqtrade.exchange - INFO - downloaded DGD/ETH with length 418199.
+dumping json to "user_data/data/binance/DGD_ETH-1m.json"
+2018-10-18 19:05:46,325 - freqtrade.optimize - INFO - Download the pair: "STORJ/ETH", Interval: 1m
+2018-10-18 19:06:10,635 - freqtrade.exchange - INFO - downloaded DGD/ETH with length 418201.
+dumping json to "user_data/data/binance/DGD_ETH-1m.json"
+2018-10-18 19:06:15,168 - freqtrade.optimize - INFO - Download the pair: "STORJ/ETH", Interval: 1m
+2018-10-18 19:08:57,592 - freqtrade.exchange - INFO - downloaded DGD/ETH with length 418199.
+dumping json to "user_data/data/binance/DGD_ETH-1m.json"
+2018-10-18 19:09:01,991 - freqtrade.optimize - INFO - Download the pair: "STORJ/ETH", Interval: 1m
+2018-10-18 19:09:05,616 - freqtrade.exchange - INFO - downloaded STORJ/ETH with length 418200.
+dumping json to "user_data/data/binance/STORJ_ETH-1m.json"
+2018-10-18 19:09:10,013 - freqtrade.optimize - INFO - Download the pair: "DASH/ETH", Interval: 1m
+2018-10-18 19:11:01,180 - freqtrade.exchange - INFO - downloaded STORJ/ETH with length 418203.
+dumping json to "user_data/data/binance/STORJ_ETH-1m.json"
+2018-10-18 19:11:05,589 - freqtrade.optimize - INFO - Download the pair: "DASH/ETH", Interval: 1m
+2018-10-18 19:15:04,692 - freqtrade.exchange - INFO - downloaded STORJ/ETH with length 418210.
+dumping json to "user_data/data/binance/STORJ_ETH-1m.json"
+2018-10-18 19:15:09,140 - freqtrade.optimize - INFO - Download the pair: "DASH/ETH", Interval: 1m
+2018-10-18 19:19:46,196 - freqtrade.exchange - INFO - downloaded STORJ/ETH with length 418218.
+dumping json to "user_data/data/binance/STORJ_ETH-1m.json"
+2018-10-18 19:19:50,598 - freqtrade.optimize - INFO - Download the pair: "DASH/ETH", Interval: 1m
+2018-10-18 19:20:15,178 - freqtrade.exchange - INFO - downloaded STORJ/ETH with length 418215.
+dumping json to "user_data/data/binance/STORJ_ETH-1m.json"
+2018-10-18 19:20:19,559 - freqtrade.optimize - INFO - Download the pair: "DASH/ETH", Interval: 1m
+2018-10-18 19:23:02,037 - freqtrade.exchange - INFO - downloaded STORJ/ETH with length 418222.
+dumping json to "user_data/data/binance/STORJ_ETH-1m.json"
+2018-10-18 19:23:06,427 - freqtrade.optimize - INFO - Download the pair: "DASH/ETH", Interval: 1m
+2018-10-18 19:23:10,081 - freqtrade.exchange - INFO - downloaded DASH/ETH with length 418220.
+dumping json to "user_data/data/binance/DASH_ETH-1m.json"
+2018-10-18 19:23:14,568 - freqtrade.optimize - INFO - Download the pair: "MANA/ETH", Interval: 1m
+2018-10-18 19:25:05,676 - freqtrade.exchange - INFO - downloaded DASH/ETH with length 418220.
+dumping json to "user_data/data/binance/DASH_ETH-1m.json"
+2018-10-18 19:25:10,122 - freqtrade.optimize - INFO - Download the pair: "MANA/ETH", Interval: 1m
+2018-10-18 19:29:09,275 - freqtrade.exchange - INFO - downloaded DASH/ETH with length 418225.
+dumping json to "user_data/data/binance/DASH_ETH-1m.json"
+2018-10-18 19:29:13,738 - freqtrade.optimize - INFO - Download the pair: "MANA/ETH", Interval: 1m
+2018-10-18 19:33:50,531 - freqtrade.exchange - INFO - downloaded DASH/ETH with length 418234.
+dumping json to "user_data/data/binance/DASH_ETH-1m.json"
+2018-10-18 19:33:54,941 - freqtrade.optimize - INFO - Download the pair: "MANA/ETH", Interval: 1m
+2018-10-18 19:34:19,755 - freqtrade.exchange - INFO - downloaded DASH/ETH with length 418230.
+dumping json to "user_data/data/binance/DASH_ETH-1m.json"
+2018-10-18 19:34:24,135 - freqtrade.optimize - INFO - Download the pair: "MANA/ETH", Interval: 1m
+2018-10-18 19:37:06,476 - freqtrade.exchange - INFO - downloaded DASH/ETH with length 418233.
+dumping json to "user_data/data/binance/DASH_ETH-1m.json"
+2018-10-18 19:37:10,915 - freqtrade.optimize - INFO - Download the pair: "MANA/ETH", Interval: 1m
+2018-10-18 19:37:14,496 - freqtrade.exchange - INFO - downloaded MANA/ETH with length 418234.
+dumping json to "user_data/data/binance/MANA_ETH-1m.json"
+2018-10-18 19:37:18,958 - freqtrade.optimize - INFO - Download the pair: "SALT/ETH", Interval: 1m
+2018-10-18 19:39:10,327 - freqtrade.exchange - INFO - downloaded MANA/ETH with length 418228.
+dumping json to "user_data/data/binance/MANA_ETH-1m.json"
+2018-10-18 19:39:14,859 - freqtrade.optimize - INFO - Download the pair: "SALT/ETH", Interval: 1m
+2018-10-18 19:43:13,907 - freqtrade.exchange - INFO - downloaded MANA/ETH with length 418236.
+dumping json to "user_data/data/binance/MANA_ETH-1m.json"
+2018-10-18 19:43:18,346 - freqtrade.optimize - INFO - Download the pair: "SALT/ETH", Interval: 1m
+2018-10-18 19:47:55,042 - freqtrade.exchange - INFO - downloaded MANA/ETH with length 418247.
+dumping json to "user_data/data/binance/MANA_ETH-1m.json"
+2018-10-18 19:47:59,522 - freqtrade.optimize - INFO - Download the pair: "SALT/ETH", Interval: 1m
+2018-10-18 19:48:24,155 - freqtrade.exchange - INFO - downloaded MANA/ETH with length 418243.
+dumping json to "user_data/data/binance/MANA_ETH-1m.json"
+2018-10-18 19:48:28,608 - freqtrade.optimize - INFO - Download the pair: "SALT/ETH", Interval: 1m
+2018-10-18 19:51:10,937 - freqtrade.exchange - INFO - downloaded MANA/ETH with length 418247.
+dumping json to "user_data/data/binance/MANA_ETH-1m.json"
+2018-10-18 19:51:15,135 - freqtrade.optimize - INFO - Download the pair: "SALT/ETH", Interval: 1m
+2018-10-18 19:51:18,956 - freqtrade.exchange - INFO - downloaded SALT/ETH with length 418243.
+dumping json to "user_data/data/binance/SALT_ETH-1m.json"
+2018-10-18 19:51:22,966 - freqtrade.optimize - INFO - Download the pair: "LINK/ETH", Interval: 1m
+2018-10-18 19:53:14,929 - freqtrade.exchange - INFO - downloaded SALT/ETH with length 418240.
+dumping json to "user_data/data/binance/SALT_ETH-1m.json"
+2018-10-18 19:53:19,198 - freqtrade.optimize - INFO - Download the pair: "LINK/ETH", Interval: 1m
+2018-10-18 19:57:18,008 - freqtrade.exchange - INFO - downloaded SALT/ETH with length 418246.
+dumping json to "user_data/data/binance/SALT_ETH-1m.json"
+2018-10-18 19:57:21,884 - freqtrade.optimize - INFO - Download the pair: "LINK/ETH", Interval: 1m
+2018-10-18 20:01:59,293 - freqtrade.exchange - INFO - downloaded SALT/ETH with length 418258.
+dumping json to "user_data/data/binance/SALT_ETH-1m.json"
+2018-10-18 20:02:03,162 - freqtrade.optimize - INFO - Download the pair: "LINK/ETH", Interval: 1m
+2018-10-18 20:02:28,456 - freqtrade.exchange - INFO - downloaded SALT/ETH with length 418253.
+dumping json to "user_data/data/binance/SALT_ETH-1m.json"
+2018-10-18 20:02:32,312 - freqtrade.optimize - INFO - Download the pair: "LINK/ETH", Interval: 1m
+2018-10-18 20:05:15,303 - freqtrade.exchange - INFO - downloaded SALT/ETH with length 418260.
+dumping json to "user_data/data/binance/SALT_ETH-1m.json"
+2018-10-18 20:05:19,149 - freqtrade.optimize - INFO - Download the pair: "LINK/ETH", Interval: 1m
+2018-10-18 20:05:22,944 - freqtrade.exchange - INFO - downloaded LINK/ETH with length 418254.
+dumping json to "user_data/data/binance/LINK_ETH-1m.json"
+2018-10-18 20:05:26,866 - freqtrade.optimize - INFO - Download the pair: "LRC/ETH", Interval: 1m
+2018-10-18 20:07:19,630 - freqtrade.exchange - INFO - downloaded LINK/ETH with length 418267.
+dumping json to "user_data/data/binance/LINK_ETH-1m.json"
+2018-10-18 20:07:23,619 - freqtrade.optimize - INFO - Download the pair: "LRC/ETH", Interval: 1m
+2018-10-18 20:11:23,103 - freqtrade.exchange - INFO - downloaded LINK/ETH with length 418266.
+dumping json to "user_data/data/binance/LINK_ETH-1m.json"
+2018-10-18 20:11:27,042 - freqtrade.optimize - INFO - Download the pair: "LRC/ETH", Interval: 1m
+2018-10-18 20:16:04,389 - freqtrade.exchange - INFO - downloaded LINK/ETH with length 418274.
+dumping json to "user_data/data/binance/LINK_ETH-1m.json"
+2018-10-18 20:16:08,354 - freqtrade.optimize - INFO - Download the pair: "LRC/ETH", Interval: 1m
+2018-10-18 20:16:33,590 - freqtrade.exchange - INFO - downloaded LINK/ETH with length 418270.
+dumping json to "user_data/data/binance/LINK_ETH-1m.json"
+2018-10-18 20:16:37,470 - freqtrade.optimize - INFO - Download the pair: "LRC/ETH", Interval: 1m
+2018-10-18 20:19:20,349 - freqtrade.exchange - INFO - downloaded LINK/ETH with length 418272.
+dumping json to "user_data/data/binance/LINK_ETH-1m.json"
+2018-10-18 20:19:24,314 - freqtrade.optimize - INFO - Download the pair: "LRC/ETH", Interval: 1m
+2018-10-18 20:19:28,201 - freqtrade.exchange - INFO - downloaded LRC/ETH with length 418269.
+dumping json to "user_data/data/binance/LRC_ETH-1m.json"
+2018-10-18 20:19:32,166 - freqtrade.optimize - INFO - Download the pair: "DATA/ETH", Interval: 1m
+2018-10-18 20:21:24,612 - freqtrade.exchange - INFO - downloaded LRC/ETH with length 418275.
+dumping json to "user_data/data/binance/LRC_ETH-1m.json"
+2018-10-18 20:21:28,637 - freqtrade.optimize - INFO - Download the pair: "DATA/ETH", Interval: 1m
+2018-10-18 20:25:27,239 - freqtrade.exchange - INFO - downloaded LRC/ETH with length 418284.
+dumping json to "user_data/data/binance/LRC_ETH-1m.json"
+2018-10-18 20:25:31,598 - freqtrade.optimize - INFO - Download the pair: "DATA/ETH", Interval: 1m
+2018-10-18 20:30:07,394 - freqtrade.exchange - INFO - downloaded LRC/ETH with length 418290.
+dumping json to "user_data/data/binance/LRC_ETH-1m.json"
+2018-10-18 20:30:11,576 - freqtrade.optimize - INFO - Download the pair: "DATA/ETH", Interval: 1m
+2018-10-18 20:30:36,499 - freqtrade.exchange - INFO - downloaded LRC/ETH with length 418287.
+dumping json to "user_data/data/binance/LRC_ETH-1m.json"
+2018-10-18 20:30:40,525 - freqtrade.optimize - INFO - Download the pair: "DATA/ETH", Interval: 1m
+2018-10-18 20:33:22,946 - freqtrade.exchange - INFO - downloaded LRC/ETH with length 418288.
+dumping json to "user_data/data/binance/LRC_ETH-1m.json"
+2018-10-18 20:33:27,147 - freqtrade.optimize - INFO - Download the pair: "DATA/ETH", Interval: 1m
+2018-10-18 20:33:30,967 - freqtrade.exchange - INFO - downloaded DATA/ETH with length 418281.
+dumping json to "user_data/data/binance/DATA_ETH-1m.json"
+2018-10-18 20:33:35,596 - freqtrade.optimize - INFO - Download the pair: "APPC/ETH", Interval: 1m
+2018-10-18 20:35:27,267 - freqtrade.exchange - INFO - downloaded DATA/ETH with length 418295.
+dumping json to "user_data/data/binance/DATA_ETH-1m.json"
+2018-10-18 20:35:31,451 - freqtrade.optimize - INFO - Download the pair: "APPC/ETH", Interval: 1m
+2018-10-18 20:39:30,165 - freqtrade.exchange - INFO - downloaded DATA/ETH with length 418287.
+dumping json to "user_data/data/binance/DATA_ETH-1m.json"
+2018-10-18 20:39:34,300 - freqtrade.optimize - INFO - Download the pair: "APPC/ETH", Interval: 1m
+2018-10-18 20:44:10,211 - freqtrade.exchange - INFO - downloaded DATA/ETH with length 418302.
+dumping json to "user_data/data/binance/DATA_ETH-1m.json"
+2018-10-18 20:44:14,323 - freqtrade.optimize - INFO - Download the pair: "APPC/ETH", Interval: 1m
+2018-10-18 20:44:39,158 - freqtrade.exchange - INFO - downloaded DATA/ETH with length 418303.
+dumping json to "user_data/data/binance/DATA_ETH-1m.json"
+2018-10-18 20:44:43,263 - freqtrade.optimize - INFO - Download the pair: "APPC/ETH", Interval: 1m
+2018-10-18 20:47:25,818 - freqtrade.exchange - INFO - downloaded DATA/ETH with length 418295.
+dumping json to "user_data/data/binance/DATA_ETH-1m.json"
+2018-10-18 20:47:29,950 - freqtrade.optimize - INFO - Download the pair: "APPC/ETH", Interval: 1m
+2018-10-18 20:47:34,168 - freqtrade.exchange - INFO - downloaded APPC/ETH with length 418302.
+dumping json to "user_data/data/binance/APPC_ETH-1m.json"
+2018-10-18 20:47:38,131 - freqtrade.optimize - INFO - Download the pair: "RDN/ETH", Interval: 1m
+2018-10-18 20:49:30,022 - freqtrade.exchange - INFO - downloaded APPC/ETH with length 418309.
+dumping json to "user_data/data/binance/APPC_ETH-1m.json"
+2018-10-18 20:49:34,070 - freqtrade.optimize - INFO - Download the pair: "RDN/ETH", Interval: 1m
+2018-10-18 20:53:33,001 - freqtrade.exchange - INFO - downloaded APPC/ETH with length 418311.
+dumping json to "user_data/data/binance/APPC_ETH-1m.json"
+2018-10-18 20:53:37,018 - freqtrade.optimize - INFO - Download the pair: "RDN/ETH", Interval: 1m
+2018-10-18 20:58:12,868 - freqtrade.exchange - INFO - downloaded APPC/ETH with length 418315.
+dumping json to "user_data/data/binance/APPC_ETH-1m.json"
+2018-10-18 20:58:17,141 - freqtrade.optimize - INFO - Download the pair: "RDN/ETH", Interval: 1m
+2018-10-18 20:58:41,801 - freqtrade.exchange - INFO - downloaded APPC/ETH with length 418315.
+dumping json to "user_data/data/binance/APPC_ETH-1m.json"
+2018-10-18 20:58:45,945 - freqtrade.optimize - INFO - Download the pair: "RDN/ETH", Interval: 1m
+2018-10-18 21:01:28,532 - freqtrade.exchange - INFO - downloaded APPC/ETH with length 418312.
+dumping json to "user_data/data/binance/APPC_ETH-1m.json"
+2018-10-18 21:01:32,602 - freqtrade.optimize - INFO - Download the pair: "RDN/ETH", Interval: 1m
+2018-10-18 21:01:36,630 - freqtrade.exchange - INFO - downloaded RDN/ETH with length 418321.
+dumping json to "user_data/data/binance/RDN_ETH-1m.json"
+2018-10-18 21:01:40,673 - freqtrade.optimize - INFO - Download the pair: "AMB/ETH", Interval: 1m
+2018-10-18 21:03:32,629 - freqtrade.exchange - INFO - downloaded RDN/ETH with length 418317.
+dumping json to "user_data/data/binance/RDN_ETH-1m.json"
+2018-10-18 21:03:36,607 - freqtrade.optimize - INFO - Download the pair: "AMB/ETH", Interval: 1m
+2018-10-18 21:07:35,566 - freqtrade.exchange - INFO - downloaded RDN/ETH with length 418322.
+dumping json to "user_data/data/binance/RDN_ETH-1m.json"
+2018-10-18 21:07:39,587 - freqtrade.optimize - INFO - Download the pair: "AMB/ETH", Interval: 1m
+2018-10-18 21:12:15,787 - freqtrade.exchange - INFO - downloaded RDN/ETH with length 418333.
+dumping json to "user_data/data/binance/RDN_ETH-1m.json"
+2018-10-18 21:12:19,849 - freqtrade.optimize - INFO - Download the pair: "AMB/ETH", Interval: 1m
+2018-10-18 21:12:44,592 - freqtrade.exchange - INFO - downloaded RDN/ETH with length 418321.
+dumping json to "user_data/data/binance/RDN_ETH-1m.json"
+2018-10-18 21:12:48,750 - freqtrade.optimize - INFO - Download the pair: "AMB/ETH", Interval: 1m
+2018-10-18 21:15:31,315 - freqtrade.exchange - INFO - downloaded RDN/ETH with length 418330.
+dumping json to "user_data/data/binance/RDN_ETH-1m.json"
+2018-10-18 21:15:35,355 - freqtrade.optimize - INFO - Download the pair: "AMB/ETH", Interval: 1m
+2018-10-18 21:15:39,368 - freqtrade.exchange - INFO - downloaded AMB/ETH with length 418330.
+dumping json to "user_data/data/binance/AMB_ETH-1m.json"
+2018-10-18 21:15:43,624 - freqtrade.optimize - INFO - Download the pair: "TNB/ETH", Interval: 1m
+2018-10-18 21:17:35,301 - freqtrade.exchange - INFO - downloaded AMB/ETH with length 418338.
+dumping json to "user_data/data/binance/AMB_ETH-1m.json"
+2018-10-18 21:17:39,372 - freqtrade.optimize - INFO - Download the pair: "TNB/ETH", Interval: 1m
+2018-10-18 21:21:38,401 - freqtrade.exchange - INFO - downloaded AMB/ETH with length 418341.
+dumping json to "user_data/data/binance/AMB_ETH-1m.json"
+2018-10-18 21:21:42,460 - freqtrade.optimize - INFO - Download the pair: "TNB/ETH", Interval: 1m
+2018-10-18 21:26:18,462 - freqtrade.exchange - INFO - downloaded AMB/ETH with length 418342.
+dumping json to "user_data/data/binance/AMB_ETH-1m.json"
+2018-10-18 21:26:22,596 - freqtrade.optimize - INFO - Download the pair: "TNB/ETH", Interval: 1m
+2018-10-18 21:26:47,521 - freqtrade.exchange - INFO - downloaded AMB/ETH with length 418344.
+dumping json to "user_data/data/binance/AMB_ETH-1m.json"
+2018-10-18 21:26:51,717 - freqtrade.optimize - INFO - Download the pair: "TNB/ETH", Interval: 1m
+2018-10-18 21:29:34,079 - freqtrade.exchange - INFO - downloaded AMB/ETH with length 418346.
+dumping json to "user_data/data/binance/AMB_ETH-1m.json"
+2018-10-18 21:29:38,363 - freqtrade.optimize - INFO - Download the pair: "TNB/ETH", Interval: 1m
+2018-10-18 21:29:42,247 - freqtrade.exchange - INFO - downloaded TNB/ETH with length 418337.
+dumping json to "user_data/data/binance/TNB_ETH-1m.json"
+2018-10-18 21:29:46,571 - freqtrade.optimize - INFO - Download the pair: "CND/ETH", Interval: 1m
+2018-10-18 21:31:37,976 - freqtrade.exchange - INFO - downloaded TNB/ETH with length 418344.
+dumping json to "user_data/data/binance/TNB_ETH-1m.json"
+2018-10-18 21:31:42,452 - freqtrade.optimize - INFO - Download the pair: "CND/ETH", Interval: 1m
+2018-10-18 21:35:41,054 - freqtrade.exchange - INFO - downloaded TNB/ETH with length 418351.
+dumping json to "user_data/data/binance/TNB_ETH-1m.json"
+2018-10-18 21:35:45,384 - freqtrade.optimize - INFO - Download the pair: "CND/ETH", Interval: 1m
+2018-10-18 21:40:21,199 - freqtrade.exchange - INFO - downloaded TNB/ETH with length 418358.
+dumping json to "user_data/data/binance/TNB_ETH-1m.json"
+2018-10-18 21:40:25,379 - freqtrade.optimize - INFO - Download the pair: "CND/ETH", Interval: 1m
+2018-10-18 21:40:50,262 - freqtrade.exchange - INFO - downloaded TNB/ETH with length 418360.
+dumping json to "user_data/data/binance/TNB_ETH-1m.json"
+2018-10-18 21:40:54,643 - freqtrade.optimize - INFO - Download the pair: "CND/ETH", Interval: 1m
+2018-10-18 21:43:37,041 - freqtrade.exchange - INFO - downloaded TNB/ETH with length 418353.
+dumping json to "user_data/data/binance/TNB_ETH-1m.json"
+2018-10-18 21:43:41,727 - freqtrade.optimize - INFO - Download the pair: "CND/ETH", Interval: 1m
+2018-10-18 21:43:45,374 - freqtrade.exchange - INFO - downloaded CND/ETH with length 418351.
+dumping json to "user_data/data/binance/CND_ETH-1m.json"
+2018-10-18 21:43:49,631 - freqtrade.optimize - INFO - Download the pair: "BNT/ETH", Interval: 1m
+2018-10-18 21:45:41,131 - freqtrade.exchange - INFO - downloaded CND/ETH with length 418365.
+dumping json to "user_data/data/binance/CND_ETH-1m.json"
+2018-10-18 21:45:45,565 - freqtrade.optimize - INFO - Download the pair: "BNT/ETH", Interval: 1m
+2018-10-18 21:49:44,020 - freqtrade.exchange - INFO - downloaded CND/ETH with length 418360.
+dumping json to "user_data/data/binance/CND_ETH-1m.json"
+2018-10-18 21:49:48,369 - freqtrade.optimize - INFO - Download the pair: "BNT/ETH", Interval: 1m
+2018-10-18 21:54:24,165 - freqtrade.exchange - INFO - downloaded CND/ETH with length 418370.
+dumping json to "user_data/data/binance/CND_ETH-1m.json"
+2018-10-18 21:54:28,118 - freqtrade.optimize - INFO - Download the pair: "BNT/ETH", Interval: 1m
+2018-10-18 21:54:53,325 - freqtrade.exchange - INFO - downloaded CND/ETH with length 418371.
+dumping json to "user_data/data/binance/CND_ETH-1m.json"
+2018-10-18 21:54:57,245 - freqtrade.optimize - INFO - Download the pair: "BNT/ETH", Interval: 1m
+2018-10-18 21:57:41,029 - freqtrade.exchange - INFO - downloaded CND/ETH with length 418374.
+dumping json to "user_data/data/binance/CND_ETH-1m.json"
+2018-10-18 21:57:45,013 - freqtrade.optimize - INFO - Download the pair: "BNT/ETH", Interval: 1m
+2018-10-18 21:57:48,867 - freqtrade.exchange - INFO - downloaded BNT/ETH with length 418365.
+dumping json to "user_data/data/binance/BNT_ETH-1m.json"
+2018-10-18 21:57:52,602 - freqtrade.optimize - INFO - Download the pair: "VIB/ETH", Interval: 1m
+2018-10-18 21:59:45,482 - freqtrade.exchange - INFO - downloaded BNT/ETH with length 418380.
+dumping json to "user_data/data/binance/BNT_ETH-1m.json"
+2018-10-18 21:59:49,242 - freqtrade.optimize - INFO - Download the pair: "VIB/ETH", Interval: 1m
+2018-10-18 22:03:49,295 - freqtrade.exchange - INFO - downloaded BNT/ETH with length 418379.
+dumping json to "user_data/data/binance/BNT_ETH-1m.json"
+2018-10-18 22:03:52,966 - freqtrade.optimize - INFO - Download the pair: "VIB/ETH", Interval: 1m
+2018-10-18 22:08:29,814 - freqtrade.exchange - INFO - downloaded BNT/ETH with length 418385.
+dumping json to "user_data/data/binance/BNT_ETH-1m.json"
+2018-10-18 22:08:33,499 - freqtrade.optimize - INFO - Download the pair: "VIB/ETH", Interval: 1m
+2018-10-18 22:08:59,016 - freqtrade.exchange - INFO - downloaded BNT/ETH with length 418384.
+dumping json to "user_data/data/binance/BNT_ETH-1m.json"
+2018-10-18 22:09:02,748 - freqtrade.optimize - INFO - Download the pair: "VIB/ETH", Interval: 1m
+2018-10-18 22:11:47,101 - freqtrade.exchange - INFO - downloaded BNT/ETH with length 418389.
+dumping json to "user_data/data/binance/BNT_ETH-1m.json"
+2018-10-18 22:11:50,815 - freqtrade.optimize - INFO - Download the pair: "VIB/ETH", Interval: 1m
+2018-10-18 22:11:54,130 - freqtrade.exchange - INFO - downloaded VIB/ETH with length 418386.
+dumping json to "user_data/data/binance/VIB_ETH-1m.json"
+2018-10-18 22:11:57,979 - freqtrade.optimize - INFO - Download the pair: "BLZ/ETH", Interval: 1m
+2018-10-18 22:13:50,885 - freqtrade.exchange - INFO - downloaded VIB/ETH with length 418388.
+dumping json to "user_data/data/binance/VIB_ETH-1m.json"
+2018-10-18 22:13:54,753 - freqtrade.optimize - INFO - Download the pair: "BLZ/ETH", Interval: 1m
+2018-10-18 22:17:55,191 - freqtrade.exchange - INFO - downloaded VIB/ETH with length 418397.
+dumping json to "user_data/data/binance/VIB_ETH-1m.json"
+2018-10-18 22:17:59,012 - freqtrade.optimize - INFO - Download the pair: "BLZ/ETH", Interval: 1m
+2018-10-18 22:22:35,464 - freqtrade.exchange - INFO - downloaded VIB/ETH with length 418394.
+dumping json to "user_data/data/binance/VIB_ETH-1m.json"
+2018-10-18 22:22:39,365 - freqtrade.optimize - INFO - Download the pair: "BLZ/ETH", Interval: 1m
+2018-10-18 22:23:04,698 - freqtrade.exchange - INFO - downloaded VIB/ETH with length 418396.
+dumping json to "user_data/data/binance/VIB_ETH-1m.json"
+2018-10-18 22:23:08,628 - freqtrade.optimize - INFO - Download the pair: "BLZ/ETH", Interval: 1m
+2018-10-18 22:25:52,846 - freqtrade.exchange - INFO - downloaded VIB/ETH with length 418393.
+dumping json to "user_data/data/binance/VIB_ETH-1m.json"
+2018-10-18 22:25:56,722 - freqtrade.optimize - INFO - Download the pair: "BLZ/ETH", Interval: 1m
+2018-10-18 22:25:59,926 - freqtrade.exchange - INFO - downloaded BLZ/ETH with length 418399.
+dumping json to "user_data/data/binance/BLZ_ETH-1m.json"
+2018-10-18 22:26:03,808 - freqtrade.optimize - INFO - Download the pair: "XEM/ETH", Interval: 1m
+2018-10-18 22:27:56,740 - freqtrade.exchange - INFO - downloaded BLZ/ETH with length 418406.
+dumping json to "user_data/data/binance/BLZ_ETH-1m.json"
+2018-10-18 22:28:00,631 - freqtrade.optimize - INFO - Download the pair: "XEM/ETH", Interval: 1m
+2018-10-18 22:32:01,308 - freqtrade.exchange - INFO - downloaded BLZ/ETH with length 418406.
+dumping json to "user_data/data/binance/BLZ_ETH-1m.json"
+2018-10-18 22:32:05,151 - freqtrade.optimize - INFO - Download the pair: "XEM/ETH", Interval: 1m
+2018-10-18 22:36:41,225 - freqtrade.exchange - INFO - downloaded BLZ/ETH with length 418414.
+dumping json to "user_data/data/binance/BLZ_ETH-1m.json"
+2018-10-18 22:36:45,066 - freqtrade.optimize - INFO - Download the pair: "XEM/ETH", Interval: 1m
+2018-10-18 22:37:10,416 - freqtrade.exchange - INFO - downloaded BLZ/ETH with length 418415.
+dumping json to "user_data/data/binance/BLZ_ETH-1m.json"
+2018-10-18 22:37:14,483 - freqtrade.optimize - INFO - Download the pair: "XEM/ETH", Interval: 1m
+2018-10-18 22:39:58,515 - freqtrade.exchange - INFO - downloaded BLZ/ETH with length 418413.
+dumping json to "user_data/data/binance/BLZ_ETH-1m.json"
+2018-10-18 22:40:02,431 - freqtrade.optimize - INFO - Download the pair: "XEM/ETH", Interval: 1m
+2018-10-18 22:40:05,582 - freqtrade.exchange - INFO - downloaded XEM/ETH with length 418414.
+dumping json to "user_data/data/binance/XEM_ETH-1m.json"
+2018-10-18 22:40:09,489 - freqtrade.optimize - INFO - Download the pair: "SNM/ETH", Interval: 1m
+2018-10-18 22:42:02,327 - freqtrade.exchange - INFO - downloaded XEM/ETH with length 418420.
+dumping json to "user_data/data/binance/XEM_ETH-1m.json"
+2018-10-18 22:42:06,210 - freqtrade.optimize - INFO - Download the pair: "SNM/ETH", Interval: 1m
+2018-10-18 22:46:06,994 - freqtrade.exchange - INFO - downloaded XEM/ETH with length 418426.
+dumping json to "user_data/data/binance/XEM_ETH-1m.json"
+2018-10-18 22:46:10,928 - freqtrade.optimize - INFO - Download the pair: "SNM/ETH", Interval: 1m
+2018-10-18 22:50:46,791 - freqtrade.exchange - INFO - downloaded XEM/ETH with length 418424.
+dumping json to "user_data/data/binance/XEM_ETH-1m.json"
+2018-10-18 22:50:50,751 - freqtrade.optimize - INFO - Download the pair: "SNM/ETH", Interval: 1m
+2018-10-18 22:51:16,446 - freqtrade.exchange - INFO - downloaded XEM/ETH with length 418419.
+dumping json to "user_data/data/binance/XEM_ETH-1m.json"
+2018-10-18 22:51:20,350 - freqtrade.optimize - INFO - Download the pair: "SNM/ETH", Interval: 1m
+2018-10-18 22:54:04,074 - freqtrade.exchange - INFO - downloaded XEM/ETH with length 418426.
+dumping json to "user_data/data/binance/XEM_ETH-1m.json"
+2018-10-18 22:54:07,919 - freqtrade.optimize - INFO - Download the pair: "SNM/ETH", Interval: 1m
+2018-10-18 22:54:11,147 - freqtrade.exchange - INFO - downloaded SNM/ETH with length 418426.
+dumping json to "user_data/data/binance/SNM_ETH-1m.json"
+2018-10-18 22:54:14,997 - freqtrade.optimize - INFO - Download the pair: "GVT/ETH", Interval: 1m
+2018-10-18 22:56:07,830 - freqtrade.exchange - INFO - downloaded SNM/ETH with length 418436.
+dumping json to "user_data/data/binance/SNM_ETH-1m.json"
+2018-10-18 22:56:11,791 - freqtrade.optimize - INFO - Download the pair: "GVT/ETH", Interval: 1m
+2018-10-18 23:00:12,951 - freqtrade.exchange - INFO - downloaded SNM/ETH with length 418429.
+dumping json to "user_data/data/binance/SNM_ETH-1m.json"
+2018-10-18 23:00:16,820 - freqtrade.optimize - INFO - Download the pair: "GVT/ETH", Interval: 1m
+2018-10-18 23:04:52,428 - freqtrade.exchange - INFO - downloaded SNM/ETH with length 418441.
+dumping json to "user_data/data/binance/SNM_ETH-1m.json"
+2018-10-18 23:04:56,269 - freqtrade.optimize - INFO - Download the pair: "GVT/ETH", Interval: 1m
+2018-10-18 23:05:22,249 - freqtrade.exchange - INFO - downloaded SNM/ETH with length 418433.
+dumping json to "user_data/data/binance/SNM_ETH-1m.json"
+2018-10-18 23:05:26,074 - freqtrade.optimize - INFO - Download the pair: "GVT/ETH", Interval: 1m
+2018-10-18 23:08:09,596 - freqtrade.exchange - INFO - downloaded SNM/ETH with length 418447.
+dumping json to "user_data/data/binance/SNM_ETH-1m.json"
+2018-10-18 23:08:13,535 - freqtrade.optimize - INFO - Download the pair: "GVT/ETH", Interval: 1m
+2018-10-18 23:08:16,650 - freqtrade.exchange - INFO - downloaded GVT/ETH with length 418435.
+dumping json to "user_data/data/binance/GVT_ETH-1m.json"
+2018-10-18 23:08:20,499 - freqtrade.optimize - INFO - Download the pair: "SUB/ETH", Interval: 1m
+2018-10-18 23:10:13,536 - freqtrade.exchange - INFO - downloaded GVT/ETH with length 418446.
+dumping json to "user_data/data/binance/GVT_ETH-1m.json"
+2018-10-18 23:10:17,380 - freqtrade.optimize - INFO - Download the pair: "SUB/ETH", Interval: 1m
+2018-10-18 23:14:18,790 - freqtrade.exchange - INFO - downloaded GVT/ETH with length 418450.
+dumping json to "user_data/data/binance/GVT_ETH-1m.json"
+2018-10-18 23:14:22,630 - freqtrade.optimize - INFO - Download the pair: "SUB/ETH", Interval: 1m
+2018-10-18 23:18:57,786 - freqtrade.exchange - INFO - downloaded GVT/ETH with length 418456.
+dumping json to "user_data/data/binance/GVT_ETH-1m.json"
+2018-10-18 23:19:01,572 - freqtrade.optimize - INFO - Download the pair: "SUB/ETH", Interval: 1m
+2018-10-18 23:19:27,832 - freqtrade.exchange - INFO - downloaded GVT/ETH with length 418454.
+dumping json to "user_data/data/binance/GVT_ETH-1m.json"
+2018-10-18 23:19:31,595 - freqtrade.optimize - INFO - Download the pair: "SUB/ETH", Interval: 1m
+2018-10-18 23:22:15,138 - freqtrade.exchange - INFO - downloaded GVT/ETH with length 418460.
+dumping json to "user_data/data/binance/GVT_ETH-1m.json"
+2018-10-18 23:22:18,944 - freqtrade.optimize - INFO - Download the pair: "SUB/ETH", Interval: 1m
+2018-10-18 23:22:22,204 - freqtrade.exchange - INFO - downloaded SUB/ETH with length 418454.
+dumping json to "user_data/data/binance/SUB_ETH-1m.json"
+2018-10-18 23:22:26,031 - freqtrade.optimize - INFO - Download the pair: "STORM/ETH", Interval: 1m
+2018-10-18 23:24:18,991 - freqtrade.exchange - INFO - downloaded SUB/ETH with length 418460.
+dumping json to "user_data/data/binance/SUB_ETH-1m.json"
+2018-10-18 23:24:22,902 - freqtrade.optimize - INFO - Download the pair: "STORM/ETH", Interval: 1m
+2018-10-18 23:28:24,570 - freqtrade.exchange - INFO - downloaded SUB/ETH with length 418457.
+dumping json to "user_data/data/binance/SUB_ETH-1m.json"
+2018-10-18 23:28:28,436 - freqtrade.optimize - INFO - Download the pair: "STORM/ETH", Interval: 1m
+2018-10-18 23:33:03,574 - freqtrade.exchange - INFO - downloaded SUB/ETH with length 418471.
+dumping json to "user_data/data/binance/SUB_ETH-1m.json"
+2018-10-18 23:33:07,474 - freqtrade.optimize - INFO - Download the pair: "STORM/ETH", Interval: 1m
+2018-10-18 23:33:33,785 - freqtrade.exchange - INFO - downloaded SUB/ETH with length 418469.
+dumping json to "user_data/data/binance/SUB_ETH-1m.json"
+2018-10-18 23:33:37,594 - freqtrade.optimize - INFO - Download the pair: "STORM/ETH", Interval: 1m
+2018-10-18 23:36:20,917 - freqtrade.exchange - INFO - downloaded SUB/ETH with length 418467.
+dumping json to "user_data/data/binance/SUB_ETH-1m.json"
+2018-10-18 23:36:24,763 - freqtrade.optimize - INFO - Download the pair: "STORM/ETH", Interval: 1m
+2018-10-18 23:36:27,971 - freqtrade.exchange - INFO - downloaded STORM/ETH with length 418474.
+dumping json to "user_data/data/binance/STORM_ETH-1m.json"
+2018-10-18 23:36:31,985 - freqtrade.optimize - INFO - Download the pair: "AST/ETH", Interval: 1m
+2018-10-18 23:38:24,662 - freqtrade.exchange - INFO - downloaded STORM/ETH with length 418473.
+dumping json to "user_data/data/binance/STORM_ETH-1m.json"
+2018-10-18 23:38:28,742 - freqtrade.optimize - INFO - Download the pair: "AST/ETH", Interval: 1m
+2018-10-18 23:42:30,274 - freqtrade.exchange - INFO - downloaded STORM/ETH with length 418481.
+dumping json to "user_data/data/binance/STORM_ETH-1m.json"
+2018-10-18 23:42:34,318 - freqtrade.optimize - INFO - Download the pair: "AST/ETH", Interval: 1m
+2018-10-18 23:47:09,078 - freqtrade.exchange - INFO - downloaded STORM/ETH with length 418483.
+dumping json to "user_data/data/binance/STORM_ETH-1m.json"
+2018-10-18 23:47:13,248 - freqtrade.optimize - INFO - Download the pair: "AST/ETH", Interval: 1m
+2018-10-18 23:47:39,259 - freqtrade.exchange - INFO - downloaded STORM/ETH with length 418474.
+dumping json to "user_data/data/binance/STORM_ETH-1m.json"
+2018-10-18 23:47:43,399 - freqtrade.optimize - INFO - Download the pair: "AST/ETH", Interval: 1m
+2018-10-18 23:50:26,403 - freqtrade.exchange - INFO - downloaded STORM/ETH with length 418490.
+dumping json to "user_data/data/binance/STORM_ETH-1m.json"
+2018-10-18 23:50:30,508 - freqtrade.optimize - INFO - Download the pair: "AST/ETH", Interval: 1m
+2018-10-18 23:50:34,088 - freqtrade.exchange - INFO - downloaded AST/ETH with length 418490.
+dumping json to "user_data/data/binance/AST_ETH-1m.json"
+2018-10-18 23:50:37,843 - freqtrade.optimize - INFO - Download the pair: "OAX/ETH", Interval: 1m
+2018-10-18 23:52:30,903 - freqtrade.exchange - INFO - downloaded AST/ETH with length 418490.
+dumping json to "user_data/data/binance/AST_ETH-1m.json"
+2018-10-18 23:52:34,700 - freqtrade.optimize - INFO - Download the pair: "OAX/ETH", Interval: 1m
+2018-10-18 23:56:36,505 - freqtrade.exchange - INFO - downloaded AST/ETH with length 418489.
+dumping json to "user_data/data/binance/AST_ETH-1m.json"
+2018-10-18 23:56:40,308 - freqtrade.optimize - INFO - Download the pair: "OAX/ETH", Interval: 1m
+2018-10-19 00:01:14,952 - freqtrade.exchange - INFO - downloaded AST/ETH with length 418488.
+dumping json to "user_data/data/binance/AST_ETH-1m.json"
+2018-10-19 00:01:18,738 - freqtrade.optimize - INFO - Download the pair: "OAX/ETH", Interval: 1m
+2018-10-19 00:01:45,116 - freqtrade.exchange - INFO - downloaded AST/ETH with length 418498.
+dumping json to "user_data/data/binance/AST_ETH-1m.json"
+2018-10-19 00:01:48,943 - freqtrade.optimize - INFO - Download the pair: "OAX/ETH", Interval: 1m
+2018-10-19 00:04:32,191 - freqtrade.exchange - INFO - downloaded AST/ETH with length 418500.
+dumping json to "user_data/data/binance/AST_ETH-1m.json"
+2018-10-19 00:04:35,940 - freqtrade.optimize - INFO - Download the pair: "OAX/ETH", Interval: 1m
+2018-10-19 00:04:39,858 - freqtrade.exchange - INFO - downloaded OAX/ETH with length 418493.
+dumping json to "user_data/data/binance/OAX_ETH-1m.json"
+2018-10-19 00:04:43,699 - freqtrade.optimize - INFO - Download the pair: "MCO/ETH", Interval: 1m
+2018-10-19 00:06:36,882 - freqtrade.exchange - INFO - downloaded OAX/ETH with length 418500.
+dumping json to "user_data/data/binance/OAX_ETH-1m.json"
+2018-10-19 00:06:40,670 - freqtrade.optimize - INFO - Download the pair: "MCO/ETH", Interval: 1m
+2018-10-19 00:10:42,364 - freqtrade.exchange - INFO - downloaded OAX/ETH with length 418500.
+dumping json to "user_data/data/binance/OAX_ETH-1m.json"
+2018-10-19 00:10:46,189 - freqtrade.optimize - INFO - Download the pair: "MCO/ETH", Interval: 1m
+2018-10-19 00:15:21,377 - freqtrade.exchange - INFO - downloaded OAX/ETH with length 418509.
+dumping json to "user_data/data/binance/OAX_ETH-1m.json"
+2018-10-19 00:15:25,112 - freqtrade.optimize - INFO - Download the pair: "MCO/ETH", Interval: 1m
+2018-10-19 00:15:51,669 - freqtrade.exchange - INFO - downloaded OAX/ETH with length 418504.
+dumping json to "user_data/data/binance/OAX_ETH-1m.json"
+2018-10-19 00:15:55,442 - freqtrade.optimize - INFO - Download the pair: "MCO/ETH", Interval: 1m
+2018-10-19 00:18:38,604 - freqtrade.exchange - INFO - downloaded OAX/ETH with length 418516.
+dumping json to "user_data/data/binance/OAX_ETH-1m.json"
+2018-10-19 00:18:42,499 - freqtrade.optimize - INFO - Download the pair: "MCO/ETH", Interval: 1m
+2018-10-19 00:18:46,660 - freqtrade.exchange - INFO - downloaded MCO/ETH with length 418514.
+dumping json to "user_data/data/binance/MCO_ETH-1m.json"
+2018-10-19 00:18:50,455 - freqtrade.optimize - INFO - Download the pair: "KEY/ETH", Interval: 1m
+2018-10-19 00:20:43,418 - freqtrade.exchange - INFO - downloaded MCO/ETH with length 418516.
+dumping json to "user_data/data/binance/MCO_ETH-1m.json"
+2018-10-19 00:20:47,241 - freqtrade.optimize - INFO - Download the pair: "KEY/ETH", Interval: 1m
+2018-10-19 00:24:49,034 - freqtrade.exchange - INFO - downloaded MCO/ETH with length 418520.
+dumping json to "user_data/data/binance/MCO_ETH-1m.json"
+2018-10-19 00:24:52,815 - freqtrade.optimize - INFO - Download the pair: "KEY/ETH", Interval: 1m
+2018-10-19 00:29:27,939 - freqtrade.exchange - INFO - downloaded MCO/ETH with length 418525.
+dumping json to "user_data/data/binance/MCO_ETH-1m.json"
+2018-10-19 00:29:31,730 - freqtrade.optimize - INFO - Download the pair: "KEY/ETH", Interval: 1m
+2018-10-19 00:29:58,474 - freqtrade.exchange - INFO - downloaded MCO/ETH with length 418527.
+dumping json to "user_data/data/binance/MCO_ETH-1m.json"
+2018-10-19 00:30:02,278 - freqtrade.optimize - INFO - Download the pair: "KEY/ETH", Interval: 1m
+2018-10-19 00:32:45,269 - freqtrade.exchange - INFO - downloaded MCO/ETH with length 418532.
+dumping json to "user_data/data/binance/MCO_ETH-1m.json"
+2018-10-19 00:32:49,097 - freqtrade.optimize - INFO - Download the pair: "KEY/ETH", Interval: 1m
+2018-10-19 00:32:53,342 - freqtrade.exchange - INFO - downloaded KEY/ETH with length 418522.
+dumping json to "user_data/data/binance/KEY_ETH-1m.json"
+2018-10-19 00:32:57,456 - freqtrade.optimize - INFO - Download the pair: "POWR/ETH", Interval: 1m
+2018-10-19 00:34:50,155 - freqtrade.exchange - INFO - downloaded KEY/ETH with length 418535.
+dumping json to "user_data/data/binance/KEY_ETH-1m.json"
+2018-10-19 00:34:54,312 - freqtrade.optimize - INFO - Download the pair: "POWR/ETH", Interval: 1m
+2018-10-19 00:38:55,840 - freqtrade.exchange - INFO - downloaded KEY/ETH with length 418533.
+dumping json to "user_data/data/binance/KEY_ETH-1m.json"
+2018-10-19 00:38:59,911 - freqtrade.optimize - INFO - Download the pair: "POWR/ETH", Interval: 1m
+2018-10-19 00:43:34,777 - freqtrade.exchange - INFO - downloaded KEY/ETH with length 418541.
+dumping json to "user_data/data/binance/KEY_ETH-1m.json"
+2018-10-19 00:43:38,964 - freqtrade.optimize - INFO - Download the pair: "POWR/ETH", Interval: 1m
+2018-10-19 00:44:05,365 - freqtrade.exchange - INFO - downloaded KEY/ETH with length 418543.
+dumping json to "user_data/data/binance/KEY_ETH-1m.json"
+2018-10-19 00:44:09,433 - freqtrade.optimize - INFO - Download the pair: "POWR/ETH", Interval: 1m
+2018-10-19 00:46:52,145 - freqtrade.exchange - INFO - downloaded KEY/ETH with length 418535.
+dumping json to "user_data/data/binance/KEY_ETH-1m.json"
+2018-10-19 00:46:56,284 - freqtrade.optimize - INFO - Download the pair: "POWR/ETH", Interval: 1m
+2018-10-19 00:47:00,595 - freqtrade.exchange - INFO - downloaded POWR/ETH with length 418547.
+dumping json to "user_data/data/binance/POWR_ETH-1m.json"
+2018-10-19 00:47:04,455 - freqtrade.optimize - INFO - Download the pair: "DNT/ETH", Interval: 1m
+2018-10-19 00:48:57,342 - freqtrade.exchange - INFO - downloaded POWR/ETH with length 418542.
+dumping json to "user_data/data/binance/POWR_ETH-1m.json"
+2018-10-19 00:49:01,218 - freqtrade.optimize - INFO - Download the pair: "DNT/ETH", Interval: 1m
+2018-10-19 00:53:03,017 - freqtrade.exchange - INFO - downloaded POWR/ETH with length 418545.
+dumping json to "user_data/data/binance/POWR_ETH-1m.json"
+2018-10-19 00:53:06,921 - freqtrade.optimize - INFO - Download the pair: "DNT/ETH", Interval: 1m
+2018-10-19 00:57:41,861 - freqtrade.exchange - INFO - downloaded POWR/ETH with length 418553.
+dumping json to "user_data/data/binance/POWR_ETH-1m.json"
+2018-10-19 00:57:45,712 - freqtrade.optimize - INFO - Download the pair: "DNT/ETH", Interval: 1m
+2018-10-19 00:58:12,464 - freqtrade.exchange - INFO - downloaded POWR/ETH with length 418548.
+dumping json to "user_data/data/binance/POWR_ETH-1m.json"
+2018-10-19 00:58:16,276 - freqtrade.optimize - INFO - Download the pair: "DNT/ETH", Interval: 1m
+2018-10-19 01:00:59,150 - freqtrade.exchange - INFO - downloaded POWR/ETH with length 418559.
+dumping json to "user_data/data/binance/POWR_ETH-1m.json"
+2018-10-19 01:01:02,934 - freqtrade.optimize - INFO - Download the pair: "DNT/ETH", Interval: 1m
+2018-10-19 01:01:07,184 - freqtrade.exchange - INFO - downloaded DNT/ETH with length 418549.
+dumping json to "user_data/data/binance/DNT_ETH-1m.json"
+2018-10-19 01:01:11,169 - freqtrade.optimize - INFO - Download the pair: "HC/ETH", Interval: 1m
+2018-10-19 01:03:03,927 - freqtrade.exchange - INFO - downloaded DNT/ETH with length 418563.
+dumping json to "user_data/data/binance/DNT_ETH-1m.json"
+2018-10-19 01:03:07,919 - freqtrade.optimize - INFO - Download the pair: "HC/ETH", Interval: 1m
+2018-10-19 01:07:09,719 - freqtrade.exchange - INFO - downloaded DNT/ETH with length 418558.
+dumping json to "user_data/data/binance/DNT_ETH-1m.json"
+2018-10-19 01:07:13,863 - freqtrade.optimize - INFO - Download the pair: "HC/ETH", Interval: 1m
+2018-10-19 01:11:47,692 - freqtrade.exchange - INFO - downloaded DNT/ETH with length 418572.
+dumping json to "user_data/data/binance/DNT_ETH-1m.json"
+2018-10-19 01:11:51,884 - freqtrade.optimize - INFO - Download the pair: "HC/ETH", Interval: 1m
+2018-10-19 01:12:18,258 - freqtrade.exchange - INFO - downloaded DNT/ETH with length 418565.
+dumping json to "user_data/data/binance/DNT_ETH-1m.json"
+2018-10-19 01:12:22,241 - freqtrade.optimize - INFO - Download the pair: "HC/ETH", Interval: 1m
+2018-10-19 01:15:04,320 - freqtrade.exchange - INFO - downloaded DNT/ETH with length 418563.
+dumping json to "user_data/data/binance/DNT_ETH-1m.json"
+2018-10-19 01:15:08,564 - freqtrade.optimize - INFO - Download the pair: "HC/ETH", Interval: 1m
+2018-10-19 01:15:12,374 - freqtrade.exchange - INFO - downloaded HC/ETH with length 418569.
+dumping json to "user_data/data/binance/HC_ETH-1m.json"
+2018-10-19 01:15:16,999 - freqtrade.optimize - INFO - Download the pair: "CDT/ETH", Interval: 1m
+2018-10-19 01:17:08,716 - freqtrade.exchange - INFO - downloaded HC/ETH with length 418573.
+dumping json to "user_data/data/binance/HC_ETH-1m.json"
+2018-10-19 01:17:13,022 - freqtrade.optimize - INFO - Download the pair: "CDT/ETH", Interval: 1m
+2018-10-19 01:21:13,603 - freqtrade.exchange - INFO - downloaded HC/ETH with length 418577.
+dumping json to "user_data/data/binance/HC_ETH-1m.json"
+2018-10-19 01:21:17,769 - freqtrade.optimize - INFO - Download the pair: "CDT/ETH", Interval: 1m
+2018-10-19 01:25:51,546 - freqtrade.exchange - INFO - downloaded HC/ETH with length 418581.
+dumping json to "user_data/data/binance/HC_ETH-1m.json"
+2018-10-19 01:25:56,035 - freqtrade.optimize - INFO - Download the pair: "CDT/ETH", Interval: 1m
+2018-10-19 01:26:21,963 - freqtrade.exchange - INFO - downloaded HC/ETH with length 418577.
+dumping json to "user_data/data/binance/HC_ETH-1m.json"
+2018-10-19 01:26:26,667 - freqtrade.optimize - INFO - Download the pair: "CDT/ETH", Interval: 1m
+2018-10-19 01:29:08,052 - freqtrade.exchange - INFO - downloaded HC/ETH with length 418588.
+dumping json to "user_data/data/binance/HC_ETH-1m.json"
+2018-10-19 01:29:13,815 - freqtrade.optimize - INFO - Download the pair: "CDT/ETH", Interval: 1m
+2018-10-19 01:29:16,565 - freqtrade.exchange - INFO - downloaded CDT/ETH with length 418584.
+dumping json to "user_data/data/binance/CDT_ETH-1m.json"
+2018-10-19 01:29:20,888 - freqtrade.optimize - INFO - Download the pair: "RCN/ETH", Interval: 1m
+2018-10-19 01:31:12,696 - freqtrade.exchange - INFO - downloaded CDT/ETH with length 418587.
+dumping json to "user_data/data/binance/CDT_ETH-1m.json"
+2018-10-19 01:31:17,151 - freqtrade.optimize - INFO - Download the pair: "RCN/ETH", Interval: 1m
+2018-10-19 01:35:17,304 - freqtrade.exchange - INFO - downloaded CDT/ETH with length 418591.
+dumping json to "user_data/data/binance/CDT_ETH-1m.json"
+2018-10-19 01:35:22,004 - freqtrade.optimize - INFO - Download the pair: "RCN/ETH", Interval: 1m
+2018-10-19 01:39:55,487 - freqtrade.exchange - INFO - downloaded CDT/ETH with length 418598.
+dumping json to "user_data/data/binance/CDT_ETH-1m.json"
+2018-10-19 01:39:59,732 - freqtrade.optimize - INFO - Download the pair: "RCN/ETH", Interval: 1m
+2018-10-19 01:40:25,936 - freqtrade.exchange - INFO - downloaded CDT/ETH with length 418590.
+dumping json to "user_data/data/binance/CDT_ETH-1m.json"
+2018-10-19 01:40:30,414 - freqtrade.optimize - INFO - Download the pair: "RCN/ETH", Interval: 1m
+2018-10-19 01:43:13,181 - freqtrade.exchange - INFO - downloaded CDT/ETH with length 418596.
+dumping json to "user_data/data/binance/CDT_ETH-1m.json"
+2018-10-19 01:43:17,748 - freqtrade.optimize - INFO - Download the pair: "RCN/ETH", Interval: 1m
+2018-10-19 01:43:20,189 - freqtrade.exchange - INFO - downloaded RCN/ETH with length 418603.
+dumping json to "user_data/data/binance/RCN_ETH-1m.json"
+2018-10-19 01:43:24,521 - freqtrade.optimize - INFO - Download the pair: "SNT/ETH", Interval: 1m
+2018-10-19 01:45:16,518 - freqtrade.exchange - INFO - downloaded RCN/ETH with length 418604.
+dumping json to "user_data/data/binance/RCN_ETH-1m.json"
+2018-10-19 01:45:20,655 - freqtrade.optimize - INFO - Download the pair: "SNT/ETH", Interval: 1m
+2018-10-19 01:49:21,366 - freqtrade.exchange - INFO - downloaded RCN/ETH with length 418600.
+dumping json to "user_data/data/binance/RCN_ETH-1m.json"
+2018-10-19 01:49:25,386 - freqtrade.optimize - INFO - Download the pair: "SNT/ETH", Interval: 1m
+2018-10-19 01:53:59,242 - freqtrade.exchange - INFO - downloaded RCN/ETH with length 418614.
+dumping json to "user_data/data/binance/RCN_ETH-1m.json"
+2018-10-19 01:54:03,315 - freqtrade.optimize - INFO - Download the pair: "SNT/ETH", Interval: 1m
+2018-10-19 01:54:29,909 - freqtrade.exchange - INFO - downloaded RCN/ETH with length 418610.
+dumping json to "user_data/data/binance/RCN_ETH-1m.json"
+2018-10-19 01:54:33,939 - freqtrade.optimize - INFO - Download the pair: "SNT/ETH", Interval: 1m
+2018-10-19 01:57:17,397 - freqtrade.exchange - INFO - downloaded RCN/ETH with length 418618.
+dumping json to "user_data/data/binance/RCN_ETH-1m.json"
+2018-10-19 01:57:21,720 - freqtrade.optimize - INFO - Download the pair: "SNT/ETH", Interval: 1m
+2018-10-19 01:57:24,122 - freqtrade.exchange - INFO - downloaded SNT/ETH with length 418613.
+dumping json to "user_data/data/binance/SNT_ETH-1m.json"
+2018-10-19 01:57:28,245 - freqtrade.optimize - INFO - Download the pair: "PPT/ETH", Interval: 1m
+2018-10-19 01:59:20,475 - freqtrade.exchange - INFO - downloaded SNT/ETH with length 418610.
+dumping json to "user_data/data/binance/SNT_ETH-1m.json"
+2018-10-19 01:59:24,883 - freqtrade.optimize - INFO - Download the pair: "PPT/ETH", Interval: 1m
+2018-10-19 02:03:25,075 - freqtrade.exchange - INFO - downloaded SNT/ETH with length 418613.
+dumping json to "user_data/data/binance/SNT_ETH-1m.json"
+2018-10-19 02:03:29,586 - freqtrade.optimize - INFO - Download the pair: "PPT/ETH", Interval: 1m
+2018-10-19 02:08:02,850 - freqtrade.exchange - INFO - downloaded SNT/ETH with length 418618.
+dumping json to "user_data/data/binance/SNT_ETH-1m.json"
+2018-10-19 02:08:07,326 - freqtrade.optimize - INFO - Download the pair: "PPT/ETH", Interval: 1m
+2018-10-19 02:08:33,436 - freqtrade.exchange - INFO - downloaded SNT/ETH with length 418618.
+dumping json to "user_data/data/binance/SNT_ETH-1m.json"
+2018-10-19 02:08:37,710 - freqtrade.optimize - INFO - Download the pair: "PPT/ETH", Interval: 1m
+2018-10-19 02:11:21,149 - freqtrade.exchange - INFO - downloaded SNT/ETH with length 418630.
+dumping json to "user_data/data/binance/SNT_ETH-1m.json"
+2018-10-19 02:11:25,576 - freqtrade.optimize - INFO - Download the pair: "PPT/ETH", Interval: 1m
+2018-10-19 02:11:27,651 - freqtrade.exchange - INFO - downloaded PPT/ETH with length 418628.
+dumping json to "user_data/data/binance/PPT_ETH-1m.json"
+2018-10-19 02:11:31,787 - freqtrade.optimize - INFO - Download the pair: "FUN/ETH", Interval: 1m
+2018-10-19 02:13:24,275 - freqtrade.exchange - INFO - downloaded PPT/ETH with length 418634.
+dumping json to "user_data/data/binance/PPT_ETH-1m.json"
+2018-10-19 02:13:28,364 - freqtrade.optimize - INFO - Download the pair: "FUN/ETH", Interval: 1m
+2018-10-19 02:17:28,998 - freqtrade.exchange - INFO - downloaded PPT/ETH with length 418637.
+dumping json to "user_data/data/binance/PPT_ETH-1m.json"
+2018-10-19 02:17:33,181 - freqtrade.optimize - INFO - Download the pair: "FUN/ETH", Interval: 1m
+2018-10-19 02:22:06,736 - freqtrade.exchange - INFO - downloaded PPT/ETH with length 418637.
+dumping json to "user_data/data/binance/PPT_ETH-1m.json"
+2018-10-19 02:22:11,142 - freqtrade.optimize - INFO - Download the pair: "FUN/ETH", Interval: 1m
+2018-10-19 02:22:37,024 - freqtrade.exchange - INFO - downloaded PPT/ETH with length 418638.
+dumping json to "user_data/data/binance/PPT_ETH-1m.json"
+2018-10-19 02:22:41,249 - freqtrade.optimize - INFO - Download the pair: "FUN/ETH", Interval: 1m
+2018-10-19 02:25:24,991 - freqtrade.exchange - INFO - downloaded PPT/ETH with length 418646.
+dumping json to "user_data/data/binance/PPT_ETH-1m.json"
+2018-10-19 02:25:28,974 - freqtrade.optimize - INFO - Download the pair: "FUN/ETH", Interval: 1m
+2018-10-19 02:25:31,248 - freqtrade.exchange - INFO - downloaded FUN/ETH with length 418634.
+dumping json to "user_data/data/binance/FUN_ETH-1m.json"
+2018-10-19 02:25:35,491 - freqtrade.optimize - INFO - Download the pair: "BTS/ETH", Interval: 1m
+2018-10-19 02:27:27,787 - freqtrade.exchange - INFO - downloaded FUN/ETH with length 418634.
+dumping json to "user_data/data/binance/FUN_ETH-1m.json"
+2018-10-19 02:27:32,092 - freqtrade.optimize - INFO - Download the pair: "BTS/ETH", Interval: 1m
+2018-10-19 02:31:32,718 - freqtrade.exchange - INFO - downloaded FUN/ETH with length 418639.
+dumping json to "user_data/data/binance/FUN_ETH-1m.json"
+2018-10-19 02:31:37,229 - freqtrade.optimize - INFO - Download the pair: "BTS/ETH", Interval: 1m
+2018-10-19 02:36:10,685 - freqtrade.exchange - INFO - downloaded FUN/ETH with length 418654.
+dumping json to "user_data/data/binance/FUN_ETH-1m.json"
+2018-10-19 02:36:15,519 - freqtrade.optimize - INFO - Download the pair: "BTS/ETH", Interval: 1m
+2018-10-19 02:36:40,760 - freqtrade.exchange - INFO - downloaded FUN/ETH with length 418656.
+dumping json to "user_data/data/binance/FUN_ETH-1m.json"
+2018-10-19 02:36:45,480 - freqtrade.optimize - INFO - Download the pair: "BTS/ETH", Interval: 1m
+2018-10-19 02:39:28,680 - freqtrade.exchange - INFO - downloaded FUN/ETH with length 418647.
+dumping json to "user_data/data/binance/FUN_ETH-1m.json"
+2018-10-19 02:39:33,547 - freqtrade.optimize - INFO - Download the pair: "BTS/ETH", Interval: 1m
+2018-10-19 02:39:34,943 - freqtrade.exchange - INFO - downloaded BTS/ETH with length 418656.
+dumping json to "user_data/data/binance/BTS_ETH-1m.json"
+2018-10-19 02:39:39,399 - freqtrade.optimize - INFO - Download the pair: "QLC/ETH", Interval: 1m
+2018-10-19 02:41:31,619 - freqtrade.exchange - INFO - downloaded BTS/ETH with length 418662.
+dumping json to "user_data/data/binance/BTS_ETH-1m.json"
+2018-10-19 02:41:35,631 - freqtrade.optimize - INFO - Download the pair: "QLC/ETH", Interval: 1m
+2018-10-19 02:45:36,791 - freqtrade.exchange - INFO - downloaded BTS/ETH with length 418662.
+dumping json to "user_data/data/binance/BTS_ETH-1m.json"
+2018-10-19 02:45:40,845 - freqtrade.optimize - INFO - Download the pair: "QLC/ETH", Interval: 1m
+2018-10-19 02:50:15,054 - freqtrade.exchange - INFO - downloaded BTS/ETH with length 418665.
+dumping json to "user_data/data/binance/BTS_ETH-1m.json"
+2018-10-19 02:50:19,431 - freqtrade.optimize - INFO - Download the pair: "QLC/ETH", Interval: 1m
+2018-10-19 02:50:44,981 - freqtrade.exchange - INFO - downloaded BTS/ETH with length 418670.
+dumping json to "user_data/data/binance/BTS_ETH-1m.json"
+2018-10-19 02:50:49,171 - freqtrade.optimize - INFO - Download the pair: "QLC/ETH", Interval: 1m
+2018-10-19 02:53:33,170 - freqtrade.exchange - INFO - downloaded BTS/ETH with length 418667.
+dumping json to "user_data/data/binance/BTS_ETH-1m.json"
+2018-10-19 02:53:37,770 - freqtrade.optimize - INFO - Download the pair: "QLC/ETH", Interval: 1m
+2018-10-19 02:53:39,005 - freqtrade.exchange - INFO - downloaded QLC/ETH with length 418663.
+dumping json to "user_data/data/binance/QLC_ETH-1m.json"
+2018-10-19 02:53:43,607 - freqtrade.optimize - INFO - Download the pair: "NAV/ETH", Interval: 1m
+2018-10-19 02:55:35,137 - freqtrade.exchange - INFO - downloaded QLC/ETH with length 418662.
+dumping json to "user_data/data/binance/QLC_ETH-1m.json"
+2018-10-19 02:55:40,188 - freqtrade.optimize - INFO - Download the pair: "NAV/ETH", Interval: 1m
+2018-10-19 02:59:40,219 - freqtrade.exchange - INFO - downloaded QLC/ETH with length 418672.
+dumping json to "user_data/data/binance/QLC_ETH-1m.json"
+2018-10-19 02:59:44,552 - freqtrade.optimize - INFO - Download the pair: "NAV/ETH", Interval: 1m
+2018-10-19 03:04:19,129 - freqtrade.exchange - INFO - downloaded QLC/ETH with length 418681.
+dumping json to "user_data/data/binance/QLC_ETH-1m.json"
+2018-10-19 03:04:23,621 - freqtrade.optimize - INFO - Download the pair: "NAV/ETH", Interval: 1m
+2018-10-19 03:04:48,587 - freqtrade.exchange - INFO - downloaded QLC/ETH with length 418672.
+dumping json to "user_data/data/binance/QLC_ETH-1m.json"
+2018-10-19 03:04:52,974 - freqtrade.optimize - INFO - Download the pair: "NAV/ETH", Interval: 1m
+2018-10-19 03:07:37,179 - freqtrade.exchange - INFO - downloaded QLC/ETH with length 418674.
+dumping json to "user_data/data/binance/QLC_ETH-1m.json"
+2018-10-19 03:07:41,791 - freqtrade.optimize - INFO - Download the pair: "NAV/ETH", Interval: 1m
+2018-10-19 03:07:42,990 - freqtrade.exchange - INFO - downloaded NAV/ETH with length 418684.
+dumping json to "user_data/data/binance/NAV_ETH-1m.json"
+2018-10-19 03:07:47,355 - freqtrade.optimize - INFO - Download the pair: "BTG/ETH", Interval: 1m
+2018-10-19 03:09:39,562 - freqtrade.exchange - INFO - downloaded NAV/ETH with length 418680.
+dumping json to "user_data/data/binance/NAV_ETH-1m.json"
+2018-10-19 03:09:44,386 - freqtrade.optimize - INFO - Download the pair: "BTG/ETH", Interval: 1m
+2018-10-19 03:13:43,816 - freqtrade.exchange - INFO - downloaded NAV/ETH with length 418687.
+dumping json to "user_data/data/binance/NAV_ETH-1m.json"
+2018-10-19 03:13:48,118 - freqtrade.optimize - INFO - Download the pair: "BTG/ETH", Interval: 1m
+2018-10-19 03:18:22,968 - freqtrade.exchange - INFO - downloaded NAV/ETH with length 418694.
+dumping json to "user_data/data/binance/NAV_ETH-1m.json"
+2018-10-19 03:18:27,321 - freqtrade.optimize - INFO - Download the pair: "BTG/ETH", Interval: 1m
+2018-10-19 03:18:52,307 - freqtrade.exchange - INFO - downloaded NAV/ETH with length 418694.
+dumping json to "user_data/data/binance/NAV_ETH-1m.json"
+2018-10-19 03:18:56,753 - freqtrade.optimize - INFO - Download the pair: "BTG/ETH", Interval: 1m
+2018-10-19 03:21:41,035 - freqtrade.exchange - INFO - downloaded NAV/ETH with length 418692.
+dumping json to "user_data/data/binance/NAV_ETH-1m.json"
+2018-10-19 03:21:45,430 - freqtrade.optimize - INFO - Download the pair: "BTG/ETH", Interval: 1m
+2018-10-19 03:21:46,643 - freqtrade.exchange - INFO - downloaded BTG/ETH with length 418702.
+dumping json to "user_data/data/binance/BTG_ETH-1m.json"
+2018-10-19 03:21:51,071 - freqtrade.optimize - INFO - Download the pair: "GRS/ETH", Interval: 1m
+2018-10-19 03:23:43,731 - freqtrade.exchange - INFO - downloaded BTG/ETH with length 418696.
+dumping json to "user_data/data/binance/BTG_ETH-1m.json"
+2018-10-19 03:23:48,190 - freqtrade.optimize - INFO - Download the pair: "GRS/ETH", Interval: 1m
+2018-10-19 03:27:47,559 - freqtrade.exchange - INFO - downloaded BTG/ETH with length 418697.
+dumping json to "user_data/data/binance/BTG_ETH-1m.json"
+2018-10-19 03:27:52,112 - freqtrade.optimize - INFO - Download the pair: "GRS/ETH", Interval: 1m
+2018-10-19 03:32:26,693 - freqtrade.exchange - INFO - downloaded BTG/ETH with length 418709.
+dumping json to "user_data/data/binance/BTG_ETH-1m.json"
+2018-10-19 03:32:30,946 - freqtrade.optimize - INFO - Download the pair: "GRS/ETH", Interval: 1m
+2018-10-19 03:32:56,239 - freqtrade.exchange - INFO - downloaded BTG/ETH with length 418706.
+dumping json to "user_data/data/binance/BTG_ETH-1m.json"
+2018-10-19 03:33:00,608 - freqtrade.optimize - INFO - Download the pair: "GRS/ETH", Interval: 1m
+2018-10-19 03:35:44,826 - freqtrade.exchange - INFO - downloaded BTG/ETH with length 418707.
+dumping json to "user_data/data/binance/BTG_ETH-1m.json"
+2018-10-19 03:35:49,091 - freqtrade.optimize - INFO - Download the pair: "GRS/ETH", Interval: 1m
+2018-10-19 03:35:50,427 - freqtrade.exchange - INFO - downloaded GRS/ETH with length 418703.
+dumping json to "user_data/data/binance/GRS_ETH-1m.json"
+2018-10-19 03:35:54,736 - freqtrade.optimize - INFO - Download the pair: "GNT/ETH", Interval: 1m
+2018-10-19 03:37:47,512 - freqtrade.exchange - INFO - downloaded GRS/ETH with length 418713.
+dumping json to "user_data/data/binance/GRS_ETH-1m.json"
+2018-10-19 03:37:51,586 - freqtrade.optimize - INFO - Download the pair: "GNT/ETH", Interval: 1m
+2018-10-19 03:41:51,553 - freqtrade.exchange - INFO - downloaded GRS/ETH with length 418710.
+dumping json to "user_data/data/binance/GRS_ETH-1m.json"
+2018-10-19 03:41:55,697 - freqtrade.optimize - INFO - Download the pair: "GNT/ETH", Interval: 1m
+2018-10-19 03:46:30,294 - freqtrade.exchange - INFO - downloaded GRS/ETH with length 418724.
+dumping json to "user_data/data/binance/GRS_ETH-1m.json"
+2018-10-19 03:46:34,875 - freqtrade.optimize - INFO - Download the pair: "GNT/ETH", Interval: 1m
+2018-10-19 03:47:00,076 - freqtrade.exchange - INFO - downloaded GRS/ETH with length 418716.
+dumping json to "user_data/data/binance/GRS_ETH-1m.json"
+2018-10-19 03:47:04,504 - freqtrade.optimize - INFO - Download the pair: "GNT/ETH", Interval: 1m
+2018-10-19 03:49:48,564 - freqtrade.exchange - INFO - downloaded GRS/ETH with length 418726.
+dumping json to "user_data/data/binance/GRS_ETH-1m.json"
+2018-10-19 03:49:52,785 - freqtrade.optimize - INFO - Download the pair: "GNT/ETH", Interval: 1m
+2018-10-19 03:49:54,198 - freqtrade.exchange - INFO - downloaded GNT/ETH with length 418718.
+dumping json to "user_data/data/binance/GNT_ETH-1m.json"
+2018-10-19 03:49:58,415 - freqtrade.optimize - INFO - Download the pair: "POE/ETH", Interval: 1m
+2018-10-19 03:51:51,077 - freqtrade.exchange - INFO - downloaded GNT/ETH with length 418732.
+dumping json to "user_data/data/binance/GNT_ETH-1m.json"
+2018-10-19 03:51:55,379 - freqtrade.optimize - INFO - Download the pair: "POE/ETH", Interval: 1m
+2018-10-19 03:55:55,158 - freqtrade.exchange - INFO - downloaded GNT/ETH with length 418732.
+dumping json to "user_data/data/binance/GNT_ETH-1m.json"
+2018-10-19 03:55:59,359 - freqtrade.optimize - INFO - Download the pair: "POE/ETH", Interval: 1m
+2018-10-19 04:00:34,404 - freqtrade.exchange - INFO - downloaded GNT/ETH with length 418737.
+dumping json to "user_data/data/binance/GNT_ETH-1m.json"
+2018-10-19 04:00:38,493 - freqtrade.optimize - INFO - Download the pair: "POE/ETH", Interval: 1m
+2018-10-19 04:01:04,018 - freqtrade.exchange - INFO - downloaded GNT/ETH with length 418736.
+dumping json to "user_data/data/binance/GNT_ETH-1m.json"
+2018-10-19 04:01:08,232 - freqtrade.optimize - INFO - Download the pair: "POE/ETH", Interval: 1m
+2018-10-19 04:03:52,468 - freqtrade.exchange - INFO - downloaded GNT/ETH with length 418744.
+dumping json to "user_data/data/binance/GNT_ETH-1m.json"
+2018-10-19 04:03:56,598 - freqtrade.optimize - INFO - Download the pair: "POE/ETH", Interval: 1m
+2018-10-19 04:03:57,970 - freqtrade.exchange - INFO - downloaded POE/ETH with length 418738.
+dumping json to "user_data/data/binance/POE_ETH-1m.json"
+2018-10-19 04:04:02,319 - freqtrade.optimize - INFO - Download the pair: "TNT/ETH", Interval: 1m
+2018-10-19 04:05:54,952 - freqtrade.exchange - INFO - downloaded POE/ETH with length 418735.
+dumping json to "user_data/data/binance/POE_ETH-1m.json"
+2018-10-19 04:06:00,036 - freqtrade.optimize - INFO - Download the pair: "TNT/ETH", Interval: 1m
+2018-10-19 04:09:58,899 - freqtrade.exchange - INFO - downloaded POE/ETH with length 418743.
+dumping json to "user_data/data/binance/POE_ETH-1m.json"
+2018-10-19 04:10:03,119 - freqtrade.optimize - INFO - Download the pair: "TNT/ETH", Interval: 1m
+2018-10-19 04:14:38,110 - freqtrade.exchange - INFO - downloaded POE/ETH with length 418741.
+dumping json to "user_data/data/binance/POE_ETH-1m.json"
+2018-10-19 04:14:43,179 - freqtrade.optimize - INFO - Download the pair: "TNT/ETH", Interval: 1m
+2018-10-19 04:15:07,655 - freqtrade.exchange - INFO - downloaded POE/ETH with length 418751.
+dumping json to "user_data/data/binance/POE_ETH-1m.json"
+2018-10-19 04:15:12,149 - freqtrade.optimize - INFO - Download the pair: "TNT/ETH", Interval: 1m
+2018-10-19 04:17:56,143 - freqtrade.exchange - INFO - downloaded POE/ETH with length 418749.
+dumping json to "user_data/data/binance/POE_ETH-1m.json"
+2018-10-19 04:18:00,280 - freqtrade.optimize - INFO - Download the pair: "TNT/ETH", Interval: 1m
+2018-10-19 04:18:02,029 - freqtrade.exchange - INFO - downloaded TNT/ETH with length 418758.
+dumping json to "user_data/data/binance/TNT_ETH-1m.json"
+2018-10-19 04:18:06,206 - freqtrade.optimize - INFO - Download the pair: "RLC/ETH", Interval: 1m
+2018-10-19 04:19:59,458 - freqtrade.exchange - INFO - downloaded TNT/ETH with length 418756.
+dumping json to "user_data/data/binance/TNT_ETH-1m.json"
+2018-10-19 04:20:03,705 - freqtrade.optimize - INFO - Download the pair: "RLC/ETH", Interval: 1m
+2018-10-19 04:24:02,890 - freqtrade.exchange - INFO - downloaded TNT/ETH with length 418759.
+dumping json to "user_data/data/binance/TNT_ETH-1m.json"
+2018-10-19 04:24:06,936 - freqtrade.optimize - INFO - Download the pair: "RLC/ETH", Interval: 1m
+2018-10-19 04:28:43,026 - freqtrade.exchange - INFO - downloaded TNT/ETH with length 418764.
+dumping json to "user_data/data/binance/TNT_ETH-1m.json"
+2018-10-19 04:28:47,296 - freqtrade.optimize - INFO - Download the pair: "RLC/ETH", Interval: 1m
+2018-10-19 04:29:11,882 - freqtrade.exchange - INFO - downloaded TNT/ETH with length 418756.
+dumping json to "user_data/data/binance/TNT_ETH-1m.json"
+2018-10-19 04:29:15,944 - freqtrade.optimize - INFO - Download the pair: "RLC/ETH", Interval: 1m
+2018-10-19 04:32:00,087 - freqtrade.exchange - INFO - downloaded TNT/ETH with length 418761.
+dumping json to "user_data/data/binance/TNT_ETH-1m.json"
+2018-10-19 04:32:04,111 - freqtrade.optimize - INFO - Download the pair: "RLC/ETH", Interval: 1m
+2018-10-19 04:32:05,930 - freqtrade.exchange - INFO - downloaded RLC/ETH with length 418768.
+dumping json to "user_data/data/binance/RLC_ETH-1m.json"
+2018-10-19 04:32:09,814 - freqtrade.optimize - INFO - Download the pair: "STEEM/ETH", Interval: 1m
+2018-10-19 04:34:03,589 - freqtrade.exchange - INFO - downloaded RLC/ETH with length 418774.
+dumping json to "user_data/data/binance/RLC_ETH-1m.json"
+2018-10-19 04:34:07,566 - freqtrade.optimize - INFO - Download the pair: "STEEM/ETH", Interval: 1m
+2018-10-19 04:38:06,667 - freqtrade.exchange - INFO - downloaded RLC/ETH with length 418768.
+dumping json to "user_data/data/binance/RLC_ETH-1m.json"
+2018-10-19 04:38:11,244 - freqtrade.optimize - INFO - Download the pair: "STEEM/ETH", Interval: 1m
+2018-10-19 04:42:46,827 - freqtrade.exchange - INFO - downloaded RLC/ETH with length 418779.
+dumping json to "user_data/data/binance/RLC_ETH-1m.json"
+2018-10-19 04:42:50,845 - freqtrade.optimize - INFO - Download the pair: "STEEM/ETH", Interval: 1m
+2018-10-19 04:43:15,474 - freqtrade.exchange - INFO - downloaded RLC/ETH with length 418774.
+dumping json to "user_data/data/binance/RLC_ETH-1m.json"
+2018-10-19 04:43:19,534 - freqtrade.optimize - INFO - Download the pair: "STEEM/ETH", Interval: 1m
+2018-10-19 04:46:03,800 - freqtrade.exchange - INFO - downloaded RLC/ETH with length 418786.
+dumping json to "user_data/data/binance/RLC_ETH-1m.json"
+2018-10-19 04:46:07,686 - freqtrade.optimize - INFO - Download the pair: "STEEM/ETH", Interval: 1m
+2018-10-19 04:46:09,355 - freqtrade.exchange - INFO - downloaded STEEM/ETH with length 418776.
+dumping json to "user_data/data/binance/STEEM_ETH-1m.json"
+2018-10-19 04:46:13,435 - freqtrade.optimize - INFO - Download the pair: "DENT/ETH", Interval: 1m
+2018-10-19 04:48:07,111 - freqtrade.exchange - INFO - downloaded STEEM/ETH with length 418788.
+dumping json to "user_data/data/binance/STEEM_ETH-1m.json"
+2018-10-19 04:48:11,204 - freqtrade.optimize - INFO - Download the pair: "DENT/ETH", Interval: 1m
+2018-10-19 04:52:10,836 - freqtrade.exchange - INFO - downloaded STEEM/ETH with length 418780.
+dumping json to "user_data/data/binance/STEEM_ETH-1m.json"
+2018-10-19 04:52:14,776 - freqtrade.optimize - INFO - Download the pair: "DENT/ETH", Interval: 1m
+2018-10-19 04:56:50,579 - freqtrade.exchange - INFO - downloaded STEEM/ETH with length 418792.
+dumping json to "user_data/data/binance/STEEM_ETH-1m.json"
+2018-10-19 04:56:54,800 - freqtrade.optimize - INFO - Download the pair: "DENT/ETH", Interval: 1m
+2018-10-19 04:57:19,215 - freqtrade.exchange - INFO - downloaded STEEM/ETH with length 418791.
+dumping json to "user_data/data/binance/STEEM_ETH-1m.json"
+2018-10-19 04:57:23,459 - freqtrade.optimize - INFO - Download the pair: "DENT/ETH", Interval: 1m
+2018-10-19 05:00:07,190 - freqtrade.exchange - INFO - downloaded STEEM/ETH with length 418788.
+dumping json to "user_data/data/binance/STEEM_ETH-1m.json"
+2018-10-19 05:00:11,258 - freqtrade.optimize - INFO - Download the pair: "DENT/ETH", Interval: 1m
+2018-10-19 05:00:13,192 - freqtrade.exchange - INFO - downloaded DENT/ETH with length 418797.
+dumping json to "user_data/data/binance/DENT_ETH-1m.json"
+2018-10-19 05:00:17,645 - freqtrade.optimize - INFO - Download the pair: "CVC/ETH", Interval: 1m
+2018-10-19 05:02:10,919 - freqtrade.exchange - INFO - downloaded DENT/ETH with length 418802.
+dumping json to "user_data/data/binance/DENT_ETH-1m.json"
+2018-10-19 05:02:15,682 - freqtrade.optimize - INFO - Download the pair: "CVC/ETH", Interval: 1m
+2018-10-19 05:06:14,332 - freqtrade.exchange - INFO - downloaded DENT/ETH with length 418793.
+dumping json to "user_data/data/binance/DENT_ETH-1m.json"
+2018-10-19 05:06:18,752 - freqtrade.optimize - INFO - Download the pair: "CVC/ETH", Interval: 1m
+2018-10-19 05:10:54,455 - freqtrade.exchange - INFO - downloaded DENT/ETH with length 418809.
+dumping json to "user_data/data/binance/DENT_ETH-1m.json"
+2018-10-19 05:10:58,963 - freqtrade.optimize - INFO - Download the pair: "CVC/ETH", Interval: 1m
+2018-10-19 05:11:23,280 - freqtrade.exchange - INFO - downloaded DENT/ETH with length 418806.
+dumping json to "user_data/data/binance/DENT_ETH-1m.json"
+2018-10-19 05:11:27,841 - freqtrade.optimize - INFO - Download the pair: "CVC/ETH", Interval: 1m
+2018-10-19 05:14:11,085 - freqtrade.exchange - INFO - downloaded DENT/ETH with length 418801.
+dumping json to "user_data/data/binance/DENT_ETH-1m.json"
+2018-10-19 05:14:16,054 - freqtrade.optimize - INFO - Download the pair: "CVC/ETH", Interval: 1m
+2018-10-19 05:14:17,472 - freqtrade.exchange - INFO - downloaded CVC/ETH with length 418802.
+dumping json to "user_data/data/binance/CVC_ETH-1m.json"
+2018-10-19 05:14:21,882 - freqtrade.optimize - INFO - Download the pair: "WPR/ETH", Interval: 1m
+2018-10-19 05:16:15,461 - freqtrade.exchange - INFO - downloaded CVC/ETH with length 418803.
+dumping json to "user_data/data/binance/CVC_ETH-1m.json"
+2018-10-19 05:16:19,722 - freqtrade.optimize - INFO - Download the pair: "WPR/ETH", Interval: 1m
+2018-10-19 05:20:18,571 - freqtrade.exchange - INFO - downloaded CVC/ETH with length 418813.
+dumping json to "user_data/data/binance/CVC_ETH-1m.json"
+2018-10-19 05:20:22,739 - freqtrade.optimize - INFO - Download the pair: "WPR/ETH", Interval: 1m
+2018-10-19 05:24:58,815 - freqtrade.exchange - INFO - downloaded CVC/ETH with length 418822.
+dumping json to "user_data/data/binance/CVC_ETH-1m.json"
+2018-10-19 05:25:03,368 - freqtrade.optimize - INFO - Download the pair: "WPR/ETH", Interval: 1m
+2018-10-19 05:25:27,664 - freqtrade.exchange - INFO - downloaded CVC/ETH with length 418822.
+dumping json to "user_data/data/binance/CVC_ETH-1m.json"
+2018-10-19 05:25:32,071 - freqtrade.optimize - INFO - Download the pair: "WPR/ETH", Interval: 1m
+2018-10-19 05:28:15,848 - freqtrade.exchange - INFO - downloaded CVC/ETH with length 418817.
+dumping json to "user_data/data/binance/CVC_ETH-1m.json"
+2018-10-19 05:28:20,146 - freqtrade.optimize - INFO - Download the pair: "WPR/ETH", Interval: 1m
+2018-10-19 05:28:21,726 - freqtrade.exchange - INFO - downloaded WPR/ETH with length 418818.
+dumping json to "user_data/data/binance/WPR_ETH-1m.json"
+2018-10-19 05:28:26,430 - freqtrade.optimize - INFO - Download the pair: "REP/ETH", Interval: 1m
+2018-10-19 05:30:19,615 - freqtrade.exchange - INFO - downloaded WPR/ETH with length 418823.
+dumping json to "user_data/data/binance/WPR_ETH-1m.json"
+2018-10-19 05:30:23,992 - freqtrade.optimize - INFO - Download the pair: "REP/ETH", Interval: 1m
+2018-10-19 05:34:22,549 - freqtrade.exchange - INFO - downloaded WPR/ETH with length 418826.
+dumping json to "user_data/data/binance/WPR_ETH-1m.json"
+2018-10-19 05:34:26,833 - freqtrade.optimize - INFO - Download the pair: "REP/ETH", Interval: 1m
+2018-10-19 05:39:03,264 - freqtrade.exchange - INFO - downloaded WPR/ETH with length 418835.
+dumping json to "user_data/data/binance/WPR_ETH-1m.json"
+2018-10-19 05:39:07,630 - freqtrade.optimize - INFO - Download the pair: "REP/ETH", Interval: 1m
+2018-10-19 05:39:31,785 - freqtrade.exchange - INFO - downloaded WPR/ETH with length 418829.
+dumping json to "user_data/data/binance/WPR_ETH-1m.json"
+2018-10-19 05:39:36,310 - freqtrade.optimize - INFO - Download the pair: "REP/ETH", Interval: 1m
+2018-10-19 05:42:19,917 - freqtrade.exchange - INFO - downloaded WPR/ETH with length 418831.
+dumping json to "user_data/data/binance/WPR_ETH-1m.json"
+2018-10-19 05:42:24,209 - freqtrade.optimize - INFO - Download the pair: "REP/ETH", Interval: 1m
+2018-10-19 05:42:26,208 - freqtrade.exchange - INFO - downloaded REP/ETH with length 418832.
+dumping json to "user_data/data/binance/REP_ETH-1m.json"
+2018-10-19 05:42:30,472 - freqtrade.optimize - INFO - Download the pair: "BCPT/ETH", Interval: 1m
+2018-10-19 05:44:23,719 - freqtrade.exchange - INFO - downloaded REP/ETH with length 418839.
+dumping json to "user_data/data/binance/REP_ETH-1m.json"
+2018-10-19 05:44:27,937 - freqtrade.optimize - INFO - Download the pair: "BCPT/ETH", Interval: 1m
+2018-10-19 05:48:26,542 - freqtrade.exchange - INFO - downloaded REP/ETH with length 418847.
+dumping json to "user_data/data/binance/REP_ETH-1m.json"
+2018-10-19 05:48:30,835 - freqtrade.optimize - INFO - Download the pair: "BCPT/ETH", Interval: 1m
+2018-10-19 05:53:07,444 - freqtrade.exchange - INFO - downloaded REP/ETH with length 418840.
+dumping json to "user_data/data/binance/REP_ETH-1m.json"
+2018-10-19 05:53:12,097 - freqtrade.optimize - INFO - Download the pair: "BCPT/ETH", Interval: 1m
+2018-10-19 05:53:36,060 - freqtrade.exchange - INFO - downloaded REP/ETH with length 418847.
+dumping json to "user_data/data/binance/REP_ETH-1m.json"
+2018-10-19 05:53:40,359 - freqtrade.optimize - INFO - Download the pair: "BCPT/ETH", Interval: 1m
+2018-10-19 05:56:24,020 - freqtrade.exchange - INFO - downloaded REP/ETH with length 418853.
+dumping json to "user_data/data/binance/REP_ETH-1m.json"
+2018-10-19 05:56:28,330 - freqtrade.optimize - INFO - Download the pair: "BCPT/ETH", Interval: 1m
+2018-10-19 05:56:30,294 - freqtrade.exchange - INFO - downloaded BCPT/ETH with length 418844.
+dumping json to "user_data/data/binance/BCPT_ETH-1m.json"
+2018-10-19 05:56:34,760 - freqtrade.optimize - INFO - Download the pair: "ENG/ETH", Interval: 1m
+2018-10-19 05:58:27,616 - freqtrade.exchange - INFO - downloaded BCPT/ETH with length 418853.
+dumping json to "user_data/data/binance/BCPT_ETH-1m.json"
+2018-10-19 05:58:32,181 - freqtrade.optimize - INFO - Download the pair: "ENG/ETH", Interval: 1m
+2018-10-19 06:02:30,676 - freqtrade.exchange - INFO - downloaded BCPT/ETH with length 418859.
+dumping json to "user_data/data/binance/BCPT_ETH-1m.json"
+2018-10-19 06:02:34,773 - freqtrade.optimize - INFO - Download the pair: "ENG/ETH", Interval: 1m
+2018-10-19 06:07:11,857 - freqtrade.exchange - INFO - downloaded BCPT/ETH with length 418863.
+dumping json to "user_data/data/binance/BCPT_ETH-1m.json"
+2018-10-19 06:07:16,041 - freqtrade.optimize - INFO - Download the pair: "ENG/ETH", Interval: 1m
+2018-10-19 06:07:39,980 - freqtrade.exchange - INFO - downloaded BCPT/ETH with length 418861.
+dumping json to "user_data/data/binance/BCPT_ETH-1m.json"
+2018-10-19 06:07:44,469 - freqtrade.optimize - INFO - Download the pair: "ENG/ETH", Interval: 1m
+2018-10-19 06:10:28,152 - freqtrade.exchange - INFO - downloaded BCPT/ETH with length 418861.
+dumping json to "user_data/data/binance/BCPT_ETH-1m.json"
+2018-10-19 06:10:32,438 - freqtrade.optimize - INFO - Download the pair: "ENG/ETH", Interval: 1m
+2018-10-19 06:10:34,471 - freqtrade.exchange - INFO - downloaded ENG/ETH with length 418859.
+dumping json to "user_data/data/binance/ENG_ETH-1m.json"
+2018-10-19 06:10:38,849 - freqtrade.optimize - INFO - Download the pair: "CLOAK/ETH", Interval: 1m
+2018-10-19 06:12:31,862 - freqtrade.exchange - INFO - downloaded ENG/ETH with length 418861.
+dumping json to "user_data/data/binance/ENG_ETH-1m.json"
+2018-10-19 06:12:37,009 - freqtrade.optimize - INFO - Download the pair: "CLOAK/ETH", Interval: 1m
+2018-10-19 06:16:34,496 - freqtrade.exchange - INFO - downloaded ENG/ETH with length 418868.
+dumping json to "user_data/data/binance/ENG_ETH-1m.json"
+2018-10-19 06:16:39,015 - freqtrade.optimize - INFO - Download the pair: "CLOAK/ETH", Interval: 1m
+2018-10-19 06:21:15,776 - freqtrade.exchange - INFO - downloaded ENG/ETH with length 418877.
+dumping json to "user_data/data/binance/ENG_ETH-1m.json"
+2018-10-19 06:21:20,128 - freqtrade.optimize - INFO - Download the pair: "CLOAK/ETH", Interval: 1m
+2018-10-19 06:21:44,071 - freqtrade.exchange - INFO - downloaded ENG/ETH with length 418872.
+dumping json to "user_data/data/binance/ENG_ETH-1m.json"
+2018-10-19 06:21:48,396 - freqtrade.optimize - INFO - Download the pair: "CLOAK/ETH", Interval: 1m
+2018-10-19 06:24:32,136 - freqtrade.exchange - INFO - downloaded ENG/ETH with length 418883.
+dumping json to "user_data/data/binance/ENG_ETH-1m.json"
+2018-10-19 06:24:36,453 - freqtrade.optimize - INFO - Download the pair: "CLOAK/ETH", Interval: 1m
+2018-10-19 06:24:38,513 - freqtrade.exchange - INFO - downloaded CLOAK/ETH with length 418874.
+dumping json to "user_data/data/binance/CLOAK_ETH-1m.json"
+2018-10-19 06:24:43,106 - freqtrade.optimize - INFO - Download the pair: "ADX/ETH", Interval: 1m
+2018-10-19 06:26:36,687 - freqtrade.exchange - INFO - downloaded CLOAK/ETH with length 418881.
+dumping json to "user_data/data/binance/CLOAK_ETH-1m.json"
+2018-10-19 06:26:41,271 - freqtrade.optimize - INFO - Download the pair: "ADX/ETH", Interval: 1m
+2018-10-19 06:30:38,637 - freqtrade.exchange - INFO - downloaded CLOAK/ETH with length 418888.
+dumping json to "user_data/data/binance/CLOAK_ETH-1m.json"
+2018-10-19 06:30:44,182 - freqtrade.optimize - INFO - Download the pair: "ADX/ETH", Interval: 1m
+2018-10-19 06:35:19,817 - freqtrade.exchange - INFO - downloaded CLOAK/ETH with length 418894.
+dumping json to "user_data/data/binance/CLOAK_ETH-1m.json"
+2018-10-19 06:35:24,511 - freqtrade.optimize - INFO - Download the pair: "ADX/ETH", Interval: 1m
+2018-10-19 06:35:48,175 - freqtrade.exchange - INFO - downloaded CLOAK/ETH with length 418892.
+dumping json to "user_data/data/binance/CLOAK_ETH-1m.json"
+2018-10-19 06:35:52,825 - freqtrade.optimize - INFO - Download the pair: "ADX/ETH", Interval: 1m
+2018-10-19 06:38:36,015 - freqtrade.exchange - INFO - downloaded CLOAK/ETH with length 418891.
+dumping json to "user_data/data/binance/CLOAK_ETH-1m.json"
+2018-10-19 06:38:40,475 - freqtrade.optimize - INFO - Download the pair: "ADX/ETH", Interval: 1m
+2018-10-19 06:38:42,691 - freqtrade.exchange - INFO - downloaded ADX/ETH with length 418887.
+dumping json to "user_data/data/binance/ADX_ETH-1m.json"
+2018-10-19 06:38:47,019 - freqtrade.optimize - INFO - Download the pair: "SYS/ETH", Interval: 1m
+2018-10-19 06:40:40,885 - freqtrade.exchange - INFO - downloaded ADX/ETH with length 418900.
+dumping json to "user_data/data/binance/ADX_ETH-1m.json"
+2018-10-19 06:40:45,323 - freqtrade.optimize - INFO - Download the pair: "SYS/ETH", Interval: 1m
+(venv) neoui-MacBook-Pro:freqtrade-pyup-scheduled-update-2018-10-15 neo$ 2018-10-19 06:44:43,705 - freqtrade.exchange - INFO - downloaded ADX/ETH with length 418903.
+dumping json to "user_data/data/binance/ADX_ETH-1m.json"
+2018-10-19 06:44:47,977 - freqtrade.optimize - INFO - Download the pair: "SYS/ETH", Interval: 1m
+

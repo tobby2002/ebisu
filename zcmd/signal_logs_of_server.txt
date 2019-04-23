@@ -1,0 +1,63 @@
+.... Could not create limit buy order on market DENT/BTC
+
+2018-10-24 20:56:27,025 - freqtrade.freqtradebot - WARNING -
+Unable to create trade: Could not create limit buy order on market DENT/BTC.
+Tried to buy amount 250000.00000000003 at rate 4e-07 (total 0.1).
+Message: binance {"code":-1013,"msg":"Invalid price."}
+
+....
+
+2018-10-18 21:17:28,209 - freqtrade.rpc.telegram - INFO - Executing handler: _status for chat_id: 460322161
+2018-10-18 21:17:28,209 - freqtrade.rpc.telegram - INFO - Executing handler: _status_table for chat_id: 460322161
+2018-10-18 21:18:45,181 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+2018-10-18 21:18:46,033 - freqtrade.freqtradebot - INFO - checking depth of market for AGI/ETH
+2018-10-18 21:18:46,167 - freqtrade.freqtradebot - INFO - bids: 8226340.0, asks: 2341194.0, delta: 3.5137370076977814
+2018-10-18 21:18:46,665 - freqtrade.freqtradebot - INFO - Getting price from order book
+2018-10-18 21:18:47,160 - freqtrade.freqtradebot - INFO - ...top 1 order book buy rate 0.00024097
+2018-10-18 21:18:48,167 - freqtrade.rpc.rpc_manager - INFO - Sending rpc message: {'type': buy, 'exchange': 'Binance', 'pair': 'AGI/ETH', 'market_url': 'https://www.binance.com/tradeDetail.html?symbol=AGI_ETH', 'limit': 0.00024097, 'stake_amount': 0.1, 'stake_currency': 'ETH', 'fiat_currency': 'KRW'}
+2018-10-18 21:18:49,436 - freqtrade.freqtradebot - INFO - Found open order for Trade(id=1, pair=AGI/ETH, amount=414.98941777, open_rate=0.00024097, open_since=just now)
+2018-10-18 21:18:50,411 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+2018-10-18 21:18:52,456 - freqtrade.freqtradebot - INFO - Found no buy signals for whitelisted currencies. Trying again..
+2018-10-18 21:18:54,061 - freqtrade.freqtradebot - INFO - Found open order for Trade(id=1, pair=AGI/ETH, amount=414.98941777, open_rate=0.00024097, open_since=just now)
+2018-10-18 21:18:55,039 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+2018-10-18 21:18:56,948 - freqtrade.freqtradebot - INFO - Found no buy signals for whitelisted currencies. Trying again..
+2018-10-18 21:18:59,067 - freqtrade.freqtradebot - INFO - Found open order for Trade(id=1, pair=AGI/ETH, amount=414.98941777, open_rate=0.00024097, open_since=seconds ago)
+2018-10-18 21:19:00,280 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+2018-10-18 21:19:02,147 - freqtrade.freqtradebot - INFO - Found no buy signals for whitelisted currencies. Trying again..
+2018-10-18 21:19:04,067 - freqtrade.freqtradebot - INFO - Found open order for Trade(id=1, pair=AGI/ETH, amount=414.98941777, open_rate=0.00024097, open_since=seconds ago)
+2018-10-18 21:19:05,049 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+2018-10-18 21:19:06,888 - freqtrade.freqtradebot - INFO - Found no buy signals for whitelisted currencies. Trying again..
+
+....
+
+2018-10-18 21:22:07,123 - freqtrade.rpc.telegram - INFO - Executing handler: _status for chat_id: 460322161
+2018-10-18 21:22:07,123 - freqtrade.rpc.telegram - INFO - Executing handler: _status_table for chat_id: 460322161
+2018-10-18 21:22:07,127 - freqtrade.exchange - INFO - returning cached ticker-data for AGI/ETH
+2018-10-18 21:22:18,454 - freqtrade.freqtradebot - INFO - Found open order for Trade(id=1, pair=AGI/ETH, amount=414.98941777, open_rate=0.00024097, open_since=3 minutes ago)
+2018-10-18 21:22:19,098 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+2018-10-18 21:22:21,328 - freqtrade.freqtradebot - INFO - Found no buy signals for whitelisted currencies. Trying again..
+
+... 매수실패후 메시지
+
+2018-10-18 21:28:51,734 - freqtrade.freqtradebot - INFO - Buy order timeout for Trade(id=1, pair=AGI/ETH, amount=414.98941777, open_rate=0.00024097, open_since=10 minutes ago).
+2018-10-18 21:28:51,734 - freqtrade.rpc.rpc_manager - INFO - Sending rpc message: {'type': status, 'status': 'Unfilled buy order for AGI/ETH cancelled due to timeout'}
+2018-10-18 21:28:53,750 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+
+
+2018-10-25 06:24:42,711 - freqtrade.freqtradebot - INFO - Checking buy signals to create a new trade with stake_amount: 0.100000 ...
+2018-10-25 06:24:44,803 - freqtrade.freqtradebot - INFO - checking depth of market for NPXS/BTC
+2018-10-25 06:24:44,870 - freqtrade.freqtradebot - INFO - bids: 4128387766.0, asks: 7147623651.0, delta: 0.57758885576221
+2018-10-25 06:24:44,871 - freqtrade.freqtradebot - INFO - Found no buy signals for whitelisted currencies. Trying again..
+
+
+2018-10-20 02:20:58,588 - freqtrade.exchange - WARNING - get_ticker() returned exception: "Could not load ticker due to ExchangeError. Message: binance No market symbol ONG/BTC"
+2018-10-20 02:20:58,588 - freqtrade.exchange - WARNING - retrying get_ticker() still for 1 times
+2018-10-20 02:20:58,588 - freqtrade.exchange - WARNING - get_ticker() returned exception: "Could not load ticker due to ExchangeError. Message: binance No market symbol ONG/BTC"
+2018-10-20 02:20:58,589 - freqtrade.exchange - WARNING - retrying get_ticker() still for 0 times
+2018-10-20 02:20:58,589 - freqtrade.exchange - WARNING - get_ticker() returned exception: "Could not load ticker due to ExchangeError. Message: binance No market symbol ONG/BTC"
+2018-10-20 02:20:58,589 - freqtrade.exchange - WARNING - Giving up retrying: get_ticker()
+
+
+2018-10-19 17:51:02,926 - freqtrade.optimize - WARNING - No data for pair: "XLM/ETH", Interval: 1m. Use --refresh-pairs-cached to download the data
+2018-10-19 17:51:02,926 - freqtrade.optimize - WARNING - No data for pair: "NPXS/ETH", Interval: 1m. Use --refresh-pairs-cached to download the data
+
