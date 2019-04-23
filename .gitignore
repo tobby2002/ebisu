@@ -9,3 +9,5 @@ ohlc/
 *.egg-info/
 credentials.json
 token.json
+venv/
+logger*.txt
