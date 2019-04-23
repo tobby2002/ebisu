@@ -1,6 +1,5 @@
 matplotlib
 numpy
-ta-lib
 pandas
 bravado
 hyperopt
@@ -11,3 +10,5 @@ dill
 bitmex-market-maker==1.5
 bitmex-ws==0.3.1
 websocket-client==0.46.0
+numpy
+pandas
