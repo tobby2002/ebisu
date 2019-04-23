@@ -12,3 +12,4 @@ bitmex-ws==0.3.1
 websocket-client==0.46.0
 numpy
 pandas
+TA-Lib==0.4.17
