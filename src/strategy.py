@@ -242,12 +242,11 @@ class OCC(Bot):
 
         self.exchange.plot('val_open', val_open[-1], 'b')
         self.exchange.plot('val_close', val_close[-1], 'r')
-        # logger.info("occ:\n" + str(sma_val))
-        logger.info("occ:sma_val[-1]:" + str(sma_val[-1]))
-        logger.info("occ:low_val:" + str(low_val))
-        logger.info("occ:high_val:" + str(high_val))
-        logger.info("lot:" + str(lot))
-        logger.info("------------")
+        # logger.info("occ:sma_val[-1]:" + str(sma_val[-1]))
+        # logger.info("occ:low_val:" + str(low_val))
+        # logger.info("occ:high_val:" + str(high_val))
+        # logger.info("lot:" + str(lot))
+        # logger.info("------------")
         self.exchange.entry("Long", True,   lot, stop=math.floor(low_val), when=(sma_val[-1] < low_val))
         self.exchange.entry("Short", False, lot, stop=math.ceil(high_val), when=(sma_val[-1] > high_val))
 
@@ -310,10 +309,12 @@ class TV(Bot):
 
         logger.info(f"Starting Bot")
         logger.info(f"Strategy : {type(self).__name__}")
+        logger.info(f"Resolution : {self.resolution()}")
         logger.info(f"Balance : {self.exchange.get_balance()}")
 
         notify(f"Starting Bot\n"
                f"Strategy : {type(self).__name__}\n"
+               f"Resolution : {self.resolution()}\n"
                f"Balance : {self.exchange.get_balance()/100000000} XBT")
 
         self.subscriber.on_message(self.__on_message)

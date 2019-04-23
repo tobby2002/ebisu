@@ -42,6 +42,12 @@ class Bot:
         """
         pass
 
+    def resolution(self):
+        """
+        봉기간 사이즈
+        """
+        return self.bin_size
+
     def ohlcv_len(self):
         """
         strategy 전략함수에 넘기는 OHLC 길이
@@ -124,11 +130,13 @@ class Bot:
 
         logger.info(f"Starting Bot")
         logger.info(f"Strategy : {type(self).__name__}")
+        logger.info(f"Resolution : {self.resolution()}")
         logger.info(f"Balance : {self.exchange.get_balance()}")
 
         notify(f"Starting Bot\n"
-               f"Strategy : {type(self).__name__}\n"
-               f"Balance : {self.exchange.get_balance()/100000000} XBT")
+                f"Strategy : {type(self).__name__}\n"
+                f"Resolution : {self.resolution()}\n"
+                f"Balance : {self.exchange.get_balance()/100000000} XBT")
 
         self.exchange.show_result()
 
