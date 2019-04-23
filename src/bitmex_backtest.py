@@ -40,7 +40,7 @@ class BitMexBackTest(BitMexStub):
 
     def __init__(self):
         """
-        コンストラクタ
+        컨스트럭트
         :param periods:
         """
         BitMexStub.__init__(self, threading=False)
@@ -49,14 +49,14 @@ class BitMexBackTest(BitMexStub):
 
     def get_market_price(self):
         """
-        取引価格を取得する。
+        거래가격 취득
         :return:
         """
         return self.market_price
 
     def now_time(self):
         """
-        現在の時間。
+        현재시간
         :return:
         """
         return self.time

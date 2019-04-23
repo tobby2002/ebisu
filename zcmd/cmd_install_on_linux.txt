@@ -75,3 +75,17 @@ sudo supervisorctl start all
 python code를 update시 재구동
 sudo supervisorctl restart alphav001
 
+
+######################## example of server time zone change #####################
+
+  685  tail -n 2000 logger_file.txt
+  686  date
+  687  timedatectl
+  688  ls -l /etc/localtime
+  689  timedatectl list-timezones | grep -i [zone]
+  690  Asia/Seoul
+  691  sudo unlink /etc/localtime
+  692  sudo ln -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+  693  ls -l /etc/localtime
+  694  history
+

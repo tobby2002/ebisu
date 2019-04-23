@@ -52,6 +52,7 @@ $ sudo make install
 $ git clone https://github.com/noda-sin/ebisu.git
 $ cd ebisu/
 $ pip install -r requirements.txt
+$ pip install TA-Lib==0.4.17
 ```
 
 ### 2. Setting environment
@@ -196,6 +197,8 @@ $ sudo make install
 $ git clone https://github.com/noda-sin/ebisu.git
 $ cd ebisu/
 $ pip install -r requirements.txt
+$ pip install TA-Lib==0.4.17
+
 ```
 
 ### 2. 環境変数の設定

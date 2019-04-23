@@ -7,7 +7,7 @@ import os
 import time
 import uuid
 from datetime import timedelta
-
+import datetime
 import numpy as np
 import pandas as pd
 import requests
@@ -22,8 +22,10 @@ formatter = logging.Formatter('%(asctime)s - [%(levelname)s] (%(filename)s:%(lin
 
 log_max_size = 10 * 1024 * 1024  # 10M
 log_file_count = 20  # allow until 20 files
-fileHandler = logging.handlers.RotatingFileHandler(filename='./logger_file.txt', maxBytes=log_max_size,
-                                                   backupCount=log_file_count)
+log_filename = datetime.datetime.now().strftime('%Y-%m-%d') + '.log'
+# fileHandler = logging.handlers.RotatingFileHandler(filename=log_filename, maxBytes=log_max_size, backupCount=log_file_count)
+fileHandler = logging.FileHandler(filename=os.path.join('log', log_filename))
+
 streamHandler = logging.StreamHandler()
 fileHandler.setFormatter(formatter)
 streamHandler.setFormatter(formatter)  # for console, if you want to hide, comment this line

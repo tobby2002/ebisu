@@ -3,82 +3,82 @@
 from src import logger
 from src.bitmex import BitMex
 
-# スタブ取引用クラス
+# STUB 거래용 클래스
 class BitMexStub(BitMex):
-    # デフォルトの残高 (0.1BTC)
+    # 디폴트 잔액 (0.1BTC)
     balance = 0.1 * 100000000
-    # デフォルトのレベレッジ
+    # 디롶트 레버리지
     leverage = 1
-    # 現在のポジションサイズ
+    # 현재 포지션 사이즈
     position_size = 0
-    # 現在のポジション平均価格
+    # 현재 포지션 평균가
     position_avg_price = 0
-    # 注文数
+    # 주문카운트
     order_count = 0
-    # 勝ち数
+    # 익절카운트
     win_count = 0
-    # 負け数
+    # 손절카운트
     lose_count = 0
-    # 勝ちの総利益
+    # 익절 총이익
     win_profit = 0
-    # 負けの総損失
+    # 손절 총손해
     lose_loss = 0
-    # 最大損失率
+    # 최대손실율(MDD)
     max_draw_down = 0
-    # 注文
+    # 주문
     open_orders = []
 
     def __init__(self, threading=True):
         """
-        コンストラクタ
+        컨스트럭터
         :param threading:
         """
         BitMex.__init__(self, threading=threading)
 
     def get_lot(self):
         """
-         ロットの計算を行う。
+         주문수량 취득
          :return:
          """
         return int((1 - self.get_retain_rate()) * self.get_balance() / 100000000 * self.get_leverage() * self.get_market_price())
 
     def get_balance(self):
         """
-        残高の取得を行う。
+        잔고 취득
         :return:
         """
         return self.balance
 
     def get_leverage(self):
         """
-        レバレッジの取得する。
+        레버리지 취득
         :return:
         """
         return self.leverage
 
     def get_position_size(self):
         """
-         現在のポジションサイズを取得する。
+         현재 포지션 사이즈 취득
          :return:
          """
         return self.position_size
 
     def get_position_avg_price(self):
         """
-        現在のポジションの平均価格を取得する。
+        현재 포지션 평균가격 취득
         :return:
         """
         return self.position_avg_price
 
     def cancel_all(self):
         """
-        すべての注文をキャンセルする。
+        모든 주문 취소
         """
         self.open_orders = []
 
     def close_all(self):
         """
-        すべてのポジションを解消する。
+        모든 포지션 해제
         """
         pos_size = self.position_size
         if pos_size == 0:
@@ -89,8 +89,8 @@ class BitMexStub(BitMex):
 
     def cancel(self, id):
         """
-        注文をキャンセルする。
-        :param long: ロング or ショート
+        주문 취소
+        :param long: 롱 or 숏
         :return 成功したか:
         """
         self.open_orders = [o for o in self.open_orders if o["id"] != id]
@@ -98,15 +98,15 @@ class BitMexStub(BitMex):
 
     def entry(self, id, long, qty, limit=0, stop=0, post_only=False, when=True):
         """
-        注文をする。pineの関数と同等の機能。
-        https://jp.tradingview.com/study-script-reference/#fun_strategy{dot}entry
-        :param id: 注文の番号
-        :param long: ロング or ショート
-        :param qty: 注文量
-        :param limit: 指値
-        :param stop: ストップ指値
-        :param post_only: ポストオンリー
-        :param when: 注文するか
+        주문넣기. pine언어와 동등。
+        https://kr.tradingview.com/study-script-reference/#fun_strategy{dot}entry
+        :param id: 주문번호
+        :param long: 롱 or 숏
+        :param qty: 주문수량
+        :param limit: 제시가
+        :param stop: Stop제시가
+        :param post_only: post only 옵션
+        :param when: 주문조건
         :return:
         """
         if not when:
@@ -131,12 +131,12 @@ class BitMexStub(BitMex):
 
     def commit(self, id, long, qty, price, need_commission=True):
         """
-        約定する。
-        :param id: 注文番号
-        :param long: ロング or ショート
-        :param qty: 注文量
-        :param price: 価格
-        :param need_commission: 手数料が発生するか
+        커밋
+        :param id: 주문번호
+        :param long: 롱 or 숏
+        :param qty: 주문수량
+        :param price: 가격
+        :param need_commission: 수수료 적용여부
         """
         self.order_count += 1
 
@@ -195,14 +195,14 @@ class BitMexStub(BitMex):
 
     def eval_exit(self):
         """
-        利確、損切戦略の評価
+        익손, 손절전략 평가
         """
         if self.get_position_size() == 0:
             return
 
         price = self.get_market_price()
 
-        # trail assetが設定されていたら
+        # trail asset 가 설정되어 있을 경우
         if self.get_exit_order()['trail_offset'] > 0 and self.get_trail_price() > 0:
             trail_offset = self.get_exit_order()['trail_offset']
             trail_price = self.get_trail_price()
@@ -222,13 +222,13 @@ class BitMexStub(BitMex):
             close_rate = ((price - self.get_position_avg_price()) / self.get_position_avg_price() - self.get_commission()) * self.get_leverage()
             unrealised_pnl = self.get_position_size() * close_rate
 
-        # lossが設定されていたら
+        # loss 가 설정되어 있을 경우
         if unrealised_pnl < 0 and \
                 0 < self.get_exit_order()['loss'] < abs(unrealised_pnl):
             logger.info(f"Loss cut by stop loss: {self.get_exit_order()['loss']}")
             self.close_all()
 
-        # profitが設定されていたら
+        # profit 가 설정되어 있을 경우
         if unrealised_pnl > 0 and \
                 0 < self.get_exit_order()['profit'] < abs(unrealised_pnl):
             logger.info(f"Take profit by stop profit: {self.get_exit_order()['profit']}")
@@ -236,7 +236,7 @@ class BitMexStub(BitMex):
 
     def on_update(self, bin_size, strategy):
         """
-        戦略の関数を登録する。
+        전략함수 등록
         :param strategy:
         """
         def __override_strategy(open, close, high, low, volume):

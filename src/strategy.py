@@ -195,7 +195,7 @@ class OCC(Bot):
     eval_time = None
 
     def __init__(self):
-        Bot.__init__(self, '1m')
+        Bot.__init__(self, '15m')
 
     def ohlcv_len(self):
         return 15 * 30
