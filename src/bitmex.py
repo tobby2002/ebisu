@@ -24,40 +24,40 @@ from src.orderbook import OrderBook
 class BitMex:
     # wallet
     wallet = None
-    # 価格
+    # 가격
     market_price = 0
-    # ポジション
+    # 포지션
     position = None
-    # マージン
+    # 마진
     margin = None
-    # 利用する時間足
+    # 이용하는 봉시간 단위
     bin_size = '1h'
-    # プライベートAPI用クライアント
+    # 개인API사용자
     private_client = None
-    # パブリックAPI用クライアント
+    # 공객API사용자
     public_client = None
-    # 稼働中
+    # 기동중
     is_running = True
-    # 時間足を取得するクローラ
+    # 봉, 거래량을 취득하는 크롤러
     crawler = None
-    # 戦略を実施するリスナー
+    # 전략실시 리스너
     strategy = None
-    # ログの出力
+    # 로그출력
     enable_trade_log = True
-    # OHLCの長さ
+    # OHLC길이
     ohlcv_len = 100
-    # OHLCのキャッシュ
+    # OHLC캐쉬
     data = None
-    # 利確損切戦略
+    # 이익 확인 손절 구분자
     exit_order = {'profit': 0, 'loss': 0, 'trail_offset': 0}
-    # Trailing Stopのためのピン留価格
+    # Trailing Stop 가격 봉의 축가격
     trail_price = 0
     # 最後に戦略を実行した時間
     last_action_time = None
 
     def __init__(self, demo=False, threading=True):
         """
-        コンストラクタ
+        컨스트럭터
         :param demo:
         :param run:
         """
@@ -66,43 +66,57 @@ class BitMex:
 
     def __init_client(self):
         """
-        初期化関数
+        초기화 함수
         """
         if self.private_client is not None and self.public_client is not None:
             return
         # api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.demo else os.environ.get("BITMEX_APIKEY")
         # api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.demo else os.environ.get("BITMEX_SECRET")
-        api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
-        api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
+        # tobby2002
+        # api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
+        # api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
+        # redlee80
+        api_key = 'NPo11uetPveJeDUMcMW19B_x'
+        api_secret = 'pcbKMRlLxH_fS3oCyEeDkFNhp1UGmyu8CpxLbwEokOvpd2Ud'
+
         self.private_client = bitmex_api(test=self.demo, api_key=api_key, api_secret=api_secret)
         self.public_client = bitmex_api(test=self.demo)
 
     def now_time(self):
         """
-        現在の時間
+        현재시간
         """
         return datetime.now().astimezone(UTC)
 
     def get_retain_rate(self):
         """
-        証拠金維持率。
+        증거금 유지율
         :return:
         """
         return 0.8
 
     def get_lot(self):
         """
-        ロットの計算を行う。
+        수량 계산 및 취득
         :return:
         """
         margin = self.get_margin()
         position = self.get_position()
-        return math.floor((1 - self.get_retain_rate()) * self.get_market_price()
-                          * margin['excessMargin'] / (position['initMarginReq'] * 100000000))
-
+        if margin and position:
+            # print('margin:%s' % margin)
+            # print('position:%s' % position)
+            return math.floor((1 - self.get_retain_rate()) * self.get_market_price()
+                              * margin['excessMargin'] / (position['initMarginReq'] * 100000000))
+        else:
+            # print('margin:%s' % margin)
+            # print('position:%s' % position)
+            logger.info("margin:%s" % margin)
+            logger.info("position:%s" % position)
+            logger.info("Error---> There is no margin or no position.")  # 거래내역이 없으면 생기는것 같다.
+            return 0
     def get_balance(self):
         """
-        残高の取得を行う。
+        잔고 취득
         :return:
         """
         self.__init_client()
@@ -110,7 +124,7 @@ class BitMex:
 
     def get_margin(self):
         """
-        マージンの取得
+        마진 취득
         :return:
         """
         self.__init_client()
@@ -123,7 +137,7 @@ class BitMex:
 
     def get_leverage(self):
         """
-        レバレッジの取得する。
+        레버리지 취득
         :return:
         """
         self.__init_client()
@@ -131,7 +145,7 @@ class BitMex:
 
     def get_position(self):
         """
-        現在のポジションを取得する。
+        현재포지션 취득
         :return:
         """
         self.__init_client()
@@ -146,7 +160,7 @@ class BitMex:
 
     def get_position_size(self):
         """
-        現在のポジションサイズを取得する。
+        현재 포지션 사이즈 취득
         :return:
         """
         self.__init_client()
@@ -154,7 +168,7 @@ class BitMex:
 
     def get_position_avg_price(self):
         """
-        現在のポジションの平均価格を取得する。
+        현재 포지션 평균가 취득
         :return:
         """
         self.__init_client()
@@ -162,7 +176,7 @@ class BitMex:
 
     def get_market_price(self):
         """
-        現在の取引額を取得する。
+        현재 시장가 취득
         :return:
         """
         self.__init_client()
@@ -175,28 +189,28 @@ class BitMex:
 
     def get_trail_price(self):
         """
-        Trail Priceを取得する。
+        Trail Price 취득
         :return:
         """
         return self.trail_price
 
     def set_trail_price(self, value):
         """
-        Trail Priceを設定する。
+        Trail Price 설정
         :return:
         """
         self.trail_price = value
 
     def get_commission(self):
         """
-        手数料を取得する。
+        수수료 취득
         :return:
         """
         return 0.075 / 100
 
     def cancel_all(self):
         """
-        すべての注文をキャンセルする。
+        전체 주문 취소
         """
         self.__init_client()
         orders = retry(lambda: self.private_client.Order.Order_cancelAll().result())
@@ -208,7 +222,7 @@ class BitMex:
 
     def close_all(self):
         """
-        すべてのポジションを解消する。
+        전체 포지션 해제
         """
         self.__init_client()
         order = retry(lambda: self.private_client.Order.Order_closePosition(symbol="XBTUSD").result())
@@ -219,9 +233,9 @@ class BitMex:
 
     def cancel(self, id):
         """
-        注文をキャンセルする。
-        :param id: 注文番号
-        :return 成功したか:
+        주문 취소
+        :param id: 주문번호
+        :return 성공여부
         """
         self.__init_client()
         order = self.get_open_order(id)
@@ -239,7 +253,7 @@ class BitMex:
 
     def __new_order(self, ord_id, side, ord_qty, limit=0, stop=0, post_only=False):
         """
-        注文を作成する
+        주문 작성
         """
         if limit > 0 and post_only:
             ord_type = "Limit"
@@ -297,7 +311,7 @@ class BitMex:
 
     def __amend_order(self, ord_id, side, ord_qty, limit=0, stop=0, post_only=False):
         """
-        注文を更新する
+        주문 갱신
         """
         if limit > 0 and stop > 0:
             ord_type = "StopLimit"
@@ -336,15 +350,15 @@ class BitMex:
 
     def entry(self, id, long, qty, limit=0, stop=0, post_only=False, when=True):
         """
-        注文をする。pineの関数と同等の機能。
-        https://jp.tradingview.com/study-script-reference/#fun_strategy{dot}entry
-        :param id: 注文の番号
-        :param long: ロング or ショート
-        :param qty: 注文量
-        :param limit: 指値
-        :param stop: ストップ指値
-        :param post_only: ポストオンリー
-        :param when: 注文するか
+        주문 엔트리 함수. pine언어와 동등
+        https://kr.tradingview.com/study-script-reference/#fun_strategy{dot}entry
+        :param id: 주문번호
+        :param long: 롱 or 숏
+        :param qty: 주문수량
+        :param limit: 제시가
+        :param stop: 스탑제시가
+        :param post_only: post only 옵션
+        :param when: 주문조건
         :return:
         """
         self.__init_client()
@@ -369,15 +383,15 @@ class BitMex:
 
     def order(self, id, long, qty, limit=0, stop=0, post_only=False, when=True):
         """
-        注文をする。pineの関数と同等の機能。
-        https://jp.tradingview.com/study-script-reference/#fun_strategy{dot}order
-        :param id: 注文の番号
-        :param long: ロング or ショート
-        :param qty: 注文量
-        :param limit: 指値
-        :param stop: ストップ指値
-        :param post_only: ポストオンリー
-        :param when: 注文するか
+        주문함수. pine언어와 동등
+        https://kr.tradingview.com/study-script-reference/#fun_strategy{dot}order
+        :param id: 주문번호
+        :param long: 롱 or 숏
+        :param qty: 주문수량
+        :param limit: 제시가
+        :param stop: 스탑제시가
+        :param post_only: post only 옵션
+        :param when: 주문조건
         :return:
         """
         self.__init_client()
@@ -401,8 +415,8 @@ class BitMex:
 
     def get_open_order(self, id):
         """
-        注文を取得する。
-        :param id: 注文番号
+        주문휘득
+        :param id: 주문번호
         :return:
         """
         self.__init_client()
@@ -417,29 +431,29 @@ class BitMex:
 
     def exit(self, profit=0, loss=0, trail_offset=0):
         """
-        利確、損切戦略の登録 lossとtrail_offsetが両方設定されたら、trail_offsetが優先される
-        :param profit: 利益(ティックで指定する)
-        :param loss: 損切(ティックで指定する)
-        :param trail_offset: トレーリングストップの価格(ティックで指定)
+        익손손절 전략 등록. loss 와 trail_offset 이 둘다 설정되 있으면 trail_offset 가 우선함
+        :param profit: 이익 (Tick설정)
+        :param loss: 손익 (Tick설정)
+        :param trail_offset: Trail Stop 가격 (Tick설정)
         """
         self.exit_order = {'profit': profit, 'loss': loss, 'trail_offset': trail_offset}
 
     def get_exit_order(self):
         """
-        利確、損切戦略を取得する
+        익손손절 전략평가 취득
         """
         return self.exit_order
 
     def eval_exit(self):
         """
-        利確、損切戦略の評価
+        이익, 손익, 손절 전략의 평가후 포지션 정리 함수
         """
         if self.get_position_size() == 0:
             return
 
         unrealised_pnl = self.get_position()['unrealisedPnl']
 
-        # trail assetが設定されていたら
+        # trail asset 이 설정되어 있으면
         if self.get_exit_order()['trail_offset'] > 0 and self.get_trail_price() > 0:
             if self.get_position_size() > 0 and \
                     self.get_market_price() - self.get_exit_order()['trail_offset'] < self.get_trail_price():
@@ -450,13 +464,13 @@ class BitMex:
                 logger.info(f"Loss cut by trailing stop: {self.get_exit_order()['trail_offset']}")
                 self.close_all()
 
-        # lossが設定されていたら
+        # loss 가 설정되어 있으면
         if unrealised_pnl < 0 and \
                 0 < self.get_exit_order()['loss'] < abs(unrealised_pnl / 100000000):
             logger.info(f"Loss cut by stop loss: {self.get_exit_order()['loss']}")
             self.close_all()
 
-        # profitが設定されていたら
+        # profit 이 설정되어 있으면
         if unrealised_pnl > 0 and \
                 0 < self.get_exit_order()['profit'] < abs(unrealised_pnl / 100000000):
             logger.info(f"Take profit by stop profit: {self.get_exit_order()['profit']}")
@@ -464,9 +478,9 @@ class BitMex:
 
     def fetch_ohlcv(self, bin_size, start_time, end_time):
         """
-        足データを取得する
-        :param start_time: 開始時間
-        :param end_time: 終了時間
+        봉데이터 취득
+        :param start_time: 시작시간
+        :param end_time: 종료시간
         :return:
         """
         self.__init_client()
@@ -496,13 +510,13 @@ class BitMex:
 
     def security(self, bin_size):
         """
-        別時間軸データを再計算して、取得する
+        다른 시간축 데이터를 재계산 후, 취득
         """
         return resample(self.data, bin_size)[:-1]
 
     def __update_ohlcv(self, action, new_data):
         """
-        データを取得して、戦略を実行する。
+        데이타를 취득한 후, 전략을 실행
         """
 
         if self.data is None:
@@ -556,7 +570,7 @@ class BitMex:
 
     def __on_update_instrument(self, action, instrument):
         """
-         取引価格を更新する
+         거래가격 갱신
         """
         if 'lastPrice' in instrument:
             self.market_price = instrument['lastPrice']
@@ -571,13 +585,13 @@ class BitMex:
 
     def __on_update_wallet(self, action, wallet):
         """
-         walletを更新する
+         wallet 갱신
         """
         self.wallet = {**self.wallet, **wallet} if self.wallet is not None else self.wallet
 
     def __on_update_position(self, action, position):
         """
-         ポジションを更新する
+         포지션 갱신
         """
         # ポジションサイズの変更がされたか
         is_update_pos_size = self.get_position()['currentQty'] != position['currentQty']
@@ -603,13 +617,13 @@ class BitMex:
 
     def __on_update_margin(self, action, margin):
         """
-         マージンを更新する
+         마진 갱신
         """
         self.margin = {**self.margin, **margin} if self.margin is not None else self.margin
 
     def on_update(self, bin_size, strategy):
         """
-        戦略の関数を登録する。
+        전략함수 등록
         :param strategy:
         """
         self.bin_size = bin_size
@@ -625,19 +639,19 @@ class BitMex:
 
     def stop(self):
         """
-        クローラーを止める。
+        크롤러 정지
         """
         self.is_running = False
         self.ws.close()
 
     def show_result(self):
         """
-        取引結果を表示する。
+        거래결과보기
         """
         pass
 
     def plot(self, name, value, color, overlay=True):
         """
-        グラフに描画する。
+        그래프 그리기。
         """
         pass

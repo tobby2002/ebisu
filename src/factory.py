@@ -8,8 +8,8 @@ class BotFactory():
     @staticmethod
     def create(args):
         """
-        Botを作成する関数。名前から該当のBotを src/strategy.py から探す。
-        :param args: 変数
+        Bot 작성 함수, 이름(class 명)에서 해당 Bot을 src/strategy.py 에서 검색。
+        :param args: 변수
         :return: Bot
         """
         try:

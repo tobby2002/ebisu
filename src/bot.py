@@ -11,48 +11,48 @@ from src.bitmex_backtest import BitMexBackTest
 
 
 class Bot:
-    # パラメータ
+    # 파라메타
     params = {}
-    # 取引所
+    # 거래소
     exchange = None
-    # 時間足
+    # 봉단위
     bin_size = '1h'
-    # 足の期間
+    # 봉기간
     periods = 20
-    # テストネットを利用するか
+    # 테스트넷 옵션
     test_net = False
-    # バックテストか
+    # 벡테스트 옵션
     back_test = False
-    # スタブ取引か
+    # 스터브 옵션
     stub_test = False
-    # パラメータ探索か
+    # 하이퍼 옵션
     hyperopt = False
 
     def __init__(self, bin_size):
         """
-        コンストラクタ。
-        :param bin_size: 時間足
-        :param periods: 期間
+        컨스트럭터
+        :param bin_size: 봉단위
+        :param periods: 봉기간
         """
         self.bin_size = bin_size
 
     def options(self):
         """
-        パレメータ探索用の値を取得する関数。
+        하이퍼옵션 파라메타탐색 값 취득 함수
         """
         pass
 
     def ohlcv_len(self):
         """
-        戦略にわたすOHLCの長さ
+        strategy 전략함수에 넘기는 OHLC 길이
         """
         return 100
 
     def input(self, title, type, defval):
         """
-        パレメータを取得する関数。
-        :param title: パレメータ名
-        :param defval: デフォルト値
+        하이퍼옵션에 넘겨지는 파라메타 및 속성설정
+        :param title: 파라메타명
+        :param defval: 디폴트값
         :return: 値
         """
         p = {} if self.params is None else self.params
@@ -63,18 +63,18 @@ class Bot:
 
     def strategy(self, open, close, high, low, volume):
         """
-        戦略関数。Botを作成する際は、この関数を継承して実装してください。
-        :param open: 始値
-        :param close: 終値
-        :param high: 高値
-        :param low: 安値
-        :param volume: 出来高
+        전략함수로 봇을 작성할때 이 함수를 오버라이드해서 사용
+        :param open: 시가
+        :param close: 종가
+        :param high: 고가
+        :param low: 저가
+        :param volume: 거래량
         """
         pass
 
     def params_search(self):
         """
- ˜      パラメータ検索を行う関数。
+ ˜      파라메타 탐색 함수
         """
         def objective(args):
             logger.info(f"Params : {args}")
@@ -102,7 +102,7 @@ class Bot:
 
     def run(self):
         """
-˜       Botを起動する関数。
+˜       Bot 기동
         """
         if self.hyperopt:
             logger.info(f"Bot Mode : Hyperopt")
@@ -134,7 +134,7 @@ class Bot:
 
     def stop(self):
         """
-˜       Botを停止する関数。Openしている注文は、キャンセルする。
+˜       Bot 정지 및 Open되어 있는 주문을 취소
         """
         if self.exchange is None:
             return

@@ -2,6 +2,7 @@
 
 import base64
 import logging
+import logging.handlers
 import os
 import time
 import uuid
@@ -13,13 +14,25 @@ import requests
 import talib
 from bravado.exception import HTTPError
 
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+# logging settings for console and file by neo
 logger = logging.getLogger(__name__)
 
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) > %(message)s')
+
+log_max_size = 10 * 1024 * 1024  # 10M
+log_file_count = 20  # allow until 20 files
+fileHandler = logging.handlers.RotatingFileHandler(filename='./logger_file.txt', maxBytes=log_max_size,
+                                                   backupCount=log_file_count)
+streamHandler = logging.StreamHandler()
+fileHandler.setFormatter(formatter)
+streamHandler.setFormatter(formatter)  # for console, if you want to hide, comment this line
+
+logger.addHandler(fileHandler)
+logger.addHandler(streamHandler)
+
+
+# resolution
 allowed_range = {
     "1m": ["1m", "1T", 1, 1], "2m":  ["1m", "2T", 2, 2], "3m":  ["1m", "3T", 3, 3],
     "4m": ["1m", "4T", 4, 4], "5m": ["1m", "5T", 5, 5], "6m": ["1m", "6T", 6, 6],
@@ -41,7 +54,7 @@ def ord_suffix():
 
 def load_data(file):
     """
-    ファイルからデータを読み込む。
+    파일에서 데이타를 읽음
     """
     source = pd.read_csv(file)
     data_frame = pd.DataFrame({
@@ -286,9 +299,56 @@ def is_under(src, value, p):
             return False
     return True
 
-
 def is_over(src, value, p):
     for i in range(p, -1, -1):
         if src[-i - 1] < value:
             return False
     return True
+
+def atr(high, low, close, period=14):
+    return talib.ATR(high, low, close, period)
+
+def supertrend(df, f, n): #df is the dataframe, n is the period, f is the factor; f=3, n=7 are commonly used.
+    #Calculation of ATR
+    pd.options.mode.chained_assignment = None  # Todo , remove the warning 'SettingWithCopyWarning'
+    df['H-L']=abs(df['high']-df['low'])
+    df['H-PC']=abs(df['high']-df['close'].shift(1))
+    df['L-PC']=abs(df['low']-df['close'].shift(1))
+    df['TR']=df[['H-L','H-PC','L-PC']].max(axis=1)
+    df['ATR']=np.nan
+    df.ix[n-1,'ATR']=df['TR'][:n-1].mean() #.ix is deprecated from pandas verion- 0.19
+    # df.ix[n-1,'ATR']=df['TR'][:n-1].mean() #.ix is deprecated from pandas verion- 0.19
+    for i in range(n,len(df)):
+        df['ATR'][i]=(df['ATR'][i-1]*(n-1)+ df['TR'][i])/n
+
+    #Calculation of SuperTrend
+    df['Upper Basic']=(df['high']+df['low'])/2+(f*df['ATR'])
+    df['Lower Basic']=(df['high']+df['low'])/2-(f*df['ATR'])
+    df['Upper Band']=df['Upper Basic']
+    df['Lower Band']=df['Lower Basic']
+    for i in range(n,len(df)):
+        if df['close'][i-1]<=df['Upper Band'][i-1]:
+            df['Upper Band'][i]=min(df['Upper Basic'][i],df['Upper Band'][i-1])
+        else:
+            df['Upper Band'][i]=df['Upper Basic'][i]
+    for i in range(n,len(df)):
+        if df['close'][i-1]>=df['Lower Band'][i-1]:
+            df['Lower Band'][i]=max(df['Lower Basic'][i],df['Lower Band'][i-1])
+        else:
+            df['Lower Band'][i]=df['Lower Basic'][i]
+    df['SuperTrend']=np.nan
+    for i in df['SuperTrend']:
+        if df['close'][n-1]<=df['Upper Band'][n-1]:
+            df['SuperTrend'][n-1]=df['Upper Band'][n-1]
+        elif df['close'][n-1]>df['Upper Band'][i]:
+            df['SuperTrend'][n-1]=df['Lower Band'][n-1]
+    for i in range(n,len(df)):
+        if df['SuperTrend'][i-1]==df['Upper Band'][i-1] and df['close'][i]<=df['Upper Band'][i]:
+            df['SuperTrend'][i]=df['Upper Band'][i]
+        elif  df['SuperTrend'][i-1]==df['Upper Band'][i-1] and df['close'][i]>=df['Upper Band'][i]:
+            df['SuperTrend'][i]=df['Lower Band'][i]
+        elif df['SuperTrend'][i-1]==df['Lower Band'][i-1] and df['close'][i]>=df['Lower Band'][i]:
+            df['SuperTrend'][i]=df['Lower Band'][i]
+        elif df['SuperTrend'][i-1]==df['Lower Band'][i-1] and df['close'][i]<=df['Lower Band'][i]:
+            df['SuperTrend'][i]=df['Upper Band'][i]
+    return df
