@@ -8,7 +8,7 @@ import re
 import numpy
 from hyperopt import hp
 
-from src import highest, lowest, sma, crossover, crossunder, last, rci, double_ema, ema, triple_ema, wma, \
+from src import highest, lowest, sma, crossover, crossunder, last, rci, rsi, double_ema, ema, triple_ema, wma, \
     ssma, hull, logger, notify, supertrend
 from src.bitmex import BitMex
 from src.bitmex_stub import BitMexStub
@@ -21,7 +21,7 @@ from src.gmail_sub import GmailSub
 
 class Doten(Bot):
     def __init__(self):
-        Bot.__init__(self, '2h')
+        Bot.__init__(self, '15m')
 
     def options(self):
         return {
@@ -50,6 +50,7 @@ class Doten1M(Bot):
     def strategy(self, open, close, high, low, volume):
         lot = self.exchange.get_lot()
         length = self.input('length', int, 9)
+
         up = last(highest(high, length))
         dn = last(lowest(low, length))
         self.exchange.plot('up', up, 'b')
@@ -112,17 +113,19 @@ class SMA1M(Bot):
 
     def strategy(self, open, close, high, low, volume):
         lot = self.exchange.get_lot()
+        # for test
+        lot = lot / 1000
         fast_len = self.input('fast_len', int, 9)
         slow_len = self.input('slow_len', int, 16)
         fast_sma = sma(close, fast_len)
         slow_sma = sma(close, slow_len)
         golden_cross = crossover(fast_sma, slow_sma)
         dead_cross = crossunder(fast_sma, slow_sma)
-        logger.info("slow_sma:\n" + str(lot))
+        logger.info("slow_sma:\n" + str(slow_sma[-1]))
         if golden_cross:
-            self.exchange.entry("Long", True, lot)
+            self.exchange.entry("Long", True, round(lot))
         if dead_cross:
-            self.exchange.entry("Short", False, lot)
+            self.exchange.entry("Short", False, round(lot))
 
 # Rci戦略
 class Rci(Bot):
@@ -183,10 +186,76 @@ class Rci1M70(Bot):
         long = rci_l[-1] < -75 and rci_m[-1] < -75 and rci_s[-1] < -75
         short = rci_l[-1] > 75 and rci_m[-1] > 75 and rci_s[-1] > 75
 
+        self.exchange.entry("Long", True, lot, when=long)
+        self.exchange.entry("Short", False, lot, when=short)
+
+        # if long:
+        #     self.exchange.entry("Long", True, lot)
+        # elif short:
+        #     self.exchange.entry("Short", False, lot)
+
+class RSI2(Bot): # logic https: // stock79.tistory.com / 177
+
+    def __init__(self):
+        Bot.__init__(self, '1m')
+
+    def options(self):
+        return {
+            'length': hp.randint('length', 1, 30, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+        lot = self.exchange.get_lot()
+        # for test
+        lot = int(round(lot / 100))
+        bitmex = BitMex(threading=False)
+        price = bitmex.get_market_price()
+        logger.info('price:%s' % price)
+
+        rsi2length = self.input('length', int, 2)
+        rsi2 = rsi(close, rsi2length)
+        logger.info('rsi2:%s' % rsi2[-1])
+
+        fast_len = self.input('fast_len', int, 5)
+        slow_len = self.input('slow_len', int, 55)
+        fast_sma = sma(close, fast_len)
+        slow_sma = sma(close, slow_len)
+
+        # golden_cross = crossover(fast_sma, slow_sma)
+        golden_cross = price > slow_sma[-1]
+        logger.info('golden_cross:%s' % golden_cross)
+
+        # dead_cross = crossunder(fast_sma, slow_sma)
+        dead_cross =  price < slow_sma[-1]
+        logger.info('dead_cross:%s' % dead_cross)
+
+
+        logger.info('fast_sma:%s' % fast_sma[-1])
+        logger.info('slow_sma:%s' % slow_sma[-1])
+
+        # long = price > slow_sma[-1] and price < fast_sma[-1] and rsi2[-1] < 45
+        long = golden_cross and price < fast_sma[-1] and rsi2[-1] < 45
+        stoplong = price > fast_sma[-1]
+
+        short = dead_cross and price > fast_sma[-1] and rsi2[-1] > 55
+        stopshort = price < fast_sma[-1]
+
         if long:
-            self.exchange.entry("Long", True, lot)
+            logger.info('long condition')
+            self.exchange.entry("Long", True, lot, limit=price, post_only=True)
+        elif bitmex.get_open_order("Long") and stoplong:
+            logger.info('stopLong conditon')
+            self.exchange.entry("Long", True, lot, stop=price, post_only=True)
         elif short:
-            self.exchange.entry("Short", False, lot)
+            logger.info('short conditon')
+            self.exchange.entry("Short", False, lot, limit=price, post_only=True)
+        elif bitmex.get_open_order("Short") and stopshort:
+            logger.info('stopShort conditon')
+            self.exchange.entry("Short", False, lot, stop=price, post_only=True)
+        # else:
+        #     self.exchange.close_all()
+
+        logger.info('----------')
 
 
 # OCC
@@ -195,7 +264,7 @@ class OCC(Bot):
     eval_time = None
 
     def __init__(self):
-        Bot.__init__(self, '15m')
+        Bot.__init__(self, '1m')
 
     def ohlcv_len(self):
         return 15 * 30
@@ -336,10 +405,10 @@ class Sample(Bot):
         lot = self.exchange.get_lot()
         which = random.randrange(2)
         if which == 0:
-            self.exchange.entry("Long", True, lot)
+            self.exchange.entry("Long", True, round(lot/1000))
             logger.info(f"Trade:Long")
         else:
-            self.exchange.entry("Short", False, lot)
+            self.exchange.entry("Short", False, round(lot/1000))
             logger.info(f"Trade:Short")
 
 class Cross5M(Bot):
