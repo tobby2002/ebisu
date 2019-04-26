@@ -126,7 +126,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         # logger.info('rsiwinstop: %s' % rsiwinstop[-1])
 
         fast_len = self.input('fast_len', int, 5)
-        fishing_len = self.input('fast_len', int, 7)
+        fishing_len = self.input('fast_len', int, 20)
         slow_len = self.input('slow_len', int, 50)
         fast_sma = sma(close, fast_len)
         fishing_sma = sma(close, fishing_len)
@@ -178,14 +178,16 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
             logger.info('+ + + + + LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND')
             if bitmex.get_whichpositon() is None:
                 logger.info('postion condition > None')
-                if price < math.floor(fishing_sma[-1]):
-                    logger.info('postion condition > None :: price < math.floor(fishing_sma[-1])')
-                    # self.exchange.entry("Long", True, lot, limit=math.ceil(fishing_sma[-1]), post_only=True)
-                    self.exchange.entry("Long", True, lot, limit=price-0.5, post_only=True)
-                else:
-                    logger.info('postion condition > None :: price > math.floor(fishing_sma[-1])')
-                    # self.exchange.entry("Long", True, lot, limit=channeldn, post_only=True)
-                    self.exchange.entry("Long", True, lot, limit=math.ceil(slow_sma[-1]), post_only=True)
+                self.exchange.entry("Long", True, lot, limit=math.ceil(fishing_sma[-1]), post_only=True)
+
+                # if price < math.floor(fishing_sma[-1]):
+                #     logger.info('postion condition > None :: price < math.floor(fishing_sma[-1])')
+                #     self.exchange.entry("Long", True, lot, limit=math.ceil(fishing_sma[-1]), post_only=True)
+                #     # self.exchange.entry("Long", True, lot, limit=price-0.5, post_only=True)
+                # else:
+                #     logger.info('postion condition > None :: price > math.floor(fishing_sma[-1])')
+                #     # self.exchange.entry("Long", True, lot, limit=channeldn, post_only=True)
+                #     self.exchange.entry("Long", True, lot, limit=math.ceil(slow_sma[-1]), post_only=True)
             elif bitmex.get_whichpositon() == 'LONG':
                 logger.info('postion condition  > LONG')
                 self.exchange.order("LongStop", False, abs(bitmex.get_position_size()), limit=price+0.5, when=rsi2[-1] > 75, post_only=True)
@@ -203,14 +205,15 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
             logger.info('- - - - - SHORT TREND  SHORT TREND SHORT TREND SHORT TREND SHORT TREND SHORT TREND')
             if bitmex.get_whichpositon() is None:
                 logger.info('postion condition > None')
-                if price > math.floor(fishing_sma[-1]):
-                    logger.info('postion condition > None :: price > math.floor(fishing_sma[-1])')
-                    # self.exchange.entry("Short", False, lot, limit=channelup, post_only=True)
-                    # self.exchange.entry("Short", False, lot, limit=math.floor(slow_sma[-1]), post_only=True)
-                    self.exchange.entry("Short", False, lot, limit=price+0.5, post_only=True)
-                else:
-                    logger.info('postion condition > None :: price < math.floor(fishing_sma[-1])')
-                    self.exchange.entry("Short", False, lot, limit=math.floor(fishing_sma[-1]), post_only=True)
+                self.exchange.entry("Short", False, lot, limit=math.floor(fishing_sma[-1]), post_only=True)
+                # if price > math.floor(fishing_sma[-1]):
+                #     logger.info('postion condition > None :: price > math.floor(fishing_sma[-1])')
+                #     # self.exchange.entry("Short", False, lot, limit=channelup, post_only=True)
+                #     # self.exchange.entry("Short", False, lot, limit=math.floor(slow_sma[-1]), post_only=True)
+                #     self.exchange.entry("Short", False, lot, limit=price+0.5, post_only=True)
+                # else:
+                #     logger.info('postion condition > None :: price < math.floor(fishing_sma[-1])')
+                #     self.exchange.entry("Short", False, lot, limit=math.floor(fishing_sma[-1]), post_only=True)
             elif bitmex.get_whichpositon() == 'SHORT':
                 logger.info('postion condition  > SHORT')
                 self.exchange.order("ShortStop", True, abs(bitmex.get_position_size()), limit=price-0.5, when=rsi2[-1] < 25, post_only=True)
