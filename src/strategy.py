@@ -112,7 +112,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
     def strategy(self, open, close, high, low, volume):
         lot = self.exchange.get_lot()
         # for test
-        lot = int(round(lot / 200))
+        lot = int(round(lot / 50))
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
         logger.info('price: %s' % price)
