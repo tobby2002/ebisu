@@ -170,9 +170,9 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         # short = dead_cross and (price > fast_sma[-1]) and rsi2[-1] > 75
         # stopshort = rsiwinstop[-1] < 20 or (price < fast_sma[-1])
 
-        logger.info('bitmex.get_open_order("Long") : %s' % bitmex.get_open_order("Long"))
-        logger.info('bitmex.get_open_order("Short") : %s' % bitmex.get_open_order("Short"))
-        logger.info('bitmex.bitmex.get_position_size() : %s' % bitmex.get_position_size())
+        # logger.info('bitmex.get_open_order("Long") : %s' % bitmex.get_open_order("Long"))
+        # logger.info('bitmex.get_open_order("Short") : %s' % bitmex.get_open_order("Short"))
+        # logger.info('bitmex.bitmex.get_position_size() : %s' % bitmex.get_position_size())
 
         if long_trend:  # long trend
             logger.info('+ + + + + LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND')
