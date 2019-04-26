@@ -112,7 +112,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
     def strategy(self, open, close, high, low, volume):
         lot = self.exchange.get_lot()
         # for test
-        lot = int(round(lot / 1000))
+        lot = int(round(lot / 200))
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
         logger.info('price: %s' % price)
@@ -238,8 +238,8 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
         logger.info('diff:%s' % diff)
         logger.info('realised_pnl:%s' % realised_pnl)
-        logger.info('bitmex.get_margin():%s' % bitmex.get_margin())
-        logger.info('bitmex.get_position():%s' % bitmex.get_position())
+        # logger.info('bitmex.get_margin():%s' % bitmex.get_margin())
+        # logger.info('bitmex.get_position():%s' % bitmex.get_position())
 
         # logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
         # logger.info('get_pre_prebalance:%s' % get_pre_prebalance(self.prebalance, bitmex.get_balance()))
