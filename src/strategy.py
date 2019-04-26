@@ -13,12 +13,9 @@ from src import highest, lowest, sma, crossover, crossunder, last, rci, rsi, dou
 from src.bitmex import BitMex
 from src.bitmex_stub import BitMexStub
 from src.bot import Bot
-
-
-# チャネルブレイクアウト戦略
 from src.gmail_sub import GmailSub
 
-
+# channel break out
 class Doten(Bot):
     def __init__(self):
         Bot.__init__(self, '15m')
@@ -38,46 +35,8 @@ class Doten(Bot):
         self.exchange.entry("Long", True, round(lot / 2), stop=up)
         self.exchange.entry("Short", False, round(lot / 2), stop=dn)
 
-class Doten1M(Bot):
-    def __init__(self):
-        Bot.__init__(self, '1m')
 
-    def options(self):
-        return {
-            'length': hp.randint('length', 1, 30, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        length = self.input('length', int, 9)
-
-        up = last(highest(high, length))
-        dn = last(lowest(low, length))
-        self.exchange.plot('up', up, 'b')
-        self.exchange.plot('dn', dn, 'r')
-        self.exchange.entry("Long", True, round(lot / 2), stop=up)
-        self.exchange.entry("Short", False, round(lot / 2), stop=dn)
-
-class Doten3M(Bot):
-    def __init__(self):
-        Bot.__init__(self, '3m')
-
-    def options(self):
-        return {
-            'length': hp.randint('length', 1, 30, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        length = self.input('length', int, 9)
-        up = last(highest(high, length))
-        dn = last(lowest(low, length))
-        self.exchange.plot('up', up, 'b')
-        self.exchange.plot('dn', dn, 'r')
-        self.exchange.entry("Long", True, round(lot / 2), stop=up)
-        self.exchange.entry("Short", False, round(lot / 2), stop=dn)
-
-# SMAクロス戦略
+# sma cross
 class SMA(Bot):
     def __init__(self):
         Bot.__init__(self, '2h')
@@ -101,33 +60,8 @@ class SMA(Bot):
         if dead_cross:
             self.exchange.entry("Short", False, lot)
 
-class SMA1M(Bot):
-    def __init__(self):
-        Bot.__init__(self, '1m')
 
-    def options(self):
-        return {
-            'fast_len': hp.quniform('fast_len', 1, 30, 1),
-            'slow_len': hp.quniform('slow_len', 1, 30, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        # for test
-        lot = lot / 1000
-        fast_len = self.input('fast_len', int, 9)
-        slow_len = self.input('slow_len', int, 16)
-        fast_sma = sma(close, fast_len)
-        slow_sma = sma(close, slow_len)
-        golden_cross = crossover(fast_sma, slow_sma)
-        dead_cross = crossunder(fast_sma, slow_sma)
-        logger.info("slow_sma:\n" + str(slow_sma[-1]))
-        if golden_cross:
-            self.exchange.entry("Long", True, round(lot))
-        if dead_cross:
-            self.exchange.entry("Short", False, round(lot))
-
-# Rci戦略
+# rci
 class Rci(Bot):
     def __init__(self):
         Bot.__init__(self, '5m')
@@ -162,40 +96,11 @@ class Rci(Bot):
         elif close_all:
             self.exchange.close_all()
 
-class Rci1M70(Bot):
-    def __init__(self):
-        Bot.__init__(self, '1m')
-
-    def options(self):
-        return {
-            'rcv_short_len': hp.quniform('rcv_short_len', 1, 10, 1),
-            'rcv_medium_len': hp.quniform('rcv_medium_len', 5, 15, 1),
-            'rcv_long_len': hp.quniform('rcv_long_len', 10, 20, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        itv_s = self.input('rcv_short_len', int, 9)
-        itv_m = self.input('rcv_medium_len', int, 21)
-        itv_l = self.input('rcv_long_len', int, 55)
-
-        rci_s = rci(close, itv_s)
-        rci_m = rci(close, itv_m)
-        rci_l = rci(close, itv_l)
-
-        long = rci_l[-1] < -75 and rci_m[-1] < -75 and rci_s[-1] < -75
-        short = rci_l[-1] > 75 and rci_m[-1] > 75 and rci_s[-1] > 75
-
-        self.exchange.entry("Long", True, lot, when=long)
-        self.exchange.entry("Short", False, lot, when=short)
-
-        # if long:
-        #     self.exchange.entry("Long", True, lot)
-        # elif short:
-        #     self.exchange.entry("Short", False, lot)
-
+# rsi2
 class RSI2(Bot): # logic https: // stock79.tistory.com / 177
 
+    prebalance = BitMex(threading=False).get_balance()
+    dealcount = 0
     def __init__(self):
         Bot.__init__(self, '1m')
 
@@ -207,55 +112,141 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
     def strategy(self, open, close, high, low, volume):
         lot = self.exchange.get_lot()
         # for test
-        lot = int(round(lot / 100))
+        lot = int(round(lot / 1000))
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
-        logger.info('price:%s' % price)
+        logger.info('price: %s' % price)
 
         rsi2length = self.input('length', int, 2)
         rsi2 = rsi(close, rsi2length)
-        logger.info('rsi2:%s' % rsi2[-1])
+
+        # rsiwinstoplength = self.input('length', int, 14)
+        # rsiwinstop = rsi(close, rsiwinstoplength)
+        #
+        # logger.info('rsiwinstop: %s' % rsiwinstop[-1])
 
         fast_len = self.input('fast_len', int, 5)
-        slow_len = self.input('slow_len', int, 55)
+        fishing_len = self.input('fast_len', int, 7)
+        slow_len = self.input('slow_len', int, 50)
         fast_sma = sma(close, fast_len)
+        fishing_sma = sma(close, fishing_len)
         slow_sma = sma(close, slow_len)
 
+        channelstop_len = self.input('length', int, 20)
+        channelup = last(highest(high, channelstop_len))
+        channeldn = last(lowest(low, channelstop_len))
+
+        golden_cross = crossover(fast_sma, slow_sma)
+        logger.info('golden_cross: %s' % golden_cross)
+
+        dead_cross = crossunder(fast_sma, slow_sma)
+        logger.info('dead_cross: %s' % dead_cross)
+
+
+        long_trend = fast_sma[-1] > slow_sma[-1]
+        logger.info('long_trend: %s' % long_trend)
+
+        short_trend = fast_sma[-1] < slow_sma[-1]
+        logger.info('short_trend: %s' % short_trend)
+
+
         # golden_cross = crossover(fast_sma, slow_sma)
-        golden_cross = price > slow_sma[-1]
-        logger.info('golden_cross:%s' % golden_cross)
+        golden_cross_price = price > slow_sma[-1]
+        logger.info('golden_cross_price: %s' % golden_cross_price)
 
         # dead_cross = crossunder(fast_sma, slow_sma)
-        dead_cross =  price < slow_sma[-1]
-        logger.info('dead_cross:%s' % dead_cross)
+        dead_cross_price =  price < slow_sma[-1]
+        logger.info('dead_cross: %s' % dead_cross_price)
 
 
-        logger.info('fast_sma:%s' % fast_sma[-1])
-        logger.info('slow_sma:%s' % slow_sma[-1])
+        logger.info('fast_sma: %s' % fast_sma[-1])
+        logger.info('slow_sma: %s' % slow_sma[-1])
 
         # long = price > slow_sma[-1] and price < fast_sma[-1] and rsi2[-1] < 45
-        long = golden_cross and price < fast_sma[-1] and rsi2[-1] < 45
-        stoplong = price > fast_sma[-1]
+        # long = golden_cross_price and price < fast_sma[-1] and rsi2[-1] < 25
+        # stoplong = price > fast_sma[-1] and rsiwinstop[-1] > 75
+        # stoplosslong = golden_cross and rsiwinstop[-1] > 65
 
-        short = dead_cross and price > fast_sma[-1] and rsi2[-1] > 55
-        stopshort = price < fast_sma[-1]
+        # short = dead_cross and (price > fast_sma[-1]) and rsi2[-1] > 75
+        # stopshort = rsiwinstop[-1] < 20 or (price < fast_sma[-1])
 
-        if long:
-            logger.info('long condition')
-            self.exchange.entry("Long", True, lot, limit=price, post_only=True)
-        elif bitmex.get_open_order("Long") and stoplong:
-            logger.info('stopLong conditon')
-            self.exchange.entry("Long", True, lot, stop=price, post_only=True)
-        elif short:
-            logger.info('short conditon')
-            self.exchange.entry("Short", False, lot, limit=price, post_only=True)
-        elif bitmex.get_open_order("Short") and stopshort:
-            logger.info('stopShort conditon')
-            self.exchange.entry("Short", False, lot, stop=price, post_only=True)
-        # else:
-        #     self.exchange.close_all()
+        logger.info('bitmex.get_open_order("Long") : %s' % bitmex.get_open_order("Long"))
+        logger.info('bitmex.get_open_order("Short") : %s' % bitmex.get_open_order("Short"))
+        logger.info('bitmex.bitmex.get_position_size() : %s' % bitmex.get_position_size())
 
-        logger.info('----------')
+        if long_trend:  # long trend
+            logger.info('+ + + + + LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND')
+            if bitmex.get_whichpositon() is None:
+                logger.info('postion condition > None')
+                if price < math.floor(fishing_sma[-1]):
+                    logger.info('postion condition > None :: price < math.floor(fishing_sma[-1])')
+                    # self.exchange.entry("Long", True, lot, limit=math.ceil(fishing_sma[-1]), post_only=True)
+                    self.exchange.entry("Long", True, lot, limit=price-0.5, post_only=True)
+                else:
+                    logger.info('postion condition > None :: price > math.floor(fishing_sma[-1])')
+                    # self.exchange.entry("Long", True, lot, limit=channeldn, post_only=True)
+                    self.exchange.entry("Long", True, lot, limit=math.ceil(slow_sma[-1]), post_only=True)
+            elif bitmex.get_whichpositon() == 'LONG':
+                logger.info('postion condition  > LONG')
+                self.exchange.order("LongStop", False, abs(bitmex.get_position_size()), limit=price+0.5, when=rsi2[-1] > 75, post_only=True)
+                logger.info('postion condition  > LONG > rsi2[-1]: %s' % rsi2[-1])
+            elif bitmex.get_whichpositon() == 'SHORT':
+                logger.info('postion condition  > Short --> LONG Switch')
+                self.exchange.cancel_all()
+                self.exchange.close_all()
+                self.exchange.entry("Long", True, lot)
+                self.exchange.entry("Long", True, lot, limit=channelup, post_only=True)
+            else:
+                pass
+
+        if short_trend:  # short trend
+            logger.info('- - - - - SHORT TREND  SHORT TREND SHORT TREND SHORT TREND SHORT TREND SHORT TREND')
+            if bitmex.get_whichpositon() is None:
+                logger.info('postion condition > None')
+                if price > math.floor(fishing_sma[-1]):
+                    logger.info('postion condition > None :: price > math.floor(fishing_sma[-1])')
+                    # self.exchange.entry("Short", False, lot, limit=channelup, post_only=True)
+                    # self.exchange.entry("Short", False, lot, limit=math.floor(slow_sma[-1]), post_only=True)
+                    self.exchange.entry("Short", False, lot, limit=price+0.5, post_only=True)
+                else:
+                    logger.info('postion condition > None :: price < math.floor(fishing_sma[-1])')
+                    self.exchange.entry("Short", False, lot, limit=math.floor(fishing_sma[-1]), post_only=True)
+            elif bitmex.get_whichpositon() == 'SHORT':
+                logger.info('postion condition  > SHORT')
+                self.exchange.order("ShortStop", True, abs(bitmex.get_position_size()), limit=price-0.5, when=rsi2[-1] < 25, post_only=True)
+                logger.info('postion condition  > SHORT > rsi2[-1]: %s' % rsi2[-1])
+            elif bitmex.get_whichpositon() == 'LONG':
+                logger.info('postion condition  > Long --> SHORT Switch')
+                self.exchange.cancel_all()
+                self.exchange.close_all()
+                self.exchange.entry("Short", False, lot)
+                self.exchange.entry("Short", False, lot, limit=channeldn, post_only=True)
+
+            else:
+                pass
+
+
+        self.dealcount += 1
+
+        diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
+
+
+        realised_pnl = bitmex.get_margin()['realisedPnl']
+
+        logger.info('dealcount:%s' % self.dealcount)
+        logger.info('prebalance():%s' % self.prebalance)
+        logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        logger.info('diff:%s' % diff)
+        logger.info('realised_pnl:%s' % realised_pnl)
+        logger.info('bitmex.get_margin():%s' % bitmex.get_margin())
+        logger.info('bitmex.get_position():%s' % bitmex.get_position())
+
+        # logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        # logger.info('get_pre_prebalance:%s' % get_pre_prebalance(self.prebalance, bitmex.get_balance()))
+        #     # self.exchange.close_all()
+        #     # self.exchange.cancel_all()
+
+        logger.info('--------------------------------------------------')
 
 
 # OCC
@@ -311,11 +302,11 @@ class OCC(Bot):
 
         self.exchange.plot('val_open', val_open[-1], 'b')
         self.exchange.plot('val_close', val_close[-1], 'r')
-        # logger.info("occ:sma_val[-1]:" + str(sma_val[-1]))
-        # logger.info("occ:low_val:" + str(low_val))
-        # logger.info("occ:high_val:" + str(high_val))
-        # logger.info("lot:" + str(lot))
-        # logger.info("------------")
+        logger.info("occ:sma_val[-1]:" + str(sma_val[-1]))
+        logger.info("occ:low_val:" + str(low_val))
+        logger.info("occ:high_val:" + str(high_val))
+        logger.info("lot:" + str(lot))
+        logger.info("------------")
         self.exchange.entry("Long", True,   lot, stop=math.floor(low_val), when=(sma_val[-1] < low_val))
         self.exchange.entry("Short", False, lot, stop=math.ceil(high_val), when=(sma_val[-1] > high_val))
 
@@ -467,253 +458,97 @@ class Cross1M(Bot):
         if dead_cross:
             self.exchange.entry("Short", False, lot)
 
-# OCC5M
-class OCC5M(Bot):
-    variants = [sma, ema, double_ema, triple_ema, wma, ssma, hull]
-    eval_time = None
 
-    def __init__(self):
-        Bot.__init__(self, '5m')
-
-    def ohlcv_len(self):
-        return 15 * 30
-
-    def options(self):
-        return {
-            'variant_type': hp.quniform('variant_type', 0, len(self.variants) - 1, 1),
-            'basis_len': hp.quniform('basis_len', 1, 30, 1),
-            'resolution': hp.quniform('resolution', 1, 10, 1),
-            'sma_len': hp.quniform('sma_len', 1, 15, 1),
-            'div_threshold': hp.quniform('div_threshold', 1, 6, 0.1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-
-        variant_type = self.input(defval=5, title="variant_type", type=int)
-        basis_len = self.input(defval=19,  title="basis_len", type=int)
-        resolution = self.input(defval=2, title="resolution", type=int)
-        sma_len = self.input(defval=9, title="sma_len", type=int)
-        div_threshold = self.input(defval=3.0, title="div_threshold", type=float)
-
-        source = self.exchange.security(str(resolution) + 'm')
-
-        if self.eval_time is not None and \
-                self.eval_time == source.iloc[-1].name:
-            return
-
-        series_open = source['open'].values
-        series_close = source['close'].values
-
-        variant = self.variants[variant_type]
-
-        val_open = variant(series_open,  basis_len)
-        val_close = variant(series_close, basis_len)
-
-        if val_open[-1] > val_close[-1]:
-            high_val = val_open[-1]
-            low_val = val_close[-1]
-        else:
-            high_val = val_close[-1]
-            low_val = val_open[-1]
-
-        sma_val = sma(close, sma_len)
-
-        self.exchange.plot('val_open', val_open[-1], 'b')
-        self.exchange.plot('val_close', val_close[-1], 'r')
-
-        self.exchange.entry("Long", True,   lot, stop=math.floor(low_val), when=(sma_val[-1] < low_val))
-        self.exchange.entry("Short", False, lot, stop=math.ceil(high_val), when=(sma_val[-1] > high_val))
-
-        open_close_div = sma(numpy.abs(val_open - val_close), sma_len)
-
-        if open_close_div[-1] > div_threshold and \
-                open_close_div[-2] > div_threshold < open_close_div[-2]:
-            self.exchange.close_all()
-
-        self.eval_time = source.iloc[-1].name
-
-
-class Doten1M_3(Bot):
-    def __init__(self):
-        Bot.__init__(self, '1m')
-
-    def options(self):
-        return {
-            'length': hp.randint('length', 1, 30, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        length = self.input('length', int, 9)
-        up = last(highest(high, length))
-        dn = last(lowest(low, length))
-
-        if abs(up-dn) > 3:
-            self.exchange.plot('up', up, 'b')
-            # logger.info("up:" + str(up))
-            self.exchange.plot('dn', dn, 'r')
-            # logger.info("dn:" + str(dn))
-            self.exchange.entry("Long", True, round(lot / 2), stop=up)
-            self.exchange.entry("Short", False, round(lot / 2), stop=dn)
-        else:
-            # logger.info('channel height under < 3')
-            pass
-
-class Doten1H(Bot):
-    def __init__(self):
-        Bot.__init__(self, '1h')
-
-    def options(self):
-        return {
-            'length': hp.randint('length', 1, 30, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        length = self.input('length', int, 9)
-        up = last(highest(high, length))
-        dn = last(lowest(low, length))
-
-        if abs(up-dn) > 3:
-            self.exchange.plot('up', up, 'b')
-            logger.info("up:" + str(up))
-            self.exchange.plot('dn', dn, 'r')
-            logger.info("dn:" + str(dn))
-            self.exchange.entry("Long", True, round(lot / 2), stop=up)
-            self.exchange.entry("Short", False, round(lot / 2), stop=dn)
-        else:
-            logger.info('channel height under < 3')
-
-
-class Rci1M(Bot):
-    def __init__(self):
-        Bot.__init__(self, '1m')
-
-    def options(self):
-        return {
-            'rcv_short_len': hp.quniform('rcv_short_len', 1, 10, 1),
-            'rcv_medium_len': hp.quniform('rcv_medium_len', 5, 15, 1),
-            'rcv_long_len': hp.quniform('rcv_long_len', 10, 20, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        itv_s = self.input('rcv_short_len', int, 5)
-        itv_m = self.input('rcv_medium_len', int, 9)
-        itv_l = self.input('rcv_long_len', int, 15)
-
-        rci_s = rci(close, itv_s)
-        rci_m = rci(close, itv_m)
-        rci_l = rci(close, itv_l)
-
-        long = ((-80 > rci_s[-1] > rci_s[-2]) or (-82 > rci_m[-1] > rci_m[-2])) \
-               and (rci_l[-1] < -10 and rci_l[-2] > rci_l[-2])
-        short = ((80 < rci_s[-1] < rci_s[-2]) or (rci_m[-1] < -82 and rci_m[-1] < rci_m[-2])) \
-                and (10 < rci_l[-1] < rci_l[-2])
-        close_all = 80 < rci_m[-1] < rci_m[-2] or -80 > rci_m[-1] > rci_m[-2]
-
-        if long:
-            self.exchange.entry("Long:", True, lot)
-            logger.info("Long;"+str(rci_s)+","+str(rci_m)+","+str(rci_l))
-        elif short:
-            self.exchange.entry("Short", False, lot)
-            logger.info("short;"+str(rci_s)+","+str(rci_m)+","+str(rci_l))
-        elif close_all:
-            self.exchange.close_all()
-            logger.info("close_all;"+str(rci_s)+","+str(rci_m)+","+str(rci_l))
-
-
-class SuperTrend1M(Bot):
-    variants = [sma, ema, double_ema, triple_ema, wma, ssma, hull]
-    eval_time = None
-
-    def __init__(self):
-        Bot.__init__(self, '1m')
-
-    def ohlcv_len(self):
-        return 15 * 30
-
-    def options(self):
-        return {
-            'variant_type': hp.quniform('variant_type', 0, len(self.variants) - 1, 1),
-            'basis_len': hp.quniform('basis_len', 1, 30, 1),
-            'resolution': hp.quniform('resolution', 1, 10, 1),
-            'sma_len': hp.quniform('sma_len', 1, 15, 1),
-            'div_threshold': hp.quniform('div_threshold', 1, 6, 0.1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-
-        variant_type = self.input(defval=5, title="variant_type", type=int)
-        basis_len = self.input(defval=19,  title="basis_len", type=int)
-        resolution = self.input(defval=2, title="resolution", type=int)
-        sma_len = self.input(defval=9, title="sma_len", type=int)
-        div_threshold = self.input(defval=3.0, title="div_threshold", type=float)
-
-        source = self.exchange.security(str(resolution) + 'm')
-
-        print('source:'+str(source))
-        if self.eval_time is not None and self.eval_time == source.iloc[-1].name:
-            return
-
-        series_open = source['open'].values
-        series_close = source['close'].values
-
-        variant = self.variants[variant_type]
-
-        val_open = variant(series_open,  basis_len)
-        val_close = variant(series_close, basis_len)
-
-        if val_open[-1] > val_close[-1]:
-            high_val = val_open[-1]
-            low_val = val_close[-1]
-        else:
-            high_val = val_close[-1]
-            low_val = val_open[-1]
-
-        sma_val = sma(close, sma_len)
-
-        # self.exchange.plot('val_open', val_open[-1], 'b')
-        # self.exchange.plot('val_close', val_close[-1], 'r')
-        #
-        # self.exchange.entry("Long", True,   lot, stop=math.floor(low_val), when=(sma_val[-1] < low_val))
-        # self.exchange.entry("Short", False, lot, stop=math.ceil(high_val), when=(sma_val[-1] > high_val))
-
-        open_close_div = sma(numpy.abs(val_open - val_close), sma_len)
-
-        if open_close_div[-1] > div_threshold and \
-                open_close_div[-2] > div_threshold < open_close_div[-2]:
-            self.exchange.close_all()
-
-        self.eval_time = source.iloc[-1].name
-
-        supertrend_multiplier1 = self.input('supertrend_multiplier1', int, 3)
-        supertrend_period1 = self.input('supertrend_period1', int, 14)
-        supertrend_multiplier2 = self.input('supertrend_multiplier2', int, 6)
-        supertrend_period2 = self.input('supertrend_period2', int, 28)
-
-        supertrend_df1 = supertrend(source, supertrend_period1, supertrend_multiplier1)  #.sort_index(axis=1,ascending=False)
-        print("111:"+supertrend_df1.head(10).to_string())
-        print("222:"+str(supertrend_df1['SuperTrend'].iloc[0]))
-
-        supertrend_df2 = supertrend(source, supertrend_period2, supertrend_multiplier2)
-        # print(supertrend_df1.tail(10).to_string())
-        # supertrend2 = supertrend_df2['SuperTrend']
-
-
-
-        long = (val_close[-1] < supertrend1 < supertrend2)
-        short = (val_close[-1] > supertrend1 > supertrend2)
-        close_all = val_close[-1] > supertrend1 and close < supertrend2
-
-        if long:
-            self.exchange.entry("Long:", True, lot)
-            logger.info("Long"+str(supertrend1))
-        elif short:
-            self.exchange.entry("Short", False, lot)
-            logger.info("short;"+str(supertrend1))
-        elif close_all:
-            self.exchange.close_all()
-            # logger.info("close_all;"+str(rci_s)+","+str(rci_m)+","+str(rci_l))
+# class SuperTrend1M(Bot):
+#     variants = [sma, ema, double_ema, triple_ema, wma, ssma, hull]
+#     eval_time = None
+#
+#     def __init__(self):
+#         Bot.__init__(self, '1m')
+#
+#     def ohlcv_len(self):
+#         return 15 * 30
+#
+#     def options(self):
+#         return {
+#             'variant_type': hp.quniform('variant_type', 0, len(self.variants) - 1, 1),
+#             'basis_len': hp.quniform('basis_len', 1, 30, 1),
+#             'resolution': hp.quniform('resolution', 1, 10, 1),
+#             'sma_len': hp.quniform('sma_len', 1, 15, 1),
+#             'div_threshold': hp.quniform('div_threshold', 1, 6, 0.1),
+#         }
+#
+#     def strategy(self, open, close, high, low, volume):
+#         lot = self.exchange.get_lot()
+#
+#         variant_type = self.input(defval=5, title="variant_type", type=int)
+#         basis_len = self.input(defval=19,  title="basis_len", type=int)
+#         resolution = self.input(defval=2, title="resolution", type=int)
+#         sma_len = self.input(defval=9, title="sma_len", type=int)
+#         div_threshold = self.input(defval=3.0, title="div_threshold", type=float)
+#
+#         source = self.exchange.security(str(resolution) + 'm')
+#
+#         print('source:'+str(source))
+#         if self.eval_time is not None and self.eval_time == source.iloc[-1].name:
+#             return
+#
+#         series_open = source['open'].values
+#         series_close = source['close'].values
+#
+#         variant = self.variants[variant_type]
+#
+#         val_open = variant(series_open,  basis_len)
+#         val_close = variant(series_close, basis_len)
+#
+#         if val_open[-1] > val_close[-1]:
+#             high_val = val_open[-1]
+#             low_val = val_close[-1]
+#         else:
+#             high_val = val_close[-1]
+#             low_val = val_open[-1]
+#
+#         sma_val = sma(close, sma_len)
+#
+#         # self.exchange.plot('val_open', val_open[-1], 'b')
+#         # self.exchange.plot('val_close', val_close[-1], 'r')
+#         #
+#         # self.exchange.entry("Long", True,   lot, stop=math.floor(low_val), when=(sma_val[-1] < low_val))
+#         # self.exchange.entry("Short", False, lot, stop=math.ceil(high_val), when=(sma_val[-1] > high_val))
+#
+#         open_close_div = sma(numpy.abs(val_open - val_close), sma_len)
+#
+#         if open_close_div[-1] > div_threshold and \
+#                 open_close_div[-2] > div_threshold < open_close_div[-2]:
+#             self.exchange.close_all()
+#
+#         self.eval_time = source.iloc[-1].name
+#
+#         supertrend_multiplier1 = self.input('supertrend_multiplier1', int, 3)
+#         supertrend_period1 = self.input('supertrend_period1', int, 14)
+#         supertrend_multiplier2 = self.input('supertrend_multiplier2', int, 6)
+#         supertrend_period2 = self.input('supertrend_period2', int, 28)
+#
+#         supertrend_df1 = supertrend(source, supertrend_period1, supertrend_multiplier1)  #.sort_index(axis=1,ascending=False)
+#         print("111:"+supertrend_df1.head(10).to_string())
+#         print("222:"+str(supertrend_df1['SuperTrend'].iloc[0]))
+#
+#         supertrend_df2 = supertrend(source, supertrend_period2, supertrend_multiplier2)
+#         # print(supertrend_df1.tail(10).to_string())
+#         # supertrend2 = supertrend_df2['SuperTrend']
+#
+#
+#
+#         long = (val_close[-1] < supertrend1 < supertrend2)
+#         short = (val_close[-1] > supertrend1 > supertrend2)
+#         close_all = val_close[-1] > supertrend1 and close < supertrend2
+#
+#         if long:
+#             self.exchange.entry("Long:", True, lot)
+#             logger.info("Long"+str(supertrend1))
+#         elif short:
+#             self.exchange.entry("Short", False, lot)
+#             logger.info("short;"+str(supertrend1))
+#         elif close_all:
+#             self.exchange.close_all()
+#             # logger.info("close_all;"+str(rci_s)+","+str(rci_m)+","+str(rci_l))

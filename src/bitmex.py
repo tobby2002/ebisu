@@ -166,6 +166,21 @@ class BitMex:
         self.__init_client()
         return self.get_position()['currentQty']
 
+
+    def get_whichpositon(self):
+        """
+        현재 포지션 유무체크
+        :return:
+        """
+        self.__init_client()
+        if self.get_position()['currentQty'] > 1:
+            return 'LONG'
+        elif self.get_position()['currentQty'] < -1:
+            return 'SHORT'
+        elif self.get_position()['currentQty'] == 0:
+            return None
+
+
     def get_position_avg_price(self):
         """
         현재 포지션 평균가 취득
@@ -255,47 +270,53 @@ class BitMex:
         """
         주문 작성
         """
-        if limit > 0 and post_only:
-            ord_type = "Limit"
-            retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
-                                                              side=side, orderQty=ord_qty, price=limit,
-                                                              execInst='ParticipateDoNotInitiate').result())
-        elif limit > 0 and stop > 0:
-            ord_type = "StopLimit"
-            retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
-                                                              side=side, orderQty=ord_qty, price=limit,
-                                                              stopPx=stop).result())
-        elif limit > 0:
-            ord_type = "Limit"
-            retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
-                                                              side=side, orderQty=ord_qty, price=limit).result())
-        elif stop > 0:
-            ord_type = "Stop"
-            retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
-                                                              side=side, orderQty=ord_qty, stopPx=stop).result())
-        elif post_only: # market order with post only
-            ord_type = "Limit"
-            i = 0
-            while True:
-                prices = self.ob.get_prices()
-                limit = prices[1] if side == "Buy" else prices[0]
+
+        try:
+            if limit > 0 and post_only:
+                ord_type = "Limit"
                 retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
                                                                   side=side, orderQty=ord_qty, price=limit,
                                                                   execInst='ParticipateDoNotInitiate').result())
-                time.sleep(1)
+            elif limit > 0 and stop > 0:
+                ord_type = "StopLimit"
+                retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
+                                                                  side=side, orderQty=ord_qty, price=limit,
+                                                                  stopPx=stop).result())
+            elif limit > 0:
+                ord_type = "Limit"
+                retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
+                                                                  side=side, orderQty=ord_qty, price=limit).result())
+            elif stop > 0:
+                ord_type = "Stop"
+                retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
+                                                                  side=side, orderQty=ord_qty, stopPx=stop).result())
+            elif post_only: # market order with post only
+                ord_type = "Limit"
+                i = 0
+                while True:
+                    prices = self.ob.get_prices()
+                    limit = prices[1] if side == "Buy" else prices[0]
+                    retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
+                                                                      side=side, orderQty=ord_qty, price=limit,
+                                                                      execInst='ParticipateDoNotInitiate').result())
+                    time.sleep(1)
 
-                if not self.cancel(ord_id):
-                    break
-                time.sleep(2)
-                i += 1
-                if i > 10:
-                    notify(f"Order retry count exceed")
-                    break
-            self.cancel_all()
-        else:
-            ord_type = "Market"
-            retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
-                                                              side=side, orderQty=ord_qty).result())
+                    if not self.cancel(ord_id):
+                        break
+                    time.sleep(2)
+                    i += 1
+                    if i > 10:
+                        notify(f"Order retry count exceed")
+                        break
+                self.cancel_all()
+            else:
+                ord_type = "Market"
+                retry(lambda: self.private_client.Order.Order_new(symbol="XBTUSD", ordType=ord_type, clOrdID=ord_id,
+                                                                  side=side, orderQty=ord_qty).result())
+
+        except Exception as e:
+            logger.error('Exception: __new_order : %s' % e)
+
 
         if self.enable_trade_log:
             logger.info(f"========= New Order ==============")
@@ -313,28 +334,31 @@ class BitMex:
         """
         주문 갱신
         """
-        if limit > 0 and stop > 0:
-            ord_type = "StopLimit"
-            retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
-                                                                orderQty=ord_qty, price=limit, stopPx=stop).result())
-        elif limit > 0:
-            ord_type = "Limit"
-            retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
-                                                                orderQty=ord_qty, price=limit).result())
-        elif stop > 0:
-            ord_type = "Stop"
-            retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
-                                                                orderQty=ord_qty, stopPx=stop).result())
-        elif post_only: # market order with post only
-            ord_type = "Limit"
-            prices = self.ob.get_prices()
-            limit = prices[1] if side == "Buy" else prices[0]
-            retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
-                                                                orderQty=ord_qty, price=limit).result())
-        else:
-            ord_type = "Market"
-            retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
-                                                                orderQty=ord_qty).result())
+        try:
+            if limit > 0 and stop > 0:
+                ord_type = "StopLimit"
+                retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
+                                                                    orderQty=ord_qty, price=limit, stopPx=stop).result())
+            elif limit > 0:
+                ord_type = "Limit"
+                retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
+                                                                    orderQty=ord_qty, price=limit).result())
+            elif stop > 0:
+                ord_type = "Stop"
+                retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
+                                                                    orderQty=ord_qty, stopPx=stop).result())
+            elif post_only: # market order with post only
+                ord_type = "Limit"
+                prices = self.ob.get_prices()
+                limit = prices[1] if side == "Buy" else prices[0]
+                retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
+                                                                    orderQty=ord_qty, price=limit).result())
+            else:
+                ord_type = "Market"
+                retry(lambda: self.private_client.Order.Order_amend(origClOrdID=ord_id,
+                                                                    orderQty=ord_qty).result())
+        except Exception as e:
+            logger.error('Exception: __amend_order : %s' % e)
 
         if self.enable_trade_log:
             logger.info(f"========= Amend Order ==============")
@@ -575,7 +599,7 @@ class BitMex:
         if 'lastPrice' in instrument:
             self.market_price = instrument['lastPrice']
 
-            # trail priceの更新
+            # trail price 갱신
             if self.get_position_size() > 0 and \
                     self.market_price > self.get_trail_price():
                 self.set_trail_price(self.market_price)
@@ -593,10 +617,10 @@ class BitMex:
         """
          포지션 갱신
         """
-        # ポジションサイズの変更がされたか
+        # 포지션 사이즈 변경이 있었는지 체크
         is_update_pos_size = self.get_position()['currentQty'] != position['currentQty']
 
-        # ポジションサイズが変更された場合、トレイル開始価格を現在の価格にリセットする
+        # 포지션 사이즈가 변경된 경우, Trail 개시가격을 현재의 가격에 리셋한다.
         if is_update_pos_size and position['currentQty'] != 0:
             self.set_trail_price(self.market_price)
 
