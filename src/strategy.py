@@ -126,7 +126,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         # logger.info('rsiwinstop: %s' % rsiwinstop[-1])
 
         fast_len = self.input('fast_len', int, 5)
-        fishing_len = self.input('fast_len', int, 20)
+        fishing_len = self.input('fast_len', int, 7)
         slow_len = self.input('slow_len', int, 50)
         fast_sma = sma(close, fast_len)
         fishing_sma = sma(close, fishing_len)
@@ -195,7 +195,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
             elif bitmex.get_whichpositon() == 'SHORT':
                 logger.info('postion condition  > Short --> LONG Switch')
                 self.exchange.cancel_all()
-                self.exchange.close_all()
+                # self.exchange.close_all()
                 self.exchange.entry("Long", True, lot)
                 self.exchange.entry("Long", True, lot, limit=channelup, post_only=True)
             else:
