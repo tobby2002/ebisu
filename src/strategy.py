@@ -197,7 +197,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
                 self.exchange.cancel_all()
                 # self.exchange.close_all()
                 self.exchange.entry("Long", True, lot)
-                self.exchange.entry("Long", True, lot, limit=channelup, post_only=True)
+                # self.exchange.entry("Long", True, lot, limit=channelup, post_only=True)
             else:
                 pass
 
@@ -221,9 +221,9 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
             elif bitmex.get_whichpositon() == 'LONG':
                 logger.info('postion condition  > Long --> SHORT Switch')
                 self.exchange.cancel_all()
-                self.exchange.close_all()
+                # self.exchange.close_all()
                 self.exchange.entry("Short", False, lot)
-                self.exchange.entry("Short", False, lot, limit=channeldn, post_only=True)
+                # self.exchange.entry("Short", False, lot, limit=channeldn, post_only=True)
 
             else:
                 pass
