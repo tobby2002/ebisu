@@ -34,7 +34,7 @@ class BitMex:
     bin_size = '1h'
     # 개인API사용자
     private_client = None
-    # 공객API사용자
+    # 공개API사용자
     public_client = None
     # 기동중
     is_running = True
@@ -103,16 +103,10 @@ class BitMex:
         margin = self.get_margin()
         position = self.get_position()
         if margin and position:
-            # print('margin:%s' % margin)
-            # print('position:%s' % position)
             return math.floor((1 - self.get_retain_rate()) * self.get_market_price()
                               * margin['excessMargin'] / (position['initMarginReq'] * 100000000))
         else:
-            # print('margin:%s' % margin)
-            # print('position:%s' % position)
-            logger.info("margin:%s" % margin)
-            logger.info("position:%s" % position)
-            logger.info("Error---> There is no margin or no position.")  # 거래내역이 없으면 생기는것 같다.
+            # logger.info("Error---> There is no margin or no position.")  # 거래내역이 없으면 생기는것 같다.
             return 0
     def get_balance(self):
         """
@@ -200,6 +194,7 @@ class BitMex:
         else:  # WebSocketで取得できていない場合
             self.market_price = retry(lambda: self.public_client
                                       .Instrument.Instrument_get(symbol="XBTUSD").result())[0]["lastPrice"]
+
             return self.market_price
 
     def get_trail_price(self):

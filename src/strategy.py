@@ -9,7 +9,7 @@ import numpy
 from hyperopt import hp
 
 from src import highest, lowest, sma, crossover, crossunder, last, rci, rsi, double_ema, ema, triple_ema, wma, \
-    ssma, hull, logger, notify, supertrend
+    ssma, hull, logger, notify, atr, supertrend
 from src.bitmex import BitMex
 from src.bitmex_stub import BitMexStub
 from src.bot import Bot
@@ -60,6 +60,92 @@ class SMA(Bot):
         if dead_cross:
             self.exchange.entry("Short", False, lot)
 
+# supertrend
+class SuperTrend(Bot):
+
+    prebalance = BitMex(threading=False).get_balance()
+    dealcount = 0
+
+    def __init__(self):
+        Bot.__init__(self, '15m')
+
+    def options(self):
+        return {
+            'factor': hp.randint('factor', 1, 30, 1),
+            'period': hp.randint('period', 1, 30, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+        lot = self.exchange.get_lot()
+        # for test
+        lot = int(round(lot / 100))
+
+        bitmex = BitMex(threading=False)
+
+        price = bitmex.get_market_price()
+
+        factor = self.input('factor', int, 3)
+        period = self.input('period', int, 7)
+
+
+        atrvar = atr(high, low, close, period=period)
+        # up = (high + low) / 2 - (factor * atr(high, low, close, period=period))
+        # logger.info('up:%s\n' % up)
+        # dn = (high + low) / 2 + (factor * atr(high, low, close, period=period))
+        # logger.info('atrvar: %s' % atrvar[-1])
+
+        resolution = self.input(defval=15, title="resolution", type=int) # defval 변경, 예) 5분 --> 5
+        source = self.exchange.security(str(resolution) + 'm')  # init  참고
+        supertrenddf = supertrend(source, factor, period)
+
+        # logger.info('supertrend:%s' % supertrenddf.describe())
+        # logger.info('supertrend:%s' % supertrenddf.columns)
+
+        logger.info('price:%s\n' % price)
+        # logger.info('source:%s\n' % source[-1])
+        logger.info('supertrend value:%s' % supertrenddf['SuperTrend'][-1])
+        logger.info('supertrend Upper Band:%s' % supertrenddf['Upper Band'][-1])
+        logger.info('supertrend Lower Band:%s' % supertrenddf['Lower Band'][-1])
+        logger.info('supertrenddf[Trend][-1]:%s' % supertrenddf['Trend'][-1])
+        logger.info('supertrenddf[TSL][-1]:%s' % supertrenddf['TSL'][-1])
+        logger.info('supertrenddf[ATR][-1]:%s' % supertrenddf['ATR'][-1])
+
+        longCondition_supertrend = crossover(close, supertrenddf['TSL']) and close[-1] > supertrenddf['TSL'][-1]
+        shortCondition_supertrend = crossunder(close, supertrenddf['TSL']) and close[-1] < supertrenddf['TSL'][-1]
+
+
+        if longCondition_supertrend:
+            self.exchange.entry("Long", True, lot)
+            logger.info('longCondition_supertrend:%s\n' % longCondition_supertrend)
+
+        elif shortCondition_supertrend:
+            self.exchange.entry("Short", False, lot)
+            logger.info('shortCondition_supertrend:%s\n' % shortCondition_supertrend)
+        else:
+            # self.exchange.close_all()
+            logger.info('Condition_supertrend:%s\n' % 'else')
+
+
+        self.dealcount += 1
+
+        diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
+
+        realised_pnl = bitmex.get_margin()['realisedPnl']
+
+        logger.info('dealcount:%s' % self.dealcount)
+        logger.info('prebalance():%s' % self.prebalance)
+        logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        logger.info('diff:%s' % diff)
+        logger.info('realised_pnl:%s' % realised_pnl)
+        # logger.info('bitmex.get_margin():%s' % bitmex.get_margin())
+        # logger.info('bitmex.get_position():%s' % bitmex.get_position())
+
+        # logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        # logger.info('get_pre_prebalance:%s' % get_pre_prebalance(self.prebalance, bitmex.get_balance()))
+        #     # self.exchange.close_all()
+        #     # self.exchange.cancel_all()
+
+        logger.info('--------------------------------------------------')
 
 # rci
 class Rci(Bot):
@@ -162,17 +248,11 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         logger.info('fast_sma: %s' % fast_sma[-1])
         logger.info('slow_sma: %s' % slow_sma[-1])
 
-        # long = price > slow_sma[-1] and price < fast_sma[-1] and rsi2[-1] < 45
-        # long = golden_cross_price and price < fast_sma[-1] and rsi2[-1] < 25
-        # stoplong = price > fast_sma[-1] and rsiwinstop[-1] > 75
-        # stoplosslong = golden_cross and rsiwinstop[-1] > 65
+        atrvar = atr(high, low, close, period=14)
+        logger.info('slow_sma: %s' % slow_sma[-1])
 
-        # short = dead_cross and (price > fast_sma[-1]) and rsi2[-1] > 75
-        # stopshort = rsiwinstop[-1] < 20 or (price < fast_sma[-1])
-
-        # logger.info('bitmex.get_open_order("Long") : %s' % bitmex.get_open_order("Long"))
-        # logger.info('bitmex.get_open_order("Short") : %s' % bitmex.get_open_order("Short"))
-        # logger.info('bitmex.bitmex.get_position_size() : %s' % bitmex.get_position_size())
+        resolution = self.input(defval=1, title="resolution", type=int)
+        source = self.exchange.security(str(resolution) + 'm')
 
         if long_trend:  # long trend
             logger.info('+ + + + + LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND LONG TREND')
@@ -232,7 +312,6 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         self.dealcount += 1
 
         diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
-
 
         realised_pnl = bitmex.get_margin()['realisedPnl']
 

@@ -86,6 +86,7 @@ def validate_continuous(data, bin_size):
 
 def to_data_frame(data):
     data_frame = pd.DataFrame(data, columns=["timestamp", "high", "low", "open", "close", "volume"])
+    print('[data_frame]:\n%s' % data_frame)
     data_frame = data_frame.set_index("timestamp")
     data_frame = data_frame.tz_localize(None).tz_localize('UTC', level=0)
     return data_frame
@@ -313,14 +314,13 @@ def atr(high, low, close, period=14):
 
 def supertrend(df, f, n): #df is the dataframe, n is the period, f is the factor; f=3, n=7 are commonly used.
     #Calculation of ATR
-    pd.options.mode.chained_assignment = None  # Todo , remove the warning 'SettingWithCopyWarning'
+    pd.options.mode.chained_assignment = None
     df['H-L']=abs(df['high']-df['low'])
     df['H-PC']=abs(df['high']-df['close'].shift(1))
     df['L-PC']=abs(df['low']-df['close'].shift(1))
     df['TR']=df[['H-L','H-PC','L-PC']].max(axis=1)
     df['ATR']=np.nan
     df.ix[n-1,'ATR']=df['TR'][:n-1].mean() #.ix is deprecated from pandas verion- 0.19
-    # df.ix[n-1,'ATR']=df['TR'][:n-1].mean() #.ix is deprecated from pandas verion- 0.19
     for i in range(n,len(df)):
         df['ATR'][i]=(df['ATR'][i-1]*(n-1)+ df['TR'][i])/n
 
@@ -329,6 +329,8 @@ def supertrend(df, f, n): #df is the dataframe, n is the period, f is the factor
     df['Lower Basic']=(df['high']+df['low'])/2-(f*df['ATR'])
     df['Upper Band']=df['Upper Basic']
     df['Lower Band']=df['Lower Basic']
+    df['Trend']=True  # Up(case of Bull or Long)-> True, Dn-> False
+    df['TSL']=None  # Trailing Stop Loss Value
     for i in range(n,len(df)):
         if df['close'][i-1]<=df['Upper Band'][i-1]:
             df['Upper Band'][i]=min(df['Upper Basic'][i],df['Upper Band'][i-1])
@@ -343,15 +345,54 @@ def supertrend(df, f, n): #df is the dataframe, n is the period, f is the factor
     for i in df['SuperTrend']:
         if df['close'][n-1]<=df['Upper Band'][n-1]:
             df['SuperTrend'][n-1]=df['Upper Band'][n-1]
+            df['Trend'][n-1]=False
+            df['TSL'][n-1]=df['Upper Band'][n-1]
         elif df['close'][n-1]>df['Upper Band'][i]:
             df['SuperTrend'][n-1]=df['Lower Band'][n-1]
+            df['Trend'][n-1]=True
+            df['TSL'][n-1]=df['Lower Band'][n-1]
     for i in range(n,len(df)):
         if df['SuperTrend'][i-1]==df['Upper Band'][i-1] and df['close'][i]<=df['Upper Band'][i]:
             df['SuperTrend'][i]=df['Upper Band'][i]
+            df['Trend'][i]=False
+            df['TSL'][i]=df['Upper Band'][i]
         elif  df['SuperTrend'][i-1]==df['Upper Band'][i-1] and df['close'][i]>=df['Upper Band'][i]:
             df['SuperTrend'][i]=df['Lower Band'][i]
+            df['Trend'][i]=True
+            df['TSL'][i]=df['Lower Band'][i]
         elif df['SuperTrend'][i-1]==df['Lower Band'][i-1] and df['close'][i]>=df['Lower Band'][i]:
             df['SuperTrend'][i]=df['Lower Band'][i]
+            df['Trend'][i]=True
+            df['TSL'][i]=df['Lower Band'][i]
         elif df['SuperTrend'][i-1]==df['Lower Band'][i-1] and df['close'][i]<=df['Lower Band'][i]:
             df['SuperTrend'][i]=df['Upper Band'][i]
+            df['Trend'][i]=False
+            df['TSL'][i]=df['Upper Band'][i]
     return df
+
+
+
+# SuperTrend 로직
+# BASIC UPPERBAND = (HIGH + LOW) / 2 + Multiplier * ATR
+# BASIC LOWERBAND = (HIGH + LOW) / 2 - Multiplier * ATR
+#
+# FINAL UPPERBAND = IF( (Current BASICUPPERBAND < Previous FINAL UPPERBAND) and (Previous Close > Previous FINAL UPPERBAND)) THEN (Current BASIC UPPERBAND) ELSE Previous FINALUPPERBAND)
+# FINAL LOWERBAND = IF( (Current BASIC LOWERBAND > Previous FINAL LOWERBAND) and (Previous Close < Previous FINAL LOWERBAND)) THEN (Current BASIC LOWERBAND) ELSE Previous FINAL LOWERBAND)
+
+# TradingView Pine Source
+# // supertrend define
+# Factor=input(3, minval=1,maxval = 100, title="Supertrend Factor")
+# Pd=input(7, minval=1,maxval = 100,  title="Supertrend Period")
+#
+#
+# Up=hl2-(Factor*atr(Pd))
+# Dn=hl2+(Factor*atr(Pd))
+#
+#
+# TrendUp=close[1]>TrendUp[1]? max(Up,TrendUp[1]) : Up
+# TrendDown=close[1]<TrendDown[1]? min(Dn,TrendDown[1]) : Dn
+#
+# Trend = close > TrendDown[1] ? 1: close< TrendUp[1]? -1: nz(Trend[1],1)
+# Tsl = Trend==1? TrendUp: TrendDown
+# longCondition_supertrend = cross(close,Tsl) and close>Tsl
+# shortCondition_supertrend = cross(Tsl,close) and close<Tsl
