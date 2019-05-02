@@ -253,6 +253,17 @@ def crossunder(a, b):
     return a[-2] > b[-2] and a[-1] < b[-1]
 
 
+def over(a, b):
+    if a > b:
+        return True
+    return False
+
+
+def under(a, b):
+    if a < b:
+        return True
+    return False
+
 def ord(seq, sort_seq, idx, itv):
     p = seq[idx]
     for i in range(0, itv):
