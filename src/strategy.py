@@ -164,7 +164,7 @@ class DoubleSuperRSI(Bot): # logic https: // stock79.tistory.com / 177
         lot = self.exchange.get_lot()
 
         # for test lot
-        # lot = int(round(lot / 50))
+        lot = int(round(lot / 50))
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
         position_avg_price = bitmex.get_position_avg_price()
@@ -190,7 +190,7 @@ class DoubleSuperRSI(Bot): # logic https: // stock79.tistory.com / 177
 
         fast_len = self.input('fast_len', int, 5)
         half_len = self.input('half_len', int, 50)
-        slow_len = self.input('slow_len', int, 70)
+        slow_len = self.input('slow_len', int, 200)
 
         fast_sma = sma(close, fast_len)
         half_sma = sma(close, half_len)
@@ -275,7 +275,7 @@ class DoubleSuperRSI(Bot): # logic https: // stock79.tistory.com / 177
 
 
         # entry
-        if super2_long: # and rsi50_over: # rsi2_overbought and price_under:  # long entry condtions
+        if super2_long:
             logger.info('+ + + + + LONG + + + + + LONG + + + + + LONG + + + + + ')
             if bitmex.get_whichpositon() is None:  # and (not supertrendtrend and supertrendtrend2) and rsi2_overbought:
                 logger.info('postion condition > None')
@@ -309,7 +309,7 @@ class DoubleSuperRSI(Bot): # logic https: // stock79.tistory.com / 177
 
                 logger.info('Super Shot --> Else')
 
-        if super2_short:  # and rsi50_under:  # short trend
+        if super2_short:
             logger.info('- - - - - SHORT - - - - - SHORT - - - - - SHORT - - - - - ')
             if bitmex.get_whichpositon() is None:  #and rsi2_overbought and price_over:
                 logger.info('postion condition > None')
@@ -391,6 +391,170 @@ class Rci(Bot):
         elif close_all:
             self.exchange.close_all()
 
+
+# Fibonacci Retracement & Expansion Strategy
+class Fibo(Bot):
+    prebalance = BitMex(threading=False).get_balance()
+    start = 0
+    def __init__(self):
+        Bot.__init__(self, '1m')
+
+    def options(self):
+        return {
+            'rcv_short_len': hp.quniform('rcv_short_len', 1, 10, 1),
+            'rcv_medium_len': hp.quniform('rcv_medium_len', 5, 15, 1),
+            'rcv_long_len': hp.quniform('rcv_long_len', 10, 20, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+        self.start += 1
+
+        lot = self.exchange.get_lot()
+        # for test lot
+        lot = int(round(lot / 100))
+        bitmex = BitMex(threading=False)
+        price = bitmex.get_market_price()
+
+
+        sma_base_l = self.input('sma_short_len', int, 200)
+
+        resolution = self.input(defval=1, title="resolution", type=int) # defval 변경, 예) 5분 --> 5, 'm' or 1시간  1, 'h', 1Day 1, 'd'
+        source = self.exchange.security(str(resolution) + 'h')  # def __init__  비교
+        logger.info('source: %s' % source)
+
+        series_high = source['high'].values
+        series_low = source['low'].values
+
+        fb100 = last(highest(series_high, 1))  # 1시간 1, 1D의 경우는 resolution도 변경
+        fb0 = last(lowest(series_low, 1))
+
+        logger.info('resolution: %s' % resolution)
+        logger.info('fb100_resol: %s' % fb100)
+        logger.info('fb0_resol: %s' % fb0)
+
+        # for test
+        # fb100 = price + 15
+        # fb0 = price - 15
+
+        # 최근 1시간을 본봉단위로 획득
+        # fibo_l = self.input('length', int, 1440)  # 1Day = 60min * 24hr
+        # fibo_l = self.input('length', int, 60)  # 1Day = 60min * 24hr
+        # fibo100 = last(highest(high, fibo_l))
+        # fibo0 = last(lowest(low, fibo_l))
+
+        fb62 = math.ceil((fb100 - fb0) * 0.618 + fb0)
+        fb38 = math.ceil((fb100 - fb0) * 0.382 + fb0)
+        fb50 = math.ceil((fb100 - fb0) / 2 + fb0)
+
+        fb200 = math.ceil((fb100 - fb0) * 1.0 + fb100)
+        fb162 = math.ceil((fb100 - fb0) * 0.618 + fb100)
+        fb138 = math.ceil((fb100 - fb0) * 0.382 + fb100)
+
+        fb038 = math.ceil(fb0 - (fb100 - fb0) * 0.382)
+        fb062 = math.ceil(fb0 - (fb100 - fb0) * 0.618)
+        fb0100 = math.ceil(fb0 - (fb100 - fb0) * 1.00)
+
+        logger.info('self.start: %s' % self.start)
+
+        if self.start == 1:
+            # short position
+            self.exchange.order("Short200", False, lot*3, limit=fb200, post_only=True)
+            self.exchange.order("Short162", False, lot*2, limit=fb162, post_only=True)
+            self.exchange.order("Short138", False, lot*1, limit=fb138, post_only=True)
+            self.exchange.order("Short100", False, lot*1, limit=fb100, post_only=True)
+
+            # long position
+            self.exchange.order("Long0", True, lot*1, limit=fb0, post_only=True)
+            self.exchange.order("Long038", True, lot*1, limit=fb038, post_only=True)
+            self.exchange.order("Long062", True, lot*2, limit=fb062, post_only=True)
+            self.exchange.order("Long0100", True, lot*3, limit=fb0100, post_only=True)
+
+
+        Long0 = bitmex.get_open_order("Long0")
+        Long038 = bitmex.get_open_order("Long038")
+        Long062 = bitmex.get_open_order("Long062")
+        Long0100 = bitmex.get_open_order("Long0100")
+        Short200 = bitmex.get_open_order("Short200")
+        Short162 = bitmex.get_open_order("Short162")
+        Short138 = bitmex.get_open_order("Short138")
+        Short100 = bitmex.get_open_order("Short100")
+        #
+        #
+        # logger.info('Long0: %s' % Long0)
+        # logger.info('Long038: %s' % Long038)
+        # logger.info('Long062: %s' % Long062)
+        # logger.info('Long0100: %s' % Long0100)
+        # logger.info('Short200: %s' % Short200)
+        # logger.info('Short162: %s' % Short162)
+        # logger.info('Short138: %s' % Short138)
+        # logger.info('Short100: %s' % Short100)
+        #
+        # logger.info('(Long0 is None): %s' % (Long0 is None))
+
+        # entry order
+        # long position
+        self.exchange.order("Long0", True, lot*1, limit=fb0, when=(Long0 is None), post_only=True)
+        self.exchange.order("Long038", True, lot*1, limit=fb038, when=(Long038 is None), post_only=True)
+        self.exchange.order("Long062", True, lot*2, limit=fb062, when=(Long0100 is None), post_only=True)
+        self.exchange.order("Long0100", True, lot*3, limit=fb0100, when=(Long0100 is None), post_only=True)
+
+        # short position
+        self.exchange.order("Short200", False, lot*3, limit=fb200, when=(Short200 is None), post_only=True)
+        self.exchange.order("Short162", False, lot*2, limit=fb162, when=(Short162 is None), post_only=True)
+        self.exchange.order("Short138", False, lot*1, limit=fb138, when=(Short138 is None), post_only=True)
+        self.exchange.order("Short100", False, lot*1, limit=fb100, when=(Short100 is None), post_only=True)
+
+
+        # win order
+        if price <= fb0:
+            self.exchange.order("Long0_w", False, lot*1, limit=fb38, stop=fb0)
+            logger.info('rice <= fb0: %s' % fb0)
+        if price <= fb038:
+            self.exchange.order("Long038_w", False, lot*1, limit=fb0, stop=fb038)
+        if price <= fb062:
+            self.exchange.order("Long062_w", False, lot*2, limit=fb038, stop=fb062)
+        if price <= fb0100:
+            self.exchange.order("Long0100_w", False, lot*3, limit=fb062, stop=fb0100)
+
+        if price >= fb100:
+            logger.info('price >= fb100: %s' % fb100)
+            self.exchange.order("Short100_w", True, lot*1, limit=fb62, stop=fb100)
+        if price >= fb138:
+            self.exchange.order("Short138_w", True, lot*1, limit=fb100, stop=fb138)
+        if price >= fb162:
+            self.exchange.order("Short162_w", True, lot*2, limit=fb138, stop=fb162)
+        if price >= fb200:
+            self.exchange.order("Short200_w", True, lot*3, limit=fb162, stop=fb200)
+
+        # logger.info('bitmex.get_margin():%s' % bitmex.get_margin())
+        # logger.info('bitmex.get_position():%s' % bitmex.get_position())
+
+
+        # for debug
+        # logger.info('fb200: %s' % fb200)
+        # logger.info('fb162: %s' % fb162)
+        # logger.info('fb138: %s' % fb138)
+        # logger.info('fb100: %s' % fb100)
+        # logger.info('fb62: %s' % fb62)
+        # logger.info('fb50: %s' % fb50)
+        # logger.info('fb38: %s' % fb38)
+        # logger.info('fb0: %s' % fb0)
+        # logger.info('fb038: %s' % fb038)
+        # logger.info('fb062: %s' % fb062)
+        # logger.info('fb0100: %s' % fb0100)
+
+        diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
+
+        realised_pnl = bitmex.get_margin()['realisedPnl']
+
+        logger.info('prebalance():%s' % self.prebalance)
+        logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        logger.info('diff:%s' % diff)
+        logger.info('realised_pnl:%s' % realised_pnl)
+
+        logger.info('--------------------------------------------------')
+
+
 # rsi2
 class RSI2(Bot): # logic https: // stock79.tistory.com / 177
 
@@ -408,7 +572,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         lot = self.exchange.get_lot()
 
         # for test lot
-        # lot = int(round(lot / 50))
+        lot = int(round(lot / 50))
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
 
@@ -426,8 +590,8 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         supertrenddf = supertrend(source, factor, period)
 
         fast_len = self.input('fast_len', int, 5)
-        half_len = self.input('fast_len', int, 50)
-        slow_len = self.input('slow_len', int, 70)
+        half_len = self.input('half_len', int, 5)
+        slow_len = self.input('slow_len', int, 200)
 
         fast_sma = sma(close, fast_len)
         half_sma = sma(close, half_len)
@@ -439,6 +603,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
 
         super_long = over(close[-1], supertrenddf['TSL'][-1])
         super_short = under(close[-1], supertrenddf['TSL'][-1])
+        super_stoploss = supertrenddf['TSL'][-1]
         supertrendtrend = supertrenddf['Trend'][-1]
 
         rsi2_overbought = over(rsi2[-1], 95)
@@ -466,6 +631,7 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
 
         logger.info('super_long: %s' % super_long)
         logger.info('super_short: %s' % super_short)
+        logger.info('super_stoploss: %s' % super_stoploss)
         logger.info('sma_trend: %s' % supertrendtrend)
 
         logger.info('rsi2[-1 ]%s' % rsi2[-1])
@@ -484,19 +650,22 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
 
 
         # entry
-        if super_long: # and rsi50_over: # rsi2_overbought and price_under:  # long entry condtions
+        if super_long:  #long trend
             logger.info('+ + + + + LONG + + + + + LONG + + + + + LONG + + + + + ')
-            if bitmex.get_whichpositon() is None and (rsi2_oversold or price_under):
-                logger.info('postion condition > None')
-                self.exchange.entry("Long", True, lot, limit=price-0.5, post_only=True)
-
+            if bitmex.get_whichpositon() is None:
+                if sma_long and rsi2_oversold or price_under:
+                    logger.info('postion condition > None > and all short condition order')
+                    self.exchange.entry("Long", True, lot, limit=price-0.5, post_only=True)
+                else:
+                    logger.info('postion condition > None > default long order')
+                    self.exchange.entry("Long", True, lot, limit=math.ceil(super_stoploss), post_only=True)
             elif bitmex.get_whichpositon() == 'LONG':
                 logger.info('postion condition  > LONG')
-                if rsi2_oversold: # closing
+                if price_over: # closing
                     logger.info('postion condition  > LONG > Closing')
-                    self.exchange.order("Long", False, abs(bitmex.get_position_size()), limit=price - 0.5, when=price_over, post_only=True)
+                    self.exchange.order("Long", False, abs(bitmex.get_position_size()), limit=price + 1.5, post_only=True)
                 elif rsi2_overbought: # add more entry
-                    logger.info('postion condition  > LONG > Rsi2 overbout')
+                    logger.info('postion condition  > LONG > Rsi2 overbougt add more entry')
                     self.exchange.entry("LongAdd", True, lot, limit=price - 0.5, post_only=True)
                 elif super_short: # stop loss
                     logger.info('postion condition  > LONG > super_short(stop loss)')
@@ -507,22 +676,24 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
                 logger.info('cancel SHORT on long trend')
                 # self.exchange.cancel_all()
                 self.exchange.close_all()
-                self.exchange.close_all()
             else:
+                # self.exchange.cancel_all()
+                logger.info('Super Long --> Else')
 
-                logger.info('Super Shot --> Else')
-
-        if super_short:  # and rsi50_under:  # short trend
+        if super_short:  # short trend
             logger.info('- - - - - SHORT - - - - - SHORT - - - - - SHORT - - - - - ')
-            if bitmex.get_whichpositon() is None and rsi2_overbought and price_over:
-                logger.info('postion condition > None')
-                self.exchange.entry("Short", False, lot, limit=price+0.5, post_only=True)
-
+            if bitmex.get_whichpositon() is None:
+                if sma_short and rsi2_overbought or price_over:
+                    logger.info('postion condition > None > and all short condition order')
+                    self.exchange.entry("Short", False, lot, limit=price+0.5, post_only=True)
+                else:
+                    logger.info('postion condition > None > default short order')
+                    self.exchange.entry("Short", False, lot, limit=math.floor(super_stoploss), post_only=True)
             elif bitmex.get_whichpositon() == 'SHORT':
                 logger.info('postion condition  > SHORT')
                 if price_under:  # closing
                     logger.info('postion condition  > SHORT > price_under(closing)')
-                    self.exchange.order("Short", True, abs(bitmex.get_position_size()), limit=price-2.5, when=price_under, post_only=True)
+                    self.exchange.order("Short", True, abs(bitmex.get_position_size()), limit=price - 1.5, post_only=True)
                 elif rsi2_oversold:  # add more entry
                     logger.info('postion condition  > SHORT > rsi2_oversold(add more entry)')
                     self.exchange.entry("ShortAdd", False, lot, limit=price - 0.5, post_only=True)
@@ -707,39 +878,8 @@ class Sample(Bot):
             self.exchange.entry("Short", False, round(lot/1000))
             logger.info(f"Trade:Short")
 
-class Cross5M(Bot):
-    def __init__(self):
-        Bot.__init__(self, '5m')
 
-    def options(self):
-        return {
-            'fast_len': hp.quniform('fast_len', 1, 30, 1),
-            'slow_len': hp.quniform('slow_len', 1, 30, 1),
-        }
-
-    def strategy(self, open, close, high, low, volume):
-        lot = self.exchange.get_lot()
-        fast_len = self.input('fast_len', int, 9)
-        slow_len = self.input('slow_len', int, 16)
-        fast_sma = sma(close, fast_len)
-        slow_sma = sma(close, slow_len)
-        golden_cross = crossover(fast_sma, slow_sma)
-        dead_cross = crossunder(fast_sma, slow_sma)
-
-        # logger.info("lot:"+str(lot))
-        # logger.info("data:"+str(self.exchange.data))
-        # logger.info("fast_sma:"+str(fast_sma))
-        # logger.info("slow_sma:"+str(slow_sma))
-
-        if golden_cross:
-            self.exchange.entry("Long", True, lot)
-            # logger.info(f"golden_cross trade : Long")
-        if dead_cross:
-            self.exchange.entry("Short", False, lot)
-            # logger.info(f"dead_cross trade : Short")
-
-
-class Cross1M(Bot):
+class Cross(Bot):
     def __init__(self):
         Bot.__init__(self, '1m')
 
@@ -762,98 +902,3 @@ class Cross1M(Bot):
             self.exchange.entry("Long", True, lot)
         if dead_cross:
             self.exchange.entry("Short", False, lot)
-
-
-# class SuperTrend1M(Bot):
-#     variants = [sma, ema, double_ema, triple_ema, wma, ssma, hull]
-#     eval_time = None
-#
-#     def __init__(self):
-#         Bot.__init__(self, '1m')
-#
-#     def ohlcv_len(self):
-#         return 15 * 30
-#
-#     def options(self):
-#         return {
-#             'variant_type': hp.quniform('variant_type', 0, len(self.variants) - 1, 1),
-#             'basis_len': hp.quniform('basis_len', 1, 30, 1),
-#             'resolution': hp.quniform('resolution', 1, 10, 1),
-#             'sma_len': hp.quniform('sma_len', 1, 15, 1),
-#             'div_threshold': hp.quniform('div_threshold', 1, 6, 0.1),
-#         }
-#
-#     def strategy(self, open, close, high, low, volume):
-#         lot = self.exchange.get_lot()
-#
-#         variant_type = self.input(defval=5, title="variant_type", type=int)
-#         basis_len = self.input(defval=19,  title="basis_len", type=int)
-#         resolution = self.input(defval=2, title="resolution", type=int)
-#         sma_len = self.input(defval=9, title="sma_len", type=int)
-#         div_threshold = self.input(defval=3.0, title="div_threshold", type=float)
-#
-#         source = self.exchange.security(str(resolution) + 'm')
-#
-#         print('source:'+str(source))
-#         if self.eval_time is not None and self.eval_time == source.iloc[-1].name:
-#             return
-#
-#         series_open = source['open'].values
-#         series_close = source['close'].values
-#
-#         variant = self.variants[variant_type]
-#
-#         val_open = variant(series_open,  basis_len)
-#         val_close = variant(series_close, basis_len)
-#
-#         if val_open[-1] > val_close[-1]:
-#             high_val = val_open[-1]
-#             low_val = val_close[-1]
-#         else:
-#             high_val = val_close[-1]
-#             low_val = val_open[-1]
-#
-#         sma_val = sma(close, sma_len)
-#
-#         # self.exchange.plot('val_open', val_open[-1], 'b')
-#         # self.exchange.plot('val_close', val_close[-1], 'r')
-#         #
-#         # self.exchange.entry("Long", True,   lot, stop=math.floor(low_val), when=(sma_val[-1] < low_val))
-#         # self.exchange.entry("Short", False, lot, stop=math.ceil(high_val), when=(sma_val[-1] > high_val))
-#
-#         open_close_div = sma(numpy.abs(val_open - val_close), sma_len)
-#
-#         if open_close_div[-1] > div_threshold and \
-#                 open_close_div[-2] > div_threshold < open_close_div[-2]:
-#             self.exchange.close_all()
-#
-#         self.eval_time = source.iloc[-1].name
-#
-#         supertrend_multiplier1 = self.input('supertrend_multiplier1', int, 3)
-#         supertrend_period1 = self.input('supertrend_period1', int, 14)
-#         supertrend_multiplier2 = self.input('supertrend_multiplier2', int, 6)
-#         supertrend_period2 = self.input('supertrend_period2', int, 28)
-#
-#         supertrend_df1 = supertrend(source, supertrend_period1, supertrend_multiplier1)  #.sort_index(axis=1,ascending=False)
-#         print("111:"+supertrend_df1.head(10).to_string())
-#         print("222:"+str(supertrend_df1['SuperTrend'].iloc[0]))
-#
-#         supertrend_df2 = supertrend(source, supertrend_period2, supertrend_multiplier2)
-#         # print(supertrend_df1.tail(10).to_string())
-#         # supertrend2 = supertrend_df2['SuperTrend']
-#
-#
-#
-#         long = (val_close[-1] < supertrend1 < supertrend2)
-#         short = (val_close[-1] > supertrend1 > supertrend2)
-#         close_all = val_close[-1] > supertrend1 and close < supertrend2
-#
-#         if long:
-#             self.exchange.entry("Long:", True, lot)
-#             logger.info("Long"+str(supertrend1))
-#         elif short:
-#             self.exchange.entry("Short", False, lot)
-#             logger.info("short;"+str(supertrend1))
-#         elif close_all:
-#             self.exchange.close_all()
-#             # logger.info("close_all;"+str(rci_s)+","+str(rci_m)+","+str(rci_l))

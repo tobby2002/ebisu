@@ -86,7 +86,7 @@ def validate_continuous(data, bin_size):
 
 def to_data_frame(data):
     data_frame = pd.DataFrame(data, columns=["timestamp", "high", "low", "open", "close", "volume"])
-    print('[data_frame]:\n%s' % data_frame)
+    # print('[data_frame]:\n%s' % data_frame)
     data_frame = data_frame.set_index("timestamp")
     data_frame = data_frame.tz_localize(None).tz_localize('UTC', level=0)
     return data_frame

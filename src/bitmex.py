@@ -45,7 +45,8 @@ class BitMex:
     # 로그출력
     enable_trade_log = True
     # OHLC길이
-    ohlcv_len = 100
+    # ohlcv_len = 100
+    ohlcv_len = 1000
     # OHLC캐쉬
     data = None
     # 이익 확인 손절 구분자
@@ -442,6 +443,8 @@ class BitMex:
         open_orders = retry(lambda: self.private_client
                             .Order.Order_getOrders(filter=json.dumps({"symbol": "XBTUSD", "open": True}))
                             .result())
+        # print('open_orders:%s' % open_orders)
+
         open_orders = [o for o in open_orders if o["clOrdID"].startswith(id)]
         if len(open_orders) > 0:
             return open_orders[0]
@@ -631,7 +634,7 @@ class BitMex:
 
         self.position = {**self.position, **position} if self.position is not None else self.position
 
-        # 利確損切の評価
+        # 익손절의 평가
         self.eval_exit()
 
     def __on_update_margin(self, action, margin):

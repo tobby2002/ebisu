@@ -19,6 +19,8 @@ class Bot:
     bin_size = '1h'
     # 봉기간
     periods = 20
+    # ohlcv 길이
+    ohlcv = 1440
     # 테스트넷 옵션
     test_net = False
     # 벡테스트 옵션
@@ -52,7 +54,8 @@ class Bot:
         """
         strategy 전략함수에 넘기는 OHLC 길이
         """
-        return 100
+        # return 100
+        return self.ohlcv
 
     def input(self, title, type, defval):
         """
