@@ -411,7 +411,7 @@ class Fibo(Bot):
 
         lot = self.exchange.get_lot()
         # for test lot
-        lot = int(round(lot / 100))
+        lot = int(round(lot / 10))
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
 
