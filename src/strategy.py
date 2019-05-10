@@ -423,7 +423,7 @@ class Fibo(Bot):
 
         sma_base_l = self.input('sma_short_len', int, 200)
 
-        resolution = self.input(defval=10, title="resolution", type=int) # defval 변경, 예) 5분 --> 5, 'm' or 1시간  1, 'h', 1Day 1, 'd'
+        resolution = self.input(defval=5, title="resolution", type=int) # defval 변경, 예) 5분 --> 5, 'm' or 1시간  1, 'h', 1Day 1, 'd'
         source = self.exchange.security(str(resolution) + 'm')  # def __init__  비교
         logger.info('source: %s' % source)
 
@@ -532,6 +532,8 @@ class Fibo(Bot):
                 longshort = False
             if bitmex.get_position_size() < 0:
                 longshort = True
+
+            logger.info('bitmex.get_position_size(): %s' % bitmex.get_position_size())
             if bitmex.get_position_size() != 0:
                 self.exchange.order("Garbage", longshort, bitmex.get_position_size(), limit=gprice, post_only=True)
 

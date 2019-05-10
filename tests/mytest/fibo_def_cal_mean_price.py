@@ -20,7 +20,7 @@ def calculate_retrace(i, j):  # subroutine for calculating fibonacci retracement
     print(j / i)
 
 
-calculate_fibonacci(100)  # executing subrouting
+calculate_fibonacci(100)  # executing subroutingF
 print(fibonacciarray)  # verifiy entries
 
 calculate_retrace(fibonacciarray[-1], fibonacciarray[-2])  # calculate retracements
