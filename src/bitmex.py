@@ -74,11 +74,11 @@ class BitMex:
         # api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.demo else os.environ.get("BITMEX_APIKEY")
         # api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.demo else os.environ.get("BITMEX_SECRET")
         # tobby2002
-        api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
-        api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
+        # api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
+        # api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
         # redlee80
-        # api_key = 'NPo11uetPveJeDUMcMW19B_x'
-        # api_secret = 'pcbKMRlLxH_fS3oCyEeDkFNhp1UGmyu8CpxLbwEokOvpd2Ud'
+        api_key = 'NPo11uetPveJeDUMcMW19B_x'
+        api_secret = 'pcbKMRlLxH_fS3oCyEeDkFNhp1UGmyu8CpxLbwEokOvpd2Ud'
 
         self.private_client = bitmex_api(test=self.demo, api_key=api_key, api_secret=api_secret)
         self.public_client = bitmex_api(test=self.demo)
