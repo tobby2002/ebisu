@@ -77,11 +77,12 @@ class YYY(Bot):
         # for test
         # lot = int(round(lot / 10))
         lot = 100
+        logger.info('lot:%s' % lot)
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
 
         fast_len = self.input('fast_len', int, 5)
-        slow_len = self.input('slow_len', int, 8)
+        slow_len = self.input('slow_len', int, 18)
         trend_len = self.input('slow_len', int, 1200)
         logger.info('fast_len:%s' % fast_len)
         logger.info('slow_len:%s' % slow_len)
@@ -91,9 +92,9 @@ class YYY(Bot):
         trend_sma = sma(close, trend_len)
         uptrend = False
         downtrend = False
-        if trend_sma[-1] > trend_sma[-2] and trend_sma[-1] > trend_sma[-3]:
+        if trend_sma[-1] > trend_sma[-3] or trend_sma[-1] > trend_sma[-10]:
             uptrend = True
-        if trend_sma[-1] < trend_sma[-2] and trend_sma[-1] < trend_sma[-3]:
+        if trend_sma[-1] < trend_sma[-3] or trend_sma[-1] < trend_sma[-10]:
             downtrend = True
 
         golden_cross = crossover(fast_sma, slow_sma)
