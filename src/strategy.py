@@ -60,6 +60,70 @@ class SMA(Bot):
         if dead_cross:
             self.exchange.entry("Short", False, lot)
 
+
+class YYY(Bot):
+    def __init__(self):
+        Bot.__init__(self, '1m')
+
+    def options(self):
+        return {
+            'fast_len': hp.quniform('fast_len', 1, 200, 1),
+            'slow_len': hp.quniform('slow_len', 1, 600, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+
+        lot = self.exchange.get_lot()
+        # for test
+        # lot = int(round(lot / 10))
+        lot = 100
+        bitmex = BitMex(threading=False)
+        price = bitmex.get_market_price()
+
+        fast_len = self.input('fast_len', int, 5)
+        slow_len = self.input('slow_len', int, 8)
+        trend_len = self.input('slow_len', int, 1200)
+        logger.info('fast_len:%s' % fast_len)
+        logger.info('slow_len:%s' % slow_len)
+
+        fast_sma = sma(close, fast_len)
+        slow_sma = sma(close, slow_len)
+        trend_sma = sma(close, trend_len)
+        uptrend = False
+        downtrend = False
+        if trend_sma[-1] > trend_sma[-2] and trend_sma[-1] > trend_sma[-3]:
+            uptrend = True
+        if trend_sma[-1] < trend_sma[-2] and trend_sma[-1] < trend_sma[-3]:
+            downtrend = True
+
+        golden_cross = crossover(fast_sma, slow_sma)
+        dead_cross = crossunder(fast_sma, slow_sma)
+
+        logger.info('golden_cross:%s' % golden_cross)
+        logger.info('dead_cross:%s' % dead_cross)
+        logger.info('price:%s' % price)
+        logger.info('trend_sma:%s' % trend_sma[-1])
+        logger.info('uptrend : %s' % str(uptrend))
+        logger.info('downtrend : %s' % str(downtrend))
+
+        # long
+        if dead_cross and uptrend:
+            self.exchange.order("Long", True, lot, limit=price-0.5, when=True, post_only=True)
+            logger.info('in dead_cross and uptrend for long')
+
+        if bitmex.get_whichpositon() == 'LONG':
+            self.exchange.order("Long", False, lot, limit=price + 0.5, when=golden_cross, post_only=True)  # similar stop function
+
+        # short
+        if golden_cross and downtrend:
+            logger.info('in golden_cross and uptrend for short')
+            self.exchange.entry("Short", False, lot, limit=price+0.5, when=True, post_only=True)
+        if bitmex.get_whichpositon() == 'SHORT':
+            self.exchange.order("Short", True, lot, limit=price-0.5, stop=(price-0.5), when=dead_cross, post_only=True)
+
+        logger.info('--------------------------------------------------')
+
+
 # supertrend
 class SuperTrend(Bot):
 
