@@ -12,6 +12,8 @@ import numpy as np
 import pandas as pd
 import requests
 import talib
+import pandas as pd
+
 from bravado.exception import HTTPError
 
 # logging settings for console and file by neo
@@ -383,6 +385,69 @@ def supertrend(df, f, n): #df is the dataframe, n is the period, f is the factor
 
 
 
+def heikinashi__(df):
+    '''
+    Heikin Ashi candlesticks in the forms of lines
+    Formula:
+        ha_open = (ha_open(-1) + ha_close(-1)) / 2
+        ha_high = max(hi, ha_open, ha_close)
+        ha_low = min(lo, ha_open, ha_close)
+        ha_close = (open + high + low + close) / 4
+    See also:
+        https://en.wikipedia.org/wiki/Candlestick_chart#Heikin_Ashi_candlesticks
+        http://stockcharts.com/school/doku.php?id=chart_school:chart_analysis:heikin_ashi
+    '''
+    heikin_ashi_df = pd.DataFrame(index=df.index.values, columns=['open', 'high', 'low', 'close'])
+
+    heikin_ashi_df['close'] = (df['open'] + df['high'] + df['low'] + df['close']) / 4
+
+    for i in range(len(df)):
+        if i == 0:
+            heikin_ashi_df.iat[0, 0] = df['open'].iloc[0]
+        else:
+            heikin_ashi_df.iat[i, 0] = (heikin_ashi_df.iat[i - 1, 0] + heikin_ashi_df.iat[i - 1, 3]) / 2
+
+    heikin_ashi_df['high'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['high']).max(axis=1)
+
+    heikin_ashi_df['low'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['low']).min(axis=1)
+
+    return heikin_ashi_df
+
+
+def heikinashi(df, ohlc=['open', 'high', 'low', 'close']):
+    """
+    Function to compute Heiken Ashi Candles (HA)
+
+    Args :
+        df : Pandas DataFrame which contains ['date', 'open', 'high', 'low', 'close', 'volume'] columns
+        ohlc: List defining OHLC Column names (default ['Open', 'High', 'Low', 'Close'])
+
+    Returns :
+        df : Pandas DataFrame with new columns added for
+            Heiken Ashi Close (HA_$ohlc[3])
+            Heiken Ashi Open (HA_$ohlc[0])
+            Heiken Ashi High (HA_$ohlc[1])
+            Heiken Ashi Low (HA_$ohlc[2])
+    """
+
+    ha_open = 'HA_' + ohlc[0]
+    ha_high = 'HA_' + ohlc[1]
+    ha_low = 'HA_' + ohlc[2]
+    ha_close = 'HA_' + ohlc[3]
+
+    df[ha_close] = (df[ohlc[0]] + df[ohlc[1]] + df[ohlc[2]] + df[ohlc[3]]) / 4
+
+    df[ha_open] = 0.00
+    for i in range(0, len(df)):
+        if i == 0:
+            df[ha_open].iat[i] = (df[ohlc[0]].iat[i] + df[ohlc[3]].iat[i]) / 2
+        else:
+            df[ha_open].iat[i] = (df[ha_open].iat[i - 1] + df[ha_close].iat[i - 1]) / 2
+
+    df[ha_high] = df[[ha_open, ha_close, ohlc[1]]].max(axis=1)
+    df[ha_low] = df[[ha_open, ha_close, ohlc[2]]].min(axis=1)
+
+    return df
 # SuperTrend 로직
 # BASIC UPPERBAND = (HIGH + LOW) / 2 + Multiplier * ATR
 # BASIC LOWERBAND = (HIGH + LOW) / 2 - Multiplier * ATR
