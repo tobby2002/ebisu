@@ -887,7 +887,7 @@ class Heikinashi(Bot):
 
         lot = self.exchange.get_lot()
         # for test
-        lot = int(round(lot / 10))
+        lot = int(round(lot / 2))
         # lot = 10
         logger.info('lot:%s' % lot)
         bitmex = BitMex(threading=False)
