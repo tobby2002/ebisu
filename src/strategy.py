@@ -887,7 +887,7 @@ class Heikinashi(Bot):
 
         lot = self.exchange.get_lot()
         # for test
-        lot = int(round(lot / 2))
+        # lot = int(round(lot / 2))
         # lot = 10
         logger.info('lot:%s' % lot)
         bitmex = BitMex(threading=False)
@@ -998,18 +998,34 @@ class Heikinashi(Bot):
 
 
         " long "
-        self.exchange.entry("Long", True, lot, when=crossover(ha_close_trend, ha_open_trend))
-        # if bitmex.get_whichpositon() == 'LONG':
-        #     self.exchange.order("Long", False, lot, when=haup_slow and haup_trend)  # similar stop function
+        self.exchange.entry("Long", True, lot, when=crossover(ha_close_longtrend, ha_open_longtrend))
         " short "
-        self.exchange.entry("Short", False, lot, when=crossunder(ha_close_trend, ha_open_trend))
-        # if hadown_fast and hadown_slow and hadown_trend:
-        #     logger.info('in golden_cross and uptrend for short')
-        #     # self.exchange.entry("Short", False, lot, limit=price+0.5, when=True, post_only=True)
-        # if bitmex.get_whichpositon() == 'SHORT':
-        #     # self.exchange.order("Short", True, lot, limit=price-0.5, stop=(price-0.5), when=dead_cross, post_only=True)
-        #     pass
-        logger.info('--------------------------------------------------')
+        self.exchange.entry("Short", False, lot, when=crossunder(ha_close_longtrend, ha_open_longtrend))
+
+
+        # source_entry = self.exchange.security('1h')
+        #
+        # hadf_entry = heikinashi(source_entry)
+        # hadf_trading = heikinashi(hadf_entry)
+        #
+        # ha_open_longtrend_entry = variant(ha_open_values,  2)  # 2h
+        # ha_close_longtrend_entry = variant(ha_close_values, 2)
+        #
+        # haopen_longtrend_entry = ha_open_longtrend_entry[-1]
+        # haclose_longtrend_entry = ha_close_longtrend_entry[-1]
+        # haup_longtrend_entry = haclose_longtrend_entry > haopen_longtrend_entry
+        # hadown_longtrend_entry = haclose_longtrend_entry <= haopen_longtrend_entry
+        #
+        # logger.info('1h기준 2h\n')
+        # logger.info('haup_longtrend_enty:%s\n' % haup_longtrend_entry)
+        # logger.info('hadown_longtrend_entry:%s\n' % hadown_longtrend_entry)
+        #
+        # " long "
+        # self.exchange.entry("Long", True, lot, when=crossover(ha_close_longtrend_entry, ha_open_longtrend_entry))
+        # " short "
+        # self.exchange.entry("Short", False, lot, when=crossunder(ha_close_longtrend_entry, ha_open_longtrend_entry))
+
+
 
 # OCC
 class OCC(Bot):
