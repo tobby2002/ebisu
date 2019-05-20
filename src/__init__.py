@@ -207,6 +207,8 @@ def di_plus(high, low, close, period=14):
 def di_minus(high, low, close, period=14):
     return talib.MINUS_DI(high, low, close, period)
 
+def willr(high, low, close, period=14):
+    return talib.WILLR(high, low, close, period)
 
 def rsi(close, period=14):
     return talib.RSI(close, period)
@@ -214,6 +216,7 @@ def rsi(close, period=14):
 
 def sar(high, low, acceleration=0, maximum=0):
     return talib.SAR(high, low, acceleration, maximum)
+
 
 
 def delta(bin_size='1h'):
@@ -385,33 +388,33 @@ def supertrend(df, f, n): #df is the dataframe, n is the period, f is the factor
 
 
 
-def heikinashi__(df):
-    '''
-    Heikin Ashi candlesticks in the forms of lines
-    Formula:
-        ha_open = (ha_open(-1) + ha_close(-1)) / 2
-        ha_high = max(hi, ha_open, ha_close)
-        ha_low = min(lo, ha_open, ha_close)
-        ha_close = (open + high + low + close) / 4
-    See also:
-        https://en.wikipedia.org/wiki/Candlestick_chart#Heikin_Ashi_candlesticks
-        http://stockcharts.com/school/doku.php?id=chart_school:chart_analysis:heikin_ashi
-    '''
-    heikin_ashi_df = pd.DataFrame(index=df.index.values, columns=['open', 'high', 'low', 'close'])
-
-    heikin_ashi_df['close'] = (df['open'] + df['high'] + df['low'] + df['close']) / 4
-
-    for i in range(len(df)):
-        if i == 0:
-            heikin_ashi_df.iat[0, 0] = df['open'].iloc[0]
-        else:
-            heikin_ashi_df.iat[i, 0] = (heikin_ashi_df.iat[i - 1, 0] + heikin_ashi_df.iat[i - 1, 3]) / 2
-
-    heikin_ashi_df['high'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['high']).max(axis=1)
-
-    heikin_ashi_df['low'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['low']).min(axis=1)
-
-    return heikin_ashi_df
+# def heikinashi__(df):
+#     '''
+#     Heikin Ashi candlesticks in the forms of lines
+#     Formula:
+#         ha_open = (ha_open(-1) + ha_close(-1)) / 2
+#         ha_high = max(hi, ha_open, ha_close)
+#         ha_low = min(lo, ha_open, ha_close)
+#         ha_close = (open + high + low + close) / 4
+#     See also:
+#         https://en.wikipedia.org/wiki/Candlestick_chart#Heikin_Ashi_candlesticks
+#         http://stockcharts.com/school/doku.php?id=chart_school:chart_analysis:heikin_ashi
+#     '''
+#     heikin_ashi_df = pd.DataFrame(index=df.index.values, columns=['open', 'high', 'low', 'close'])
+#
+#     heikin_ashi_df['close'] = (df['open'] + df['high'] + df['low'] + df['close']) / 4
+#
+#     for i in range(len(df)):
+#         if i == 0:
+#             heikin_ashi_df.iat[0, 0] = df['open'].iloc[0]
+#         else:
+#             heikin_ashi_df.iat[i, 0] = (heikin_ashi_df.iat[i - 1, 0] + heikin_ashi_df.iat[i - 1, 3]) / 2
+#
+#     heikin_ashi_df['high'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['high']).max(axis=1)
+#
+#     heikin_ashi_df['low'] = heikin_ashi_df.loc[:, ['open', 'close']].join(df['low']).min(axis=1)
+#
+#     return heikin_ashi_df
 
 
 def heikinashi(df, ohlc=['open', 'high', 'low', 'close']):
@@ -429,6 +432,30 @@ def heikinashi(df, ohlc=['open', 'high', 'low', 'close']):
             Heiken Ashi High (HA_$ohlc[1])
             Heiken Ashi Low (HA_$ohlc[2])
     """
+    # SuperTrend 로직
+    # BASIC UPPERBAND = (HIGH + LOW) / 2 + Multiplier * ATR
+    # BASIC LOWERBAND = (HIGH + LOW) / 2 - Multiplier * ATR
+    #
+    # FINAL UPPERBAND = IF( (Current BASICUPPERBAND < Previous FINAL UPPERBAND) and (Previous Close > Previous FINAL UPPERBAND)) THEN (Current BASIC UPPERBAND) ELSE Previous FINALUPPERBAND)
+    # FINAL LOWERBAND = IF( (Current BASIC LOWERBAND > Previous FINAL LOWERBAND) and (Previous Close < Previous FINAL LOWERBAND)) THEN (Current BASIC LOWERBAND) ELSE Previous FINAL LOWERBAND)
+
+    # TradingView Pine Source
+    # // supertrend define
+    # Factor=input(3, minval=1,maxval = 100, title="Supertrend Factor")
+    # Pd=input(7, minval=1,maxval = 100,  title="Supertrend Period")
+    #
+    #
+    # Up=hl2-(Factor*atr(Pd))
+    # Dn=hl2+(Factor*atr(Pd))
+    #
+    #
+    # TrendUp=close[1]>TrendUp[1]? max(Up,TrendUp[1]) : Up
+    # TrendDown=close[1]<TrendDown[1]? min(Dn,TrendDown[1]) : Dn
+    #
+    # Trend = close > TrendDown[1] ? 1: close< TrendUp[1]? -1: nz(Trend[1],1)
+    # Tsl = Trend==1? TrendUp: TrendDown
+    # longCondition_supertrend = cross(close,Tsl) and close>Tsl
+    # shortCondition_supertrend = cross(Tsl,close) and close<Tsl
 
     ha_open = 'HA_' + ohlc[0]
     ha_high = 'HA_' + ohlc[1]
@@ -448,27 +475,3 @@ def heikinashi(df, ohlc=['open', 'high', 'low', 'close']):
     df[ha_low] = df[[ha_open, ha_close, ohlc[2]]].min(axis=1)
 
     return df
-# SuperTrend 로직
-# BASIC UPPERBAND = (HIGH + LOW) / 2 + Multiplier * ATR
-# BASIC LOWERBAND = (HIGH + LOW) / 2 - Multiplier * ATR
-#
-# FINAL UPPERBAND = IF( (Current BASICUPPERBAND < Previous FINAL UPPERBAND) and (Previous Close > Previous FINAL UPPERBAND)) THEN (Current BASIC UPPERBAND) ELSE Previous FINALUPPERBAND)
-# FINAL LOWERBAND = IF( (Current BASIC LOWERBAND > Previous FINAL LOWERBAND) and (Previous Close < Previous FINAL LOWERBAND)) THEN (Current BASIC LOWERBAND) ELSE Previous FINAL LOWERBAND)
-
-# TradingView Pine Source
-# // supertrend define
-# Factor=input(3, minval=1,maxval = 100, title="Supertrend Factor")
-# Pd=input(7, minval=1,maxval = 100,  title="Supertrend Period")
-#
-#
-# Up=hl2-(Factor*atr(Pd))
-# Dn=hl2+(Factor*atr(Pd))
-#
-#
-# TrendUp=close[1]>TrendUp[1]? max(Up,TrendUp[1]) : Up
-# TrendDown=close[1]<TrendDown[1]? min(Dn,TrendDown[1]) : Dn
-#
-# Trend = close > TrendDown[1] ? 1: close< TrendUp[1]? -1: nz(Trend[1],1)
-# Tsl = Trend==1? TrendUp: TrendDown
-# longCondition_supertrend = cross(close,Tsl) and close>Tsl
-# shortCondition_supertrend = cross(Tsl,close) and close<Tsl

@@ -9,7 +9,7 @@ import numpy
 from hyperopt import hp
 
 from src import highest, lowest, sma, crossover, crossunder, over, under, last, rci, rsi, double_ema, ema, triple_ema, wma, \
-    ssma, hull, logger, notify, atr, supertrend, heikinashi
+    ssma, hull, logger, notify, atr, willr, bbands, supertrend, heikinashi
 from src.bitmex import BitMex
 from src.bitmex_stub import BitMexStub
 from src.bot import Bot
@@ -868,6 +868,160 @@ class RSI2(Bot): # logic https: // stock79.tistory.com / 177
         logger.info('realised_pnl:%s' % realised_pnl)
 
         logger.info('--------------------------------------------------')
+class R2H5(Bot):
+    variants = [sma, ema, double_ema, triple_ema, wma, ssma, hull, heikinashi]
+    eval_time = None
+
+    def __init__(self):
+        Bot.__init__(self, '1m')
+
+    def options(self):
+        return {
+            'fast_len': hp.quniform('fast_len', 1, 60, 1),
+            'slow_len': hp.quniform('slow_len', 1, 240, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+
+        lot = self.exchange.get_lot()
+        # for test
+        # lot = int(round(lot / 2))
+        # lot = 10
+        logger.info('lot:%s' % lot)
+        bitmex = BitMex(threading=False)
+        price = bitmex.get_market_price()
+
+        resolution = self.input(defval=1, title="resolution", type=int)
+        variant_type = self.input(defval=5, title="variant_type", type=int)
+        basis_len = self.input(defval=19,  title="basis_len", type=int)
+        logger.info('price:%s\n' % price)
+
+        # fast_len = self.input('fast_len', int, 1)
+        # slow_len = self.input('slow_len', int, 21)
+        # trend_len = self.input('slow_len', int, 55)
+        # longtrend_len = self.input('slow_len', int, 233)
+
+        # fast_len = self.input('fast_len', int, 1)
+        # slow_len = self.input('slow_len', int, 55)
+        # trend_len = self.input('slow_len', int, 240)
+        # longtrend_len = self.input('slow_len', int, 233)
+
+
+        fast_len = self.input('fast_len', int, 1)
+        slow_len = self.input('slow_len', int, 30)
+        trend_len = self.input('slow_len', int, 60)
+        longtrend_len = self.input('slow_len', int, 120)
+        logger.info('fast_len:%s' % fast_len)
+        logger.info('slow_len:%s' % slow_len)
+        logger.info('trend_len:%s' % trend_len)
+        logger.info('longtrend_len:%s' % longtrend_len)
+
+
+        # for various minutes source
+        source = self.exchange.security(str(resolution) + 'm')
+
+        hadf = heikinashi(source)
+        hadf_fast = heikinashi(hadf)
+
+        ha_open_values = hadf_fast['HA_open'].values
+        ha_close_values = hadf_fast['HA_close'].values
+        variant = self.variants[variant_type]
+
+        ha_open_fast = variant(ha_open_values,  fast_len)
+        ha_close_fast = variant(ha_close_values, fast_len)
+        haopen_fast = ha_open_fast[-1]
+        haclose_fast = ha_close_fast[-1]
+        haup_fast = haclose_fast > haopen_fast
+        hadown_fast = haclose_fast <= haopen_fast
+        logger.info('haup_fast:%s\n' % haup_fast)
+
+
+        ha_open_slow = variant(ha_open_values,  slow_len)
+        ha_close_slow = variant(ha_close_values, slow_len)
+        haopen_slow = ha_open_slow[-1]
+        haclose_slow = ha_close_slow[-1]
+        haup_slow = haclose_slow > haopen_slow
+        hadown_slow = haclose_slow <= haopen_slow
+        logger.info('haup_slow:%s\n' % haup_slow)
+
+
+        ha_open_trend = variant(ha_open_values,  trend_len)
+        ha_close_trend = variant(ha_close_values, trend_len)
+        haopen_trend = ha_open_trend[-1]
+        haclose_trend = ha_close_trend[-1]
+        haup_trend = haclose_trend > haopen_trend
+        hadown_trend = haclose_trend <= haopen_trend
+        logger.info('haup_trend:%s\n' % haup_trend)
+
+        ha_open_longtrend = variant(ha_open_values,  longtrend_len)
+        ha_close_longtrend = variant(ha_close_values, longtrend_len)
+        haopen_longtrend = ha_open_longtrend[-1]
+        haclose_longtrend = ha_close_longtrend[-1]
+        haup_longtrend = haclose_longtrend > haopen_longtrend
+        hadown_longtrend = haclose_longtrend <= haopen_longtrend
+        logger.info('haup_longtrend:%s\n' % haup_longtrend)
+
+
+        # resol_fast = self.input(defval=1, title="resolution", type=int)  # defval 변경, 예) 5분 --> 5
+        # source_fast = self.exchange.security(str(resol_fast) + 'm')  # init  참고
+        # hadf_fast = heikinashi(source_fast, 1)
+        # haopen_fast = hadf_fast['HA_open'][-1]
+        # haclose_fast = hadf_fast['HA_close'][-1]
+        # haup_fast = haclose_fast > haopen_fast
+        # hadown_fast = haclose_fast <= haopen_fast
+        # logger.info('haup_fast:%s\n' % haup_fast)
+        # logger.info('hadown_fast:%s\n' % hadown_fast)
+
+
+        # resol_slow = self.input(defval=4, title="resolution", type=int)  # defval 변경, 예) 5분 --> 5
+        # source_slow = self.exchange.security(str(resol_slow) + 'h')  # init  참고
+        # hadf_slow = heikinashi(source_slow, 1)
+        # haopen_slow = hadf_slow['HA_open'][-1]
+        # haclose_slow = hadf_slow['HA_close'][-1]
+        # haup_slow = haclose_slow > haopen_slow
+        # hadown_slow = haclose_slow <= haopen_slow
+        # logger.info('haup_slow:%s\n' % haup_slow)
+        # logger.info('hadown_slow:%s\n' % hadown_slow)
+
+
+        # resol_trend = self.input(defval=1, title="resolution", type=int)  # defval 변경, 예) 5분 --> 5
+        # source_trend = self.exchange.security(str(resol_trend) + 'd')  # init  참고:wq!:wq!
+        # hadf_trend = heikinashi(source_trend)
+        # haopen_trend = hadf_trend['HA_open'][-1]
+        # haclose_trend = hadf_trend['HA_close'][-1]
+        # haup_trend = haclose_trend > haopen_trend
+        # hadown_trend = haclose_trend <= haopen_trend
+        # logger.info('haup_trend:%s\n' % haup_trend)
+        # logger.info('hadown_trend:%s\n' % hadown_slow)
+
+
+        " long "
+        self.exchange.entry("Long", True, lot, when=crossover(ha_close_longtrend, ha_open_longtrend))
+        " short "
+        self.exchange.entry("Short", False, lot, when=crossunder(ha_close_longtrend, ha_open_longtrend))
+
+
+        # source_entry = self.exchange.security('1h')
+        #
+        # hadf_entry = heikinashi(source_entry)
+        # hadf_trading = heikinashi(hadf_entry)
+        #
+        # ha_open_longtrend_entry = variant(ha_open_values,  2)  # 2h
+        # ha_close_longtrend_entry = variant(ha_close_values, 2)
+        #
+        # haopen_longtrend_entry = ha_open_longtrend_entry[-1]
+        # haclose_longtrend_entry = ha_close_longtrend_entry[-1]
+        # haup_longtrend_entry = haclose_longtrend_entry > haopen_longtrend_entry
+        # hadown_longtrend_entry = haclose_longtrend_entry <= haopen_longtrend_entry
+        #
+        # logger.info('1h기준 2h\n')
+        # logger.info('haup_longtrend_enty:%s\n' % haup_longtrend_entry)
+        # logger.info('hadown_longtrend_entry:%s\n' % hadown_longtrend_entry)
+        #
+        # " long "
+        # self.exchange.entry("Long", True, lot, when=crossover(ha_close_longtrend_entry, ha_open_longtrend_entry))
+        # " short "
+        # self.exchange.entry("Short", False, lot, when=crossunder(ha_close_longtrend_entry, ha_open_longtrend_entry))
 
 # heikinashi
 class Heikinashi(Bot):
@@ -1457,3 +1611,389 @@ class Fibo2(Bot):
         logger.info('realised_pnl:%s' % realised_pnl)
 
         logger.info('--------------------------------------------------')
+
+class R2H5(Bot):
+    prebalance = BitMex(threading=False).get_balance()
+    start = 0
+    pre_fb0 = 0
+    pre_fb100 = 0
+    idx = 0
+    stratey_mode = 'R2'  # or H5
+
+    variants = [sma, ema, double_ema, triple_ema, wma, ssma, hull, heikinashi]
+    eval_time = None
+
+    def __init__(self):
+        Bot.__init__(self, '1m')
+
+    def options(self):
+        return {
+            'rcv_short_len': hp.quniform('rcv_short_len', 1, 10, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+        logger.info('-------------------------strategy start-----------------------\n')
+        lot = self.exchange.get_lot()
+        # for test
+        lot = int(round(lot / 2))
+        lot = 10
+        logger.info('lot:%s' % lot)
+        bitmex = BitMex(threading=False)
+        price = bitmex.get_market_price()
+        logger.info('price:%s\n' % price)
+
+        fast_len = self.input('fast_len', int, 20)
+        slow_len = self.input('slow_len', int, 120)
+        fast_sma = sma(close, fast_len)
+        slow_sma = sma(close, slow_len)
+
+        # sma
+        # for i in range(1, 5):
+        #     logger.info('fast_sma 20 [%s] *******: %s' % (-i, fast_sma[-i]))
+        # logger.info('slow_sma 120  ******: %s' % slow_sma[-1])
+
+        # rsi
+        rsi_len = self.input('rsi_len', int, 2)
+        fast_rsi = rsi(close, rsi_len)
+        rsi_stoplen = self.input('rsi_len', int, 5)
+        fast_slow_rsi = rsi(close, rsi_len)
+
+        for i in range(1, 21):
+            if fast_rsi[-i] >= 95:
+                logger.info('fast_rsi2 ***** [%s]: %s >= 95' % (-i, fast_rsi[-i]))
+            elif fast_rsi[-i] <= 5:
+                logger.info('fast_rsi2 ***** [%s]: %s <= 5' % (-i, fast_rsi[-i]))
+            else:
+                logger.info('fast_rsi2 ***** [%s]: %s' % (-i, fast_rsi[-i]))
+
+        # willr
+        slow_willr = willr(high, low, close, period=960)
+        logger.info('fast_willr ***** %s' % slow_willr[-1])
+        # bband
+        # bband_len = self.input('bbandup_len', int, 20)
+        # bbup, bbmid, bblow = bbands(close, timeperiod=bband_len, nbdevup=2, nbdevdn=2, matype=0)
+        # for i in range(1, 2):
+        #     logger.info('fast_bband ***** [%s], bbup: %s, bbmid: %s, bblow: %s' % (-i, bbup[-i], bbmid[-i], bblow[-i]))
+
+        # heikinashi
+        resolution = self.input(defval=1, title="resolution", type=int)
+        variant_type = self.input(defval=5, title="variant_type", type=int)
+        source = self.exchange.security(str(resolution) + 'm')
+
+        fast_len = self.input('fast_len', int, 1)
+        middle_len = self.input('middle_len', int, 5)
+        slow_len = self.input('slow_len', int, 30)
+        trend_len = self.input('slow_len', int, 60)
+        longtrend_len = self.input('slow_len', int, 120)
+        longlongtrend_len = self.input('slow_len', int, 240)
+
+        hadf = heikinashi(source)
+        hadf_fast = heikinashi(hadf)
+
+        ha_open_values = hadf_fast['HA_open'].values
+        ha_close_values = hadf_fast['HA_close'].values
+        variant = self.variants[variant_type]
+
+        ha_open_fast = variant(ha_open_values,  fast_len)
+        ha_close_fast = variant(ha_close_values, fast_len)
+        haopen_fast = ha_open_fast[-1]
+        haclose_fast = ha_close_fast[-1]
+        haup_fast = haclose_fast > haopen_fast
+        hadown_fast = haclose_fast <= haopen_fast
+        logger.info('haup_fast:%s' % haup_fast)
+
+        ha_open_middle = variant(ha_open_values,  middle_len)
+        ha_close_middle = variant(ha_close_values, middle_len)
+        haopen_middle = ha_open_middle[-1]
+        haclose_middle = ha_close_middle[-1]
+        haup_middle = haclose_middle > haopen_middle
+        hadown_middle = haclose_middle <= haopen_middle
+        logger.info('haup_middle:%s' % haup_middle)
+
+
+        ha_open_slow = variant(ha_open_values,  slow_len)
+        ha_close_slow = variant(ha_close_values, slow_len)
+        haopen_slow = ha_open_slow[-1]
+        haclose_slow = ha_close_slow[-1]
+        haup_slow = haclose_slow > haopen_slow
+        hadown_slow = haclose_slow <= haopen_slow
+        logger.info('haup_slow:%s' % haup_slow)
+
+
+        ha_open_trend = variant(ha_open_values,  trend_len)
+        ha_close_trend = variant(ha_close_values, trend_len)
+        haopen_trend = ha_open_trend[-1]
+        haclose_trend = ha_close_trend[-1]
+        haup_trend = haclose_trend > haopen_trend
+        hadown_trend = haclose_trend <= haopen_trend
+        logger.info('haup_trend:%s' % haup_trend)
+
+        ha_open_longtrend = variant(ha_open_values,  longtrend_len)
+        ha_close_longtrend = variant(ha_close_values, longtrend_len)
+        haopen_longtrend = ha_open_longtrend[-1]
+        haclose_longtrend = ha_close_longtrend[-1]
+        haup_longtrend = haclose_longtrend > haopen_longtrend
+        hadown_longtrend = haclose_longtrend <= haopen_longtrend
+        logger.info('haup_longtrend:%s\n' % haup_longtrend)
+
+
+        ha_open_longlongtrend = variant(ha_open_values,  longlongtrend_len)
+        ha_close_longlongtrend = variant(ha_close_values, longlongtrend_len)
+        haopen_longlongtrend = ha_open_longlongtrend[-1]
+        haclose_longlongtrend = ha_close_longlongtrend[-1]
+        haup_longlongtrend = haclose_longlongtrend > haopen_longlongtrend
+        hadown_longlongtrend = haclose_longlongtrend <= haopen_longlongtrend
+        logger.info('haup_longlongtrend:%s\n' % haup_longlongtrend)
+
+
+        # resolutionh = self.input(defval=1, title="resolution", type=int)
+        # variant_type = self.input(defval=5, title="variant_type", type=int)
+        # sourceh = self.exchange.security(str(resolutionh) + 'h')
+        #
+        # hadf_h = heikinashi(sourceh)
+        # hadf_longtrend_h = heikinashi(hadf_h)
+        #
+        # ha_open_values_h = hadf_longtrend_h['HA_open'].values
+        # ha_close_values_h = hadf_longtrend_h['HA_close'].values
+        # variant = self.variants[variant_type]
+        #
+        # ha_open_longtrend_h = variant(ha_open_values_h,  4)  # 1시간 1, 2시간 2
+        # ha_close_longtrend_h = variant(ha_close_values_h, 4)
+        # haopen_longtrend_h = ha_open_longtrend_h[-1]
+        # haclose_longtrend_h = ha_close_longtrend_h[-1]
+        # haup_longtrend_h = haclose_longtrend_h > haopen_longtrend_h
+        # hadown_longtrend_h = haclose_longtrend_h <= haopen_longtrend_h
+        # # logger.info('haup_longtrend_h:%s\n' % haup_longtrend_h)
+
+        self.start += 1
+        flg_changed_timezone = False
+        lot = self.exchange.get_lot()
+        # for test lot
+        lot = int(round(lot / 10))
+        # lot = 1
+        bitmex = BitMex(threading=False)
+        price = bitmex.get_market_price()
+
+        resolution = self.input(defval=1, title="resolution", type=int) # defval 변경, 예) 5분 --> 5, 'm' or 1시간  1, 'h', 1Day 1, 'd'
+        source = self.exchange.security(str(resolution) + 'h')  # def __init__  비교
+        series_high = source['high'].values
+        series_low = source['low'].values
+        fb100 = last(highest(series_high, 1))  # 1시간 1, 1D의 경우는 resolution도 변경
+        fb0 = last(lowest(series_low, 1))
+
+        # for test
+        # fb100 = price + 15
+        # fb0 = price - 15
+
+        # fb262 = math.ceil((fb100 - fb0) * 1.628 + fb100)
+        # fb200 = math.ceil((fb100 - fb0) * 1.0 + fb100)
+        # fb162 = math.ceil((fb100 - fb0) * 0.618 + fb100)
+        # fb138 = math.ceil((fb100 - fb0) * 0.382 + fb100)
+
+        fb62 = math.ceil((fb100 - fb0) * 0.618 + fb0)
+        fb50 = math.ceil((fb100 - fb0) / 2 + fb0)
+        fb38 = math.ceil((fb100 - fb0) * 0.382 + fb0)
+
+        # fb038 = math.ceil(fb0 - (fb100 - fb0) * 0.382)
+        # fb062 = math.ceil(fb0 - (fb100 - fb0) * 0.618)
+        # fb0100 = math.ceil(fb0 - (fb100 - fb0) * 1.00)
+        # fb0162 = math.ceil(fb0 - (fb100 - fb0) * 1.60)
+
+        qty= bitmex.get_position_size()
+        logger.info('current position qty: %s' % qty)
+
+        # 익손평가
+        longstatus = bitmex.get_position_avg_price() - fb0
+        shortstatus = bitmex.get_position_avg_price() - fb100
+        if bitmex.get_whichpositon() == 'LONG' and longstatus > 0:
+            qL0 = lot * 1
+            qS100 = abs(qty) + lot * 1
+        elif bitmex.get_whichpositon() == 'SHORT'and shortstatus > 0:
+            qL0 = abs(qty) + lot * 1
+            qS100 = lot * 1
+        else:
+            qL0 = lot * 1
+            qS100 = lot * 1
+
+        if self.pre_fb0 != 0 and fb0 != self.pre_fb0 and fb100 != self.pre_fb100:
+            flg_changed_timezone = True
+            logger.info('+++++++ flg_changed_timezone: %s' % flg_changed_timezone)
+            logger.info('cancel_all orders because new time zone')
+
+        # when this program start, execute only once
+        # if self.start == 1 or flg_changed_timezone:
+
+        # for debug
+        logger.info('fb100: %s' % fb100)
+        logger.info('fb62: %s' % fb62)
+        # logger.info('fb50: %s' % fb50)
+        logger.info('fb38: %s' % fb38)
+        logger.info('fb0: %s' % fb0)
+
+        logger.info('bitmex.get_open_order(Long): %s ' % bitmex.get_open_order('Long'))
+        logger.info('bitmex.get_open_order(Short): %s ' % bitmex.get_open_order('Short'))
+        logger.info('bitmex.get_open_order(LCatch): %s ' % bitmex.get_open_order('LCatch'))
+        logger.info('bitmex.get_open_order(SCatch): %s ' % bitmex.get_open_order('SCatch'))
+
+        if self.stratey_mode == 'R2':
+            logger.info('=============== stratey_mode = R2 ==============')
+
+            if self.start == 1:
+                self.exchange.cancel_all()
+            # 공격적인 로직 추가시
+            # if haup_middle and haup_slow and haup_trend and haup_longtrend and fast_rsi[-1] <= 20:  # entry long condition on Short Trend
+            #     logger.info('Now Short conditions: fast_rsi[-1] <= 10 0k -->  %s' % fast_rsi[-1])
+            #     self.exchange.order('Long', True, lot, limit=price - 0.5, post_only=True)
+            # elif hadown_middle and hadown_slow and hadown_trend and hadown_longtrend and fast_rsi[-1] >= 80:  # # entry short condition on Long Trend
+            #     logger.info('Now Long conditions: fast_rsi[-1] >= 90 0k -->  %s' % fast_rsi[-1])
+            #     self.exchange.order('Short', False, lot, limit=price + 0.5, post_only=True)
+
+            # 일반적인 로직
+            if bitmex.get_whichpositon() == 'LONG':
+                logger.info('---------------------->>LONG order status')
+                logger.info('ordered price:%s' % bitmex.get_position_avg_price())
+                if fast_rsi[-1] >= 95:  # 스탑로직
+                    logger.info('>>fast_rsi[-1] >= 95')
+                    self.exchange.order('StopLong', False, qty, limit=price + 0.5, post_only=True)
+                elif hadown_slow and hadown_trend:  # 손절로직
+                    logger.info('>>hadown_trend and hadown_longtrend Long -> Short : slow trend changed')
+                    self.exchange.close_all()
+                    self.exchange.cancel_all()
+
+                    # # 돌파로직
+                    # if hadown_fast and hadown_middle and hadown_slow:  # 모두 숏이면
+                    #     self.exchange.order('ChBrkShort', False, qty*2)
+                    #     self.exchange.cancel_all()
+                    # else:
+                    #     self.exchange.close_all()
+                # elif hadown_trend and hadown_longtrend:  # 손절로직 or 돌파로직
+                #     logger.info('>>hadown_trend and hadown_longtrend Long -> Short : trend changed')
+                #     # 돌파로직
+                #     if hadown_fast and hadown_middle and hadown_slow:  # 모두 숏이면
+                #         self.exchange.order('ChBrkShort', False, qty*2)
+                #         self.exchange.cancel_all()
+                #     else:
+                #         self.exchange.close_all()
+                # else:
+                #     logger.info('>>StopLong')
+                #     if price < fb100:  # 초과익절 로직
+                #         self.exchange.order('StopLong1', False, qty, limit=fb100, post_only=True)
+                #         # self.exchange.order('StopLong2', False, qty, limit=fb62, post_only=True)
+
+            elif bitmex.get_whichpositon() == 'SHORT':
+                logger.info('---------------------->>SHORT order status')
+                logger.info('ordered price:%s' % bitmex.get_position_avg_price())
+                if fast_rsi[-1] <= 5:  # 스탑로직
+                    logger.info('>>fast_rsi[-1] <= 5')
+                    self.exchange.order('StopShort', True, qty, limit=price - 0.5, post_only=True)
+                elif haup_slow and haup_trend:  # 손절로직
+                    logger.info('>>haup_trend and haup_longtrend Short -> Long : slow trend changed')
+                    self.exchange.close_all()
+                    self.exchange.cancel_all()
+
+                # elif haup_trend and haup_longtrend:    # 손절로직 or 돌파로직
+                #     logger.info('>>haup_trend and haup_longtrend Short -> Long :  trend changed')
+                #     # 돌파로직
+                #     if haup_fast and haup_middle and haup_slow:  # 모두 롱이면
+                #         self.exchange.order('ChBrkLong', True, qty*2)
+                #         self.exchange.cancel_all()
+                #     else:
+                #         self.exchange.close_all()
+                # else:
+                #     logger.info('>>StopShort')
+                #     if price > fb0:  # 초과익절로직
+                #         self.exchange.order('StopShort1', False, qty, limit=fb0, post_only=True)
+                #         # self.exchange.order('StopShort2', False, qty, limit=fb38, post_only=True)
+                #     logger.info('>>StopShort')
+
+            else:
+                logger.info('else: %s ' % bitmex.get_whichpositon())
+                if haup_trend and haup_longtrend:
+                    logger.info('+++++++++++ LLLLLLong Trend +++++++++++++++')
+                    if bitmex.get_open_order('LCatch') is not None:  # catch shooting logic
+                        logger.info('There are LongOver orders , now changed trend, and cancel all')
+                        self.exchange.cancel_all()
+                    self.exchange.order('SCatch', True, lot, limit=fb0, post_only=True)
+                elif hadown_trend and hadown_longtrend:
+                    logger.info('- - - - - - SSSSSSort Trend - - - - - - -')
+
+                    if bitmex.get_open_order('SCatch') is not None:  # catch shooting logic
+                        logger.info('There are ShortOver orders , now changed trend, and cancel all')
+                        self.exchange.cancel_all()
+                    self.exchange.order('LCatch', False, lot, limit=fb100, post_only=True)
+
+                # if bitmex.get_open_order('LCatch') is not None and haup_trend:
+                #     bitmex.cancel('LCatch')
+                #
+                # if bitmex.get_open_order('SCatch') is not None and hadown_trend:
+                #     bitmex.cancel('SCatch')
+
+                if haup_slow and haup_trend and haup_longtrend and fast_rsi[-1] <= 5:  # entry long condition on Short Trend
+                    logger.info('Now Short conditions: fast_rsi[-1] <= 5 0k -->  %s' % fast_rsi[-1])
+                    self.exchange.order('Long', True, lot, limit=price - 0.5, post_only=True)
+                elif hadown_slow and hadown_trend and hadown_longtrend and fast_rsi[-1] >= 95:  # # entry short condition on Long Trend
+                    logger.info('Now Long conditions: fast_rsi[-1] >= 95 0k -->  %s' % fast_rsi[-1])
+                    self.exchange.order('Short', False, lot, limit=price + 0.5, post_only=True)
+
+                if (slow_willr[-1] < -30) and haup_fast and haup_middle and haup_slow and haup_trend and haup_longtrend and haup_longlongtrend:
+                    logger.info('in for H5UP')
+                    self.stratey_mode = 'H5UP'
+                    self.exchange.order('H5UP', True, lot)
+                    bitmex.cancel_all()
+                elif (slow_willr[-1] > -70) and hadown_fast and hadown_middle and hadown_slow and hadown_trend and hadown_longtrend and hadown_longtrend:
+                    logger.info('in for H5DOWN')
+                    self.stratey_mode = 'H5DOWN'
+                    self.exchange.order('H5DOWN', False, lot)
+                    bitmex.cancel_all()
+
+        elif self.stratey_mode == 'H5UP':
+            logger.info('=============== stratey_mode = H5UP ==============')
+
+            if bitmex.get_whichpositon() != 'LONG' and (slow_willr[-1] < -30) and haup_fast and haup_middle and haup_slow and haup_trend and haup_longtrend and haup_longlongtrend:
+                self.exchange.order('H5UP', True, lot)
+            elif bitmex.get_whichpositon() != 'LONG' and not haup_fast and not haup_middle:
+                # back to R2 mode
+                self.stratey_mode = 'R2'
+                bitmex.cancel_all()
+            elif bitmex.get_whichpositon() == 'LONG' and (slow_willr[-1] > -11) or (haup_fast and not haup_middle and not haup_slow and not haup_longtrend):
+                # stop order and back to R2 mode
+                self.exchange.order('H5UPStop', False, lot)
+                self.stratey_mode = 'R2'
+                bitmex.cancel_all()
+
+        elif self.stratey_mode == 'H5DOWN':
+            logger.info('=============== stratey_mode = H5DOWN ==============')
+
+            if bitmex.get_whichpositon() != 'SHORT' and (slow_willr[-1] > -70) and (hadown_fast and hadown_middle and hadown_slow and hadown_trend and hadown_longtrend and hadown_longlongtrend):
+                self.exchange.order('H5DOWN', False, lot)
+            elif bitmex.get_whichpositon() != 'SHORT' and not hadown_fast and not hadown_middle:
+                # back to R2 mode
+                self.stratey_mode = 'R2'
+                bitmex.cancel_all()
+            elif bitmex.get_whichpositon() == 'SHORT' and (slow_willr[-1] < -91) or (not hadown_fast and not hadown_middle and not hadown_slow and not hadown_longtrend):  # and not hadown_slow):   #(fast_slow_rsi <= 93) or
+                # stop order and back to R2 mode
+                self.exchange.order('H5DOWNStop', True, lot)
+                self.stratey_mode = 'R2'
+                bitmex.cancel_all()
+        else:
+            logger.info('=============== stratey_mode = Else ==============')
+
+            # back to R2 mode
+            self.stratey_mode = 'R2'
+            bitmex.cancel_all()
+
+        if flg_changed_timezone is True:
+            self.idx += 1
+
+        # save pre-timezone's fb0, fb100 values
+        self.pre_fb0 = fb0
+        self.pre_fb100 = fb100
+
+        diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
+        realised_pnl = bitmex.get_margin()['realisedPnl']
+        logger.info('prebalance():%s' % self.prebalance)
+        logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        logger.info('diff:%s' % diff)
+        logger.info('realised_pnl:%s' % realised_pnl)
+
+        logger.info('-------------------------strategy end-----------------------\n')
