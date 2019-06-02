@@ -426,6 +426,7 @@ class DoubleSuperRSI(Bot): # logic https: // stock79.tistory.com / 177
 
 # william R
 class Willr(Bot):
+    prebalance = BitMex(threading=False).get_balance()
     start = 0
     pre_fb0 = 0
     pre_fb100 = 0
@@ -584,18 +585,23 @@ class Willr(Bot):
 
         # 무조건 Fibo +200%, -200% 디폴트 설정
         if self.start==1:
+            logger.info('-- self.start==1 --')
             self.exchange.cancel_all()
             self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
             self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
         elif (flg_changed_timezone and (not self.inlong)) and (not self.inshort):
+            logger.info('-- (flg_changed_timezone and (not self.inlong)) and (not self.inshort) --')
             self.exchange.cancel_all()
             self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
             self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
         elif (flg_changed_timezone and self.inlong and not self.inshort):
+            logger.info('-- (flg_changed_timezone and self.inlong and not self.inshort) --')
             self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
         elif (flg_changed_timezone and not self.inlong and self.inshort):
+            logger.info('-- (flg_changed_timezone and not self.inlong and self.inshort) --')
             self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
         else:
+            logger.info('-- else and pass --')
             pass
 
         if (buyCon) and (not self.inlong):
@@ -606,28 +612,33 @@ class Willr(Bot):
             if price <= close[-1]:
                 logger.info('>> in +++ price <= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
                 if bitmex.get_position_size() != 0:
+                    logger.info('-- bitmex.get_position_size() != 0 --')
                     self.exchange.order("Long", True, bitmex.get_position_size(), limit=price-0.5, post_only=True)
                 else:
+                    logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Long", True, lot, limit=price-0.5, post_only=True)
                 self.inlong = True
             else:
                 pass
 
-        if (buyCloseCon) and (self.inlong):
+        if (buyCloseCon) and (self.f):
             # self.exchange.close("Long")
+            logger.info('-- (buyCloseCon) and (self.inlong) --')
             self.exchange.close_all()
             self.inlong = False
 
         if (sellCon) and (not self.inshort):
-            logger.info('if (buyCon) and (not self.inlong)::')
+            logger.info('if (sellCon) and (not self.inlong)::')
             # self.exchange.entry("Short", False, lot)
             # self.inshort = True
 
             if price >= close[-1]:
                 logger.info('>> in +++ price >= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
                 if bitmex.get_position_size() != 0:
+                    logger.info('-- bitmex.get_position_size() != 0 --')
                     self.exchange.order("Short", False, bitmex.get_position_size(), limit=price+0.5, post_only=True)
                 else:
+                    logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Short", False, lot, limit=price+0.5, post_only=True)
                 self.inshort = True
             else:
@@ -635,10 +646,20 @@ class Willr(Bot):
 
         if (sellCloseCon) and (self.inshort):
             # self.exchange.close("Short")
+            logger.info('-- (sellCloseCon) and (self.inshort) --')
             self.exchange.close_all()
             self.inshort = False
 
-        logger.info('----------------- END ----------------')
+
+        diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
+
+        realised_pnl = bitmex.get_margin()['realisedPnl']
+        logger.info('----------------- realised_pnl ---------')
+        logger.info('prebalance():%s' % self.prebalance)
+        logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        logger.info('diff:%s' % diff)
+        logger.info('realised_pnl:%s' % realised_pnl)
+        logger.info('----------------- END ---------------- END ----------------')
 
         # if buyCon:
         #     self.exchange.entry("Long", True, lot)
