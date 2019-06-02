@@ -20,7 +20,8 @@ class Bot:
     # 봉기간
     periods = 20
     # ohlcv 길이 (길어 질수록 처리시간 지연이 됨  sma 600의 경우는 600, 1440의 경우는 8초정도 지연)
-    ohlcv = 1440
+    # ohlcv = 1440
+    ohlcv = 8000
     # 테스트넷 옵션
     test_net = False
     # 벡테스트 옵션
