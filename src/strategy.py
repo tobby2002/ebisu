@@ -621,7 +621,7 @@ class Willr(Bot):
             else:
                 pass
 
-        if (buyCloseCon) and (self.f):
+        if (buyCloseCon) and (self.inlong):
             # self.exchange.close("Long")
             logger.info('-- (buyCloseCon) and (self.inlong) --')
             self.exchange.close_all()
