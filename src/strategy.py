@@ -587,19 +587,19 @@ class Willr(Bot):
         if self.start==1:
             logger.info('-- self.start==1 --')
             self.exchange.cancel_all()
-            self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
-            self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
-        elif (flg_changed_timezone and (not self.inlong)) and (not self.inshort):
-            logger.info('-- (flg_changed_timezone and (not self.inlong)) and (not self.inshort) --')
+            self.exchange.order("FLong", True, lot, limit=fb062, post_only=True)
+            self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
+        elif (flg_changed_timezone):  # and (not self.inlong)) and (not self.inshort):
+            logger.info('-- (flg_changed_timezone') #and (not self.inlong)) and (not self.inshort) --')
             self.exchange.cancel_all()
             self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
             self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
-        elif (flg_changed_timezone and self.inlong and not self.inshort):
-            logger.info('-- (flg_changed_timezone and self.inlong and not self.inshort) --')
-            self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
-        elif (flg_changed_timezone and not self.inlong and self.inshort):
-            logger.info('-- (flg_changed_timezone and not self.inlong and self.inshort) --')
-            self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
+        # elif (flg_changed_timezone and self.inlong and not self.inshort):
+        #     logger.info('-- (flg_changed_timezone and self.inlong and not self.inshort) --')
+        #     self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
+        # elif (flg_changed_timezone and not self.inlong and self.inshort):
+        #     logger.info('-- (flg_changed_timezone and not self.inlong and self.inshort) --')
+        #     self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
         else:
             logger.info('-- else and pass --')
             pass
