@@ -592,6 +592,7 @@ class Willr(Bot):
         fiboSellCon = True if fb162 < fb0_4h else False
         logger.info('fiboSellCon:%s' % fiboSellCon)
 
+
         if self.start==1:
             logger.info('-- self.start==1 --')
             self.exchange.cancel_all()
