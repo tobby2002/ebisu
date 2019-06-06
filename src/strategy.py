@@ -587,21 +587,28 @@ class Willr(Bot):
         fb0_4h = last(lowest(series_low, 4))
 
         fiboBuyCon = True if fb062 > fb100_4h else False
+        logger.info('fiboBuyCon:%s' % fiboBuyCon)
+
         fiboSellCon = True if fb162 < fb0_4h else False
+        logger.info('fiboSellCon:%s' % fiboSellCon)
 
         if self.start==1:
             logger.info('-- self.start==1 --')
             self.exchange.cancel_all()
             if fiboBuyCon:
+                logger.info('if fiboBuyCon:%s' % fiboBuyCon)
                 self.exchange.order("FLong", True, lot, limit=fb062, post_only=True)
             if fiboSellCon:
+                logger.info('if fiboSellCon:%s' % fiboSellCon)
                 self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
         elif (flg_changed_timezone):  # and (not self.inlong)) and (not self.inshort):
             logger.info('-- (flg_changed_timezone') #and (not self.inlong)) and (not self.inshort) --')
             self.exchange.cancel_all()
             if fiboBuyCon:
+                logger.info('if fiboBuyCon:%s' % fiboBuyCon)
                 self.exchange.order("FLong", True, lot, limit=fb062, post_only=True)
             if fiboSellCon:
+                logger.info('if fiboSellCon:%s' % fiboSellCon)
                 self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
 
         # elif (flg_changed_timezone and self.inlong and not self.inshort):
