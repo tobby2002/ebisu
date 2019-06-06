@@ -576,24 +576,34 @@ class Willr(Bot):
         logger.info('buyCloseCon:%s' % buyCloseCon)
         logger.info('sellCloseCon:%s' % sellCloseCon)
 
+
         # if self.inlong:
         #     self.inlong = True
         #
         # if self.inshort:
         #     self.inshort = True
 
+        fb100_4h = last(highest(series_high, 4))  # 1시간 1, 1D의 경우는 resolution도 변경
+        fb0_4h = last(lowest(series_low, 4))
 
-        # 무조건 Fibo +200%, -200% 디폴트 설정
+        fiboBuyCon = True if fb062 > fb100_4h else False
+        fiboSellCon = True if fb162 < fb0_4h else False
+
         if self.start==1:
             logger.info('-- self.start==1 --')
             self.exchange.cancel_all()
-            self.exchange.order("FLong", True, lot, limit=fb062, post_only=True)
-            self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
+            if fiboBuyCon:
+                self.exchange.order("FLong", True, lot, limit=fb062, post_only=True)
+            if fiboSellCon:
+                self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
         elif (flg_changed_timezone):  # and (not self.inlong)) and (not self.inshort):
             logger.info('-- (flg_changed_timezone') #and (not self.inlong)) and (not self.inshort) --')
             self.exchange.cancel_all()
-            self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
-            self.exchange.order("FLong", True, lot, limit=fb0100, post_only=True)
+            if fiboBuyCon:
+                self.exchange.order("FLong", True, lot, limit=fb062, post_only=True)
+            if fiboSellCon:
+                self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
+
         # elif (flg_changed_timezone and self.inlong and not self.inshort):
         #     logger.info('-- (flg_changed_timezone and self.inlong and not self.inshort) --')
         #     self.exchange.order("FShort", False, lot, limit=fb200, post_only=True)
@@ -621,7 +631,7 @@ class Willr(Bot):
             else:
                 pass
 
-        if (buyCloseCon) and (self.inlong):
+        if (buyCloseCon) and (self.inlong or bitmex.get_position_size() != 0):
             # self.exchange.close("Long")
             logger.info('-- (buyCloseCon) and (self.inlong) --')
             self.exchange.close_all()
@@ -644,7 +654,7 @@ class Willr(Bot):
             else:
                 pass
 
-        if (sellCloseCon) and (self.inshort):
+        if (sellCloseCon) and (self.inshort or bitmex.get_position_size() != 0):
             # self.exchange.close("Short")
             logger.info('-- (sellCloseCon) and (self.inshort) --')
             self.exchange.close_all()
