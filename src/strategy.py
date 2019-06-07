@@ -631,7 +631,7 @@ class Willr(Bot):
                 logger.info('>> in +++ price <= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
                 if bitmex.get_position_size() != 0:
                     logger.info('-- bitmex.get_position_size() != 0 --')
-                    self.exchange.order("Long", True, bitmex.get_position_size(), limit=price-0.5, post_only=True)
+                    self.exchange.order("Long", True, bitmex.get_position_size()*2, limit=price-0.5, post_only=True)
                 else:
                     logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Long", True, lot, limit=price-0.5, post_only=True)
@@ -654,7 +654,7 @@ class Willr(Bot):
                 logger.info('>> in +++ price >= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
                 if bitmex.get_position_size() != 0:
                     logger.info('-- bitmex.get_position_size() != 0 --')
-                    self.exchange.order("Short", False, bitmex.get_position_size(), limit=price+0.5, post_only=True)
+                    self.exchange.order("Short", False, bitmex.get_position_size()*2, limit=price+0.5, post_only=True)
                 else:
                     logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Short", False, lot, limit=price+0.5, post_only=True)
