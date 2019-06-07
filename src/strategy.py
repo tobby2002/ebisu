@@ -586,10 +586,10 @@ class Willr(Bot):
         fb100_4h = last(highest(series_high, 4))  # 1시간 1, 1D의 경우는 resolution도 변경
         fb0_4h = last(lowest(series_low, 4))
 
-        fiboBuyCon = True if fb062 > fb100_4h else False
+        fiboBuyCon = True if fb0 <= fb0_4h else False
         logger.info('fiboBuyCon:%s' % fiboBuyCon)
 
-        fiboSellCon = True if fb162 < fb0_4h else False
+        fiboSellCon = True if fb100 >= fb100_4h else False
         logger.info('fiboSellCon:%s' % fiboSellCon)
 
 
