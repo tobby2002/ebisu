@@ -639,7 +639,7 @@ class Willr(Bot):
             else:
                 pass
 
-        if (buyCloseCon) and (self.inlong or bitmex.get_position_size() != 0):
+        if (buyCloseCon) and (self.inlong):
             # self.exchange.close("Long")
             logger.info('-- (buyCloseCon) and (self.inlong) --')
             self.exchange.close_all()
@@ -662,7 +662,7 @@ class Willr(Bot):
             else:
                 pass
 
-        if (sellCloseCon) and (self.inshort or bitmex.get_position_size() != 0):
+        if (sellCloseCon) and (self.inshort):
             # self.exchange.close("Short")
             logger.info('-- (sellCloseCon) and (self.inshort) --')
             self.exchange.close_all()
