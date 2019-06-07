@@ -563,8 +563,8 @@ class Willr(Bot):
         buyCon = True if buycon1 or buycon2 or buycon3 or buycon4 or buycon5 or buycon6 or buycon7 or buycon8 or buycon9 else False
         sellCon = True if sellcon1 or sellcon2 or sellcon3 or sellcon4 or sellcon5 or sellcon6 or sellcon7 or sellcon8 or sellcon9 else False
 
-        buyCloseCon = True if a[-1] > -5 else False
-        sellCloseCon = True if a[-1] < -95 else False
+        buyCloseCon = True if a[-1] > -10 else False
+        sellCloseCon = True if a[-1] < -90 else False
 
         logger.info('-----------------inlong / inshort ----------------')
         logger.info('inlong:%s' % self.inlong)
