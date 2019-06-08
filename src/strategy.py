@@ -1,13 +1,11 @@
 # coding: UTF-8
 import os
 import random
-
 import math
 import re
-
 import numpy
+import time
 from hyperopt import hp
-
 from src import highest, lowest, sma, crossover, crossunder, over, under, last, rci, rsi, double_ema, ema, triple_ema, wma, \
     ssma, hull, logger, notify, atr, willr, bbands, supertrend, heikinashi
 from src.bitmex import BitMex
@@ -442,6 +440,8 @@ class Willr(Bot):
         }
 
     def strategy(self, open, close, high, low, volume):
+        start = time.time()  # 시작 시간 저장
+
         self.start += 1
         flg_changed_timezone = False
         lot = self.exchange.get_lot()
@@ -451,10 +451,22 @@ class Willr(Bot):
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()
 
-        resolution = self.input(defval=1, title="resolution", type=int) # defval 변경, 예) 5분 --> 5, 'm' or 1시간  1, 'h', 1Day 1, 'd'
-        source = self.exchange.security(str(resolution) + 'h')  # def __init__  비교
-        # logger.info('source: %s' % source)
+        # channel breakout for 1D
+        resolution_d = self.input(defval=1, title="resolution", type=int)
+        source_d = self.exchange.security(str(resolution_d) + 'd')
+        series_high_d = source_d['high'].values
+        series_low_d = source_d['low'].values
+        up = last(highest(series_high_d, 1))
+        dn = last(lowest(series_low_d, 1))
+        logger.info("time1 :%s" % str(time.time() - start))
+        start = time.time()  # 시작 시간 저장
 
+        # self.exchange.entry("ChLong", True, round(lot), stop=up)
+        # self.exchange.entry("ChShort", False, round(lot), stop=dn)
+
+        # fibo for 1h
+        resolution = self.input(defval=1, title="resolution", type=int)
+        source = self.exchange.security(str(resolution) + 'h')
         series_high = source['high'].values
         series_low = source['low'].values
 
@@ -473,15 +485,6 @@ class Willr(Bot):
             if bitmex.get_whichpositon() is None:
                 self.exchange.cancel_all()
 
-        # 최근 60분의 FIBO
-        # fibo_l = self.input('length', int, 60)  # 1Day = 60min * 24hr
-        # fb100 = last(highest(high, fibo_l))
-        # fb0 = last(lowest(low, fibo_l))
-
-        # logger.info('-----------------fb100 / fb0 ----------------')
-        # logger.info('fb100:%s' % fb100)
-        # logger.info('fb0:%s' % fb0)
-
         fb62 = math.ceil((fb100 - fb0) * 0.618 + fb0)
         fb38 = math.ceil((fb100 - fb0) * 0.382 + fb0)
         fb50 = math.ceil((fb100 - fb0) / 2 + fb0)
@@ -494,18 +497,12 @@ class Willr(Bot):
         fb062 = math.ceil(fb0 - (fb100 - fb0) * 0.618)
         fb0100 = math.ceil(fb0 - (fb100 - fb0) * 1.00)
 
-        # willr
-        willr_a = willr(high, low, close, period=55)
-        willr_b = willr(high, low, close, period=144)
-        willr_c = willr(high, low, close, period=610)
-        willr_x = willr(high, low, close, period=4181)
-        willr_y = willr(high, low, close, period=6785)
-
-        a = willr_a
-        b = willr_b
-        c = willr_c
-        x = willr_x
-        y = willr_y
+        # willr for five willilams
+        a = willr(high, low, close, period=55)
+        b = willr(high, low, close, period=144)
+        c = willr(high, low, close, period=610)
+        x = willr(high, low, close, period=4181)
+        y = willr(high, low, close, period=6785)
 
         # logger.info('---- a ----')
         # for i in range(1, 5):
@@ -602,6 +599,13 @@ class Willr(Bot):
             if fiboSellCon:
                 logger.info('if fiboSellCon:%s' % fiboSellCon)
                 self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
+            if price < up:
+                logger.info('price < up: %s' % up)
+                self.exchange.order("ChLong", True, lot, stop=up)
+            if price > dn:
+                logger.info('price > dn: %s' % dn)
+                self.exchange.order("ChShort", False, lot, stop=dn)
+
         elif (flg_changed_timezone):  # and (not self.inlong)) and (not self.inshort):
             logger.info('-- (flg_changed_timezone') #and (not self.inlong)) and (not self.inshort) --')
             self.exchange.cancel_all()
@@ -611,6 +615,13 @@ class Willr(Bot):
             if fiboSellCon:
                 logger.info('if fiboSellCon:%s' % fiboSellCon)
                 self.exchange.order("FShort", False, lot, limit=fb162, post_only=True)
+
+            if price < up:
+                logger.info('price < up: %s' % up)
+                self.exchange.order("ChLong", True, lot, stop=up)
+            if price > dn:
+                logger.info('price > dn: %s' % dn)
+                self.exchange.order("ChShort", False, lot, stop=dn)
 
         # elif (flg_changed_timezone and self.inlong and not self.inshort):
         #     logger.info('-- (flg_changed_timezone and self.inlong and not self.inshort) --')
@@ -629,7 +640,7 @@ class Willr(Bot):
 
             if price <= close[-1]:
                 logger.info('>> in +++ price <= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
-                if bitmex.get_position_size() != 0:
+                if bitmex.get_position_size() !=  0:
                     logger.info('-- bitmex.get_position_size() != 0 --')
                     self.exchange.order("Long", True, bitmex.get_position_size()*2, limit=price-0.5, post_only=True)
                 else:
@@ -653,7 +664,7 @@ class Willr(Bot):
             if price >= close[-1]:
                 logger.info('>> in +++ price >= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
                 if bitmex.get_position_size() != 0:
-                    logger.info('-- bitmex.get_position_size() != 0 --')
+                    logger.info('-- bitmex.get_position_size() !=  0 --')
                     self.exchange.order("Short", False, bitmex.get_position_size()*2, limit=price+0.5, post_only=True)
                 else:
                     logger.info('-- bitmex.get_position_size() != 0 / else --')
@@ -679,13 +690,8 @@ class Willr(Bot):
         logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
         logger.info('diff:%s' % diff)
         logger.info('realised_pnl:%s' % realised_pnl)
+        logger.info("time2 : %s" % str(time.time() - start))
         logger.info('----------------- END ---------------- END ----------------')
-
-        # if buyCon:
-        #     self.exchange.entry("Long", True, lot)
-        # elif sellCon:
-        #     self.exchange.entry("Short", False, lot)
-
 
 # rci
 class Rci(Bot):
