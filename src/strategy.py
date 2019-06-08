@@ -668,9 +668,11 @@ class Willr(Bot):
             self.exchange.close_all()
             self.inshort = False
 
+        # save pre-timezone's fb0, fb100 values
+        self.pre_fb0 = fb0
+        self.pre_fb100 = fb100
 
         diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
-
         realised_pnl = bitmex.get_margin()['realisedPnl']
         logger.info('----------------- realised_pnl ---------')
         logger.info('prebalance():%s' % self.prebalance)
