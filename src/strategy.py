@@ -609,10 +609,13 @@ class Willr(Bot):
         elif (flg_changed_timezone):  # and (not self.inlong)) and (not self.inshort):
             logger.info('-- (flg_changed_timezone') #and (not self.inlong)) and (not self.inshort) --')
             self.exchange.cancel_all()
+
             # init
             if bitmex.get_whichpositon() is None and (self.inlong is True or self.inshort is True):
+                logger.info('-- (flg_changed_timezone >> init: inlone --> %s, inshort --> %s' % (self.inlong, self.inshort))
                 self.inlong = False
                 self.inshort = False
+
             # set fibo conditions
             if fiboBuyCon:
                 logger.info('if fiboBuyCon:%s' % fiboBuyCon)
