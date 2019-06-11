@@ -12,6 +12,7 @@ from src.bitmex import BitMex
 from src.bitmex_stub import BitMexStub
 from src.bot import Bot
 from src.gmail_sub import GmailSub
+import pandas as pd
 
 # channel break out
 class Doten(Bot):
@@ -589,7 +590,6 @@ class Willr(Bot):
         fiboSellCon = True if fb100 >= fb100_4h else False
         logger.info('fiboSellCon:%s' % fiboSellCon)
 
-
         if self.start==1:
             logger.info('-- self.start==1 --')
             self.exchange.cancel_all()
@@ -609,6 +609,11 @@ class Willr(Bot):
         elif (flg_changed_timezone):  # and (not self.inlong)) and (not self.inshort):
             logger.info('-- (flg_changed_timezone') #and (not self.inlong)) and (not self.inshort) --')
             self.exchange.cancel_all()
+            # init
+            if bitmex.get_whichpositon() is None and (self.inlong is True or self.inshort is True):
+                self.inlong = False
+                self.inshort = False
+            # set fibo conditions
             if fiboBuyCon:
                 logger.info('if fiboBuyCon:%s' % fiboBuyCon)
                 self.exchange.order("FLong", True, lot, limit=fb062, post_only=True)
