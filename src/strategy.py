@@ -431,6 +431,8 @@ class Willr(Bot):
     pre_fb100 = 0
     inlong = False
     inshort = False
+    firstlong = False
+    firstshort = False
 
     def __init__(self):
         Bot.__init__(self, '1m')
@@ -590,6 +592,18 @@ class Willr(Bot):
         fiboSellCon = True if fb100 >= fb100_4h else False
         logger.info('fiboSellCon:%s' % fiboSellCon)
 
+        logger.info('bitmex.get_whichpositon():%s' % bitmex.get_whichpositon())
+        logger.info('bitmex.get_position_size():%s' % bitmex.get_position_size())
+
+        # if bitmex.get_whichpositon() is not None:
+        #     logger.info('-- bitmex.get_whichpositon is not None --')
+        if bitmex.get_position_size() > 0:
+            logger.info('-- >> bitmex.get_position_size > 0 --')
+            self.inlong = True
+        elif bitmex.get_position_size() < 0:
+            logger.info('-- >> bitmex.get_position_size < 0 --')
+            self.inshort = True
+
         if self.start==1:
             logger.info('-- self.start==1 --')
             self.exchange.cancel_all()
@@ -641,11 +655,20 @@ class Willr(Bot):
             logger.info('-- else and pass --')
             pass
 
+        if (buyCloseCon) and (self.inlong):
+            # self.exchange.close("Long")
+            logger.info('-- (buyCloseCon) and (self.inlong) --')
+            self.exchange.close_all()
+            self.inlong = False
+
+        if (sellCloseCon) and (self.inshort):
+            # self.exchange.close("Short")
+            logger.info('-- (sellCloseCon) and (self.inshort) --')
+            self.exchange.close_all()
+            self.inshort = False
+
         if (buyCon) and (not self.inlong):
             logger.info('if (buyCon) and (not self.inlong)::')
-            # self.exchange.entry("Long", True, lot)
-            # self.inlong = True
-
             if price <= close[-1]:
                 logger.info('>> in +++ price <= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
                 if bitmex.get_position_size() !=  0:
@@ -654,21 +677,12 @@ class Willr(Bot):
                 else:
                     logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Long", True, lot, limit=price-0.5, post_only=True)
-                self.inlong = True
+                # self.inlong = True
             else:
                 pass
 
-        if (buyCloseCon) and (self.inlong):
-            # self.exchange.close("Long")
-            logger.info('-- (buyCloseCon) and (self.inlong) --')
-            self.exchange.close_all()
-            self.inlong = False
-
         if (sellCon) and (not self.inshort):
             logger.info('if (sellCon) and (not self.inlong)::')
-            # self.exchange.entry("Short", False, lot)
-            # self.inshort = True
-
             if price >= close[-1]:
                 logger.info('>> in +++ price >= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
                 if bitmex.get_position_size() != 0:
@@ -677,15 +691,9 @@ class Willr(Bot):
                 else:
                     logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Short", False, lot, limit=price+0.5, post_only=True)
-                self.inshort = True
+                # self.inshort = True
             else:
                 pass
-
-        if (sellCloseCon) and (self.inshort):
-            # self.exchange.close("Short")
-            logger.info('-- (sellCloseCon) and (self.inshort) --')
-            self.exchange.close_all()
-            self.inshort = False
 
         # save pre-timezone's fb0, fb100 values
         self.pre_fb0 = fb0
