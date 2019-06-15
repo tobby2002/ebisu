@@ -14,10 +14,123 @@ from src.bot import Bot
 from src.gmail_sub import GmailSub
 import pandas as pd
 
+class Will_Rci(Bot):
+
+    inlong = False
+    inshort = False
+
+    def __init__(self):
+        Bot.__init__(self, '1m')
+
+    def options(self):
+        return {
+            'rcv_short_len': hp.quniform('rcv_short_len', 1, 21, 1),
+            'rcv_medium_len': hp.quniform('rcv_medium_len', 21, 34, 1),
+            'rcv_long_len': hp.quniform('rcv_long_len', 34, 55, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+        start = time.time()  # 시작 시간 저장
+        lot = self.exchange.get_lot()
+
+        itv_s = self.input('rcv_short_len', int, 21)
+        itv_m = self.input('rcv_medium_len', int, 34)
+        itv_l = self.input('rcv_long_len', int, 55)
+
+        rci_s = rci(close, itv_s)
+        rci_m = rci(close, itv_m)
+        rci_l = rci(close, itv_l)
+
+        ra = rci_s[-1] / 2 - 50
+        rb = rci_m[-1] / 2 - 50
+        rc = rci_l[-1] / 2 - 50
+
+        # willr for five willilams
+        a = willr(high, low, close, period=55)
+        b = willr(high, low, close, period=144)
+        c = willr(high, low, close, period=610)
+        x = willr(high, low, close, period=4181)
+        y = willr(high, low, close, period=6785)
+
+        # logger.info('---- a ----')
+        # for i in range(1, 5):
+        #     logger.info('a [%s] *******: %s' % (-i, a[-i]))
+        # logger.info('---- b ----')
+        # for i in range(1, 5):
+        #     logger.info('b [%s] *******: %s' % (-i, b[-i]))
+        # logger.info('---- c ----')
+        # for i in range(1, 5):
+        #     logger.info('c [%s] *******: %s' % (-i, c[-i]))
+        # logger.info('---- x ----')
+        # for i in range(1, 5):
+        #     logger.info('x [%s] *******: %s' % (-i, x[-i]))
+        # logger.info('---- y ----')
+        # for i in range(1, 5):
+        #     logger.info('x [%s] *******: %s' % (-i, y[-i]))
+
+        buycon1 = True if (a[-1] < -97 and (b[-1] < -97 or c[-1] < -97) and (x[-1] < -80 or y[-1] < -80)) else False
+        buycon2 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] < -90) and (x[-1] > -35 or y[-1] > -35)) else False
+        buycon3 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] > -70) and (x[-1] > -50 or y[-1] > -25)) else False
+        buycon4 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] < -97) and (x[-1] > -50 or y[-1] > -50)) else False
+        buycon5 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] < -75) and (x[-1] > -25 or y[-1] > -25)) else False
+        buycon6 = True if ((b[-1] + 100) * (c[-1] + 100) == 0 and (c[-1] < -75 and x[-1] > -30 or y[-1] > -30)) else False
+        buycon7 = True if ((b[-1] + 100) == 0 and (c[-1] > -30 and x[-1] > -30 or y[-1] > -30)) else False
+        buycon8 = True if c[-1] < -97 else False
+        buycon9 = True if a[-1] < -97 and b[-1] < -97 and c[-1] > -50 else False
+
+        sellcon1 = True if (a[-1] > -3 and (b[-1] > -3 or c[-1] > -3) and (x[-1] > -20 or y[-1] > -20)) else False
+        sellcon2 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] > -10) and (x[-1] < -65 or y[-1] < -65)) else False
+        sellcon3 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] < -30) and (x[-1] < -50 or y[-1] < -75)) else False
+        sellcon4 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] > -3) and (x[-1] < -50 or y[-1] < -50)) else False
+        sellcon5 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] < -25) and (x[-1] < -75 or y[-1] < -75)) else False
+        sellcon6 = True if (((b[-1]) * (c[-1])) == 0 and c[-1] > -25 and (x[-1] < -70 or y[-1] < -70)) else False
+        sellcon7 = True if ((b[-1]) == 0 and (c[-1] < -70 and x[-1] < -70 or y[-1] < -70)) else False
+        sellcon8 = True if c[-1] > -3 else False
+        sellcon9 = True if a[-1] > -3 and b[-1] > -3 and c[-1] < -50 else False
+
+        buyRCIfillerCon = True if rc < -80 else False
+        sellRCIfillerCon = True if rc > -20 else False
+
+        buyWillfilterCon = buycon1 or buycon2 or buycon3 or buycon4 or buycon5 or buycon6 or buycon7 or buycon8 or buycon9
+        sellWillFilrerCon = sellcon1 or sellcon2 or sellcon3 or sellcon4 or sellcon5 or sellcon6 or sellcon7 or sellcon8 or sellcon9
+
+        # set condition
+        buyCons = buyWillfilterCon and buyRCIfillerCon
+        sellCons = sellWillFilrerCon and sellRCIfillerCon
+
+        buyCon = True if buyCons else False
+        sellCon = True if sellCons else False
+
+
+        # buyCloseCon = sellRCIfillerCon
+        buyCloseCon = sellWillFilrerCon
+
+        # sellCloseCon = buyRCIfillerCon
+        sellCloseCon = buyWillfilterCon
+
+        # if buyCon:
+        #     self.exchange.entry("Long", True, lot)
+        # if sellCon:
+        #     self.exchange.entry("Short", False, lot)
+
+        if buyCon:
+            self.exchange.entry("Long", True, lot)
+            self.inlong = True
+        if buyCloseCon and self.inlong:
+            self.exchange.close_all()
+            self.inlong = False
+        if sellCon:
+            self.exchange.entry("Short", False, lot)
+            self.inshort = True
+        if sellCloseCon and self.inlong:
+            self.exchange.close_all()
+            self.inshort = False
+
+
 # channel break out
 class Doten(Bot):
     def __init__(self):
-        Bot.__init__(self, '15m')
+        Bot.__init__(self, '1m')
 
     def options(self):
         return {
@@ -38,7 +151,7 @@ class Doten(Bot):
 # sma cross
 class SMA(Bot):
     def __init__(self):
-        Bot.__init__(self, '2h')
+        Bot.__init__(self, '1m')
 
     def options(self):
         return {
@@ -122,9 +235,6 @@ class YYY(Bot):
             self.exchange.order("Short", True, lot, limit=price-0.5, stop=(price-0.5), when=dead_cross, post_only=True)
 
         logger.info('--------------------------------------------------')
-
-
-
 
 # supertrend
 class SuperTrend(Bot):
@@ -423,7 +533,7 @@ class DoubleSuperRSI(Bot): # logic https: // stock79.tistory.com / 177
         logger.info('--------------------------------------------------')
 
 
-# william R
+# william R and rci
 class Willr(Bot):
     prebalance = BitMex(threading=False).get_balance()
     start = 0
@@ -439,7 +549,222 @@ class Willr(Bot):
 
     def options(self):
         return {
+            'rcv_short_len': hp.quniform('rcv_short_len', 1, 21, 1),
+            'rcv_medium_len': hp.quniform('rcv_medium_len', 21, 34, 1),
+            'rcv_long_len': hp.quniform('rcv_long_len', 34, 55, 1),
+        }
+
+    def strategy(self, open, close, high, low, volume):
+        start = time.time()  # 시작 시간 저장
+
+        self.start += 1
+        flg_changed_timezone = False
+        lot = self.exchange.get_lot()
+        # for test lot
+        # lot = int(round(lot / 20))
+        lot = 100
+        bitmex = BitMex(threading=False)
+        price = bitmex.get_market_price()
+
+        itv_s = self.input('rcv_short_len', int, 21)
+        itv_m = self.input('rcv_medium_len', int, 34)
+        itv_l = self.input('rcv_long_len', int, 55)
+
+        rci_s = rci(close, itv_s)
+        rci_m = rci(close, itv_m)
+        rci_l = rci(close, itv_l)
+
+        ra = rci_s[-1] / 2 - 50
+        rb = rci_m[-1] / 2 - 50
+        rc = rci_l[-1] / 2 - 50
+
+        # willr for five willilams
+        a = willr(high, low, close, period=55)
+        b = willr(high, low, close, period=144)
+        c = willr(high, low, close, period=610)
+        x = willr(high, low, close, period=4181)
+        y = willr(high, low, close, period=6785)
+
+        # logger.info('---- a ----')
+        # for i in range(1, 5):
+        #     logger.info('a [%s] *******: %s' % (-i, a[-i]))
+        # logger.info('---- b ----')
+        # for i in range(1, 5):
+        #     logger.info('b [%s] *******: %s' % (-i, b[-i]))
+        # logger.info('---- c ----')
+        # for i in range(1, 5):
+        #     logger.info('c [%s] *******: %s' % (-i, c[-i]))
+        # logger.info('---- x ----')
+        # for i in range(1, 5):
+        #     logger.info('x [%s] *******: %s' % (-i, x[-i]))
+        # logger.info('---- y ----')
+        # for i in range(1, 5):
+        #     logger.info('x [%s] *******: %s' % (-i, y[-i]))
+
+        logger.info('-----------------price / lot ----------------')
+        logger.info('price:%s' % price)
+        logger.info('lot:%s' % str(lot))
+        logger.info('-----------------o h l c v ----------------')
+        logger.info('open:%s' % open[-1])
+        logger.info('high:%s' % high[-1])
+        logger.info('low:%s' % low[-1])
+        logger.info('close:%s' % close[-1])
+        logger.info('volume:%s' % volume[-1])
+        logger.info('-----------------a b c x y ----------------')
+        logger.info('willr_a : %s' % a[-1])
+        logger.info('willr_b : %s' % b[-1])
+        logger.info('willr_c : %s' % c[-1])
+        logger.info('willr_x : %s' % x[-1])
+        logger.info('willr_y : %s' % y[-1])
+
+
+        buycon1 = True if (a[-1] < -97 and (b[-1] < -97 or c[-1] < -97) and (x[-1] < -80 or y[-1] < -80)) else False
+        buycon2 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] < -90) and (x[-1] > -35 or y[-1] > -35)) else False
+        buycon3 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] > -70) and (x[-1] > -50 or y[-1] > -25)) else False
+        buycon4 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] < -97) and (x[-1] > -50 or y[-1] > -50)) else False
+        buycon5 = True if (a[-1] < -97 and (b[-1] < -97 and c[-1] < -75) and (x[-1] > -25 or y[-1] > -25)) else False
+        buycon6 = True if ((b[-1] + 100) * (c[-1] + 100) == 0 and (c[-1] < -75 and x[-1] > -30 or y[-1] > -30)) else False
+        buycon7 = True if ((b[-1] + 100) == 0 and (c[-1] > -30 and x[-1] > -30 or y[-1] > -30)) else False
+        buycon8 = True if c[-1] < -97 else False
+        buycon9 = True if a[-1] < -97 and b[-1] < -97 and c[-1] > -50 else False
+
+        sellcon1 = True if (a[-1] > -3 and (b[-1] > -3 or c[-1] > -3) and (x[-1] > -20 or y[-1] > -20)) else False
+        sellcon2 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] > -10) and (x[-1] < -65 or y[-1] < -65)) else False
+        sellcon3 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] < -30) and (x[-1] < -50 or y[-1] < -75)) else False
+        sellcon4 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] > -3) and (x[-1] < -50 or y[-1] < -50)) else False
+        sellcon5 = True if (a[-1] > -3 and (b[-1] > -3 and c[-1] < -25) and (x[-1] < -75 or y[-1] < -75)) else False
+        sellcon6 = True if (((b[-1]) * (c[-1])) == 0 and c[-1] > -25 and (x[-1] < -70 or y[-1] < -70)) else False
+        sellcon7 = True if ((b[-1]) == 0 and (c[-1] < -70 and x[-1] < -70 or y[-1] < -70)) else False
+        sellcon8 = True if c[-1] > -3 else False
+        sellcon9 = True if a[-1] > -3 and b[-1] > -3 and c[-1] < -50 else False
+
+        # buyCloseCon = True if a[-1] > -10 else False
+        # sellCloseCon = True if a[-1] < -90 else False
+        buyRCIfillerCon = True if rc < -80 else False
+        sellRCIfillerCon = True if rc > -20 else False
+
+        buyWillfilterCon = buycon1 or buycon2 or buycon3 or buycon4 or buycon5 or buycon6 or buycon7 or buycon8 or buycon9
+        sellWillFilrerCon = sellcon1 or sellcon2 or sellcon3 or sellcon4 or sellcon5 or sellcon6 or sellcon7 or sellcon8 or sellcon9
+
+        # set condition
+        buyCons = buyWillfilterCon and buyRCIfillerCon
+        sellCons = sellWillFilrerCon and sellRCIfillerCon
+
+        buyCon = True if buyCons else False
+        sellCon = True if sellCons else False
+
+        # buyCloseCon = sellRCIfillerCon
+        buyCloseCon = sellWillFilrerCon
+
+        # sellCloseCon = buyRCIfillerCon
+        sellCloseCon = buyWillfilterCon
+
+        logger.info('-----------------inlong / inshort ----------------')
+        logger.info('inlong:%s' % self.inlong)
+        logger.info('inshort:%s' % self.inshort)
+        logger.info('-----------------buyCon / sellCon ----------------')
+        logger.info('buyCon:%s' % buyCon)
+        logger.info('sellCon:%s' % sellCon)
+
+        logger.info('buyCloseCon:%s' % buyCloseCon)
+        logger.info('sellCloseCon:%s' % sellCloseCon)
+
+        logger.info('bitmex.get_whichpositon():%s' % bitmex.get_whichpositon())
+        logger.info('bitmex.get_position_size():%s' % bitmex.get_position_size())
+
+
+        if bitmex.get_position_size() > 0:
+            logger.info('-- >> bitmex.get_position_size > 0 --')
+            self.inlong = True
+        elif bitmex.get_position_size() < 0:
+            logger.info('-- >> bitmex.get_position_size < 0 --')
+            self.inshort = True
+
+        if self.start==1:
+            logger.info('-- self.start==1 --')
+            self.exchange.cancel_all()
+
+        elif (flg_changed_timezone):
+            logger.info('-- (flg_changed_timezone')
+            self.exchange.cancel_all()
+
+            # init
+            if bitmex.get_whichpositon() is None and (self.inlong is True or self.inshort is True):
+                logger.info('-- (flg_changed_timezone >> init: inlone --> %s, inshort --> %s' % (self.inlong, self.inshort))
+                self.inlong = False
+                self.inshort = False
+
+        else:
+            logger.info('-- else and pass --')
+            pass
+
+        if (buyCloseCon) and (self.inlong):
+            # self.exchange.close("Long")
+            logger.info('-- (buyCloseCon) and (self.inlong) --')
+            self.exchange.close_all()
+            self.inlong = False
+
+        if (sellCloseCon) and (self.inshort):
+            # self.exchange.close("Short")
+            logger.info('-- (sellCloseCon) and (self.inshort) --')
+            self.exchange.close_all()
+            self.inshort = False
+
+        if (buyCon) and (not self.inlong):
+            logger.info('if (buyCon) and (not self.inlong)::')
+            if price <= close[-1]:
+                logger.info('>> in +++ price <= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
+                if bitmex.get_position_size() !=  0:
+                    logger.info('-- bitmex.get_position_size() != 0 --')
+                    self.exchange.order("Long", True, bitmex.get_position_size()*2, limit=price-0.5, post_only=True)
+                else:
+                    logger.info('-- bitmex.get_position_size() != 0 / else --')
+                    self.exchange.order("Long", True, lot, limit=price-0.5, post_only=True)
+            else:
+                pass
+
+        if (sellCon) and (not self.inshort):
+            logger.info('if (sellCon) and (not self.inlong)::')
+            if price >= close[-1]:
+                logger.info('>> in +++ price >= close[-1] and ++++ get_position_size: %s' % bitmex.get_position_size())
+                if bitmex.get_position_size() != 0:
+                    logger.info('-- bitmex.get_position_size() !=  0 --')
+                    self.exchange.order("Short", False, bitmex.get_position_size()*2, limit=price+0.5, post_only=True)
+                else:
+                    logger.info('-- bitmex.get_position_size() != 0 / else --')
+                    self.exchange.order("Short", False, lot, limit=price+0.5, post_only=True)
+            else:
+                pass
+
+        diff = (abs(bitmex.get_balance() - abs(self.prebalance)))
+        realised_pnl = bitmex.get_margin()['realisedPnl']
+        logger.info('----------------- realised_pnl ---------')
+        logger.info('prebalance():%s' % self.prebalance)
+        logger.info('bitmex.get_balance():%s' % bitmex.get_balance())
+        logger.info('diff:%s' % diff)
+        logger.info('realised_pnl:%s' % realised_pnl)
+        logger.info("time2 : %s" % str(time.time() - start))
+        logger.info('----------------- END ---------------- END ----------------')
+
+# william R and Fibo
+class WillnFibo(Bot):
+    prebalance = BitMex(threading=False).get_balance()
+    start = 0
+    pre_fb0 = 0
+    pre_fb100 = 0
+    inlong = False
+    inshort = False
+    firstlong = False
+    firstshort = False
+
+    def __init__(self):
+        Bot.__init__(self, '1m')
+
+    def options(self):
+        return {
             'rcv_short_len': hp.quniform('rcv_short_len', 1, 10, 1),
+            'rcv_medium_len': hp.quniform('rcv_medium_len', 5, 15, 1),
+            'rcv_long_len': hp.quniform('rcv_long_len', 10, 20, 1),
         }
 
     def strategy(self, open, close, high, low, volume):
@@ -708,7 +1033,6 @@ class Willr(Bot):
         logger.info('realised_pnl:%s' % realised_pnl)
         logger.info("time2 : %s" % str(time.time() - start))
         logger.info('----------------- END ---------------- END ----------------')
-
 # rci
 class Rci(Bot):
     def __init__(self):
@@ -1614,15 +1938,14 @@ class Sample(Bot):
         lot = self.exchange.get_lot()
         which = random.randrange(2)
 
+        if which == 0:
+            self.exchange.entry("Long", True, round(lot/1000))
+            logger.info(f"Trade:Long")
+        else:
+            self.exchange.entry("Short", False, round(lot/1000))
+            logger.info(f"Trade:Short")
+
         print(lot)
-
-        # if which == 0:
-        #     self.exchange.entry("Long", True, round(lot/1000))
-        #     logger.info(f"Trade:Long")
-        # else:
-        #     self.exchange.entry("Short", False, round(lot/1000))
-        #     logger.info(f"Trade:Short")
-
 
 class Cross(Bot):
     def __init__(self):

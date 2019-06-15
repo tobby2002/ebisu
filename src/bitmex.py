@@ -555,7 +555,7 @@ class BitMex:
         else:
             self.data = pd.concat([self.data, new_data], sort=True)
 
-        # 最後の行は不確定情報のため、排除する
+        # 마지막행은 불학정정보이기에 베제한다.
         re_sample_data = resample(self.data, self.bin_size)[:-1]
 
         if self.data.iloc[-1].name == re_sample_data.iloc[-1].name:

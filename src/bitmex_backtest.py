@@ -195,11 +195,13 @@ class BitMexBackTest(BitMexStub):
         end_time = datetime.now(timezone.utc)
         file = OHLC_FILENAME.format(bin_size)
 
+        start = time.time()  # 시작 시간 저장
         if os.path.exists(file):
             self.df_ohlcv = load_data(file)
         else:
             self.download_data(file, bin_size, start_time, end_time)
             self.df_ohlcv = load_data(file)
+        print('load_data time:', time.time() - start)
 
     def show_result(self):
         """
