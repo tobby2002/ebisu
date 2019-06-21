@@ -125,6 +125,7 @@ class Will_Rci(Bot):
         # if sellCloseCon and self.inlong:
         #     self.exchange.close_all()
         #     self.inshort = False
+        logger.info('all strategy processing time : %s' % str(time.time() - start))
 
 
 # channel break out
