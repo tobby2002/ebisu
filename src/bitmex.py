@@ -574,7 +574,11 @@ class BitMex:
             logger.info('new_data: %s' % new_data)
 
         # 마지막행은 불학정정보이기에 베제한다.
-        re_sample_data = resample(self.data, self.bin_size)[:-1]
+        # re_sample_data = resample(self.data, self.bin_size)[:-1]
+        # 마지막행도 반영한다.
+        re_sample_data = resample(self.data, self.bin_size)[:]
+        logger.info('no no no re_sample_data')
+
         logger.info('re_sample_data: %s' % re_sample_data)
 
         if self.data.iloc[-1].name == re_sample_data.iloc[-1].name:
