@@ -57,6 +57,7 @@ def ord_suffix():
     return "_" + base64.b64encode(uuid.uuid4().bytes).decode('utf-8').rstrip('=\n')
 
 def load_data(file):
+    logger.info('__init__ >> load_data >> %s' % file)
     """
     파일에서 데이타를 읽음
     """

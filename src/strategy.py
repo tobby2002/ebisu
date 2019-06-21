@@ -108,23 +108,23 @@ class Will_Rci(Bot):
         # sellCloseCon = buyRCIfillerCon
         sellCloseCon = buyWillfilterCon
 
-        # if buyCon:
-        #     self.exchange.entry("Long", True, lot)
-        # if sellCon:
-        #     self.exchange.entry("Short", False, lot)
-
         if buyCon:
             self.exchange.entry("Long", True, lot)
-            self.inlong = True
-        if buyCloseCon and self.inlong:
-            self.exchange.close_all()
-            self.inlong = False
         if sellCon:
             self.exchange.entry("Short", False, lot)
-            self.inshort = True
-        if sellCloseCon and self.inlong:
-            self.exchange.close_all()
-            self.inshort = False
+
+        # if buyCon:
+        #     self.exchange.entry("Long", True, lot)
+        #     self.inlong = True
+        # if buyCloseCon and self.inlong:
+        #     self.exchange.close_all()
+        #     self.inlong = False
+        # if sellCon:
+        #     self.exchange.entry("Short", False, lot)
+        #     self.inshort = True
+        # if sellCloseCon and self.inlong:
+        #     self.exchange.close_all()
+        #     self.inshort = False
 
 
 # channel break out
@@ -559,7 +559,7 @@ class Willr(Bot):
 
         self.start += 1
         flg_changed_timezone = False
-        lot = self.exchange.get_lot()
+        # lot = self.exchange.get_lot()
         # for test lot
         # lot = int(round(lot / 20))
         lot = 100
@@ -616,6 +616,7 @@ class Willr(Bot):
         logger.info('willr_c : %s' % c[-1])
         logger.info('willr_x : %s' % x[-1])
         logger.info('willr_y : %s' % y[-1])
+        logger.info('willr_rc : %s' % rc)
 
 
         buycon1 = True if (a[-1] < -97 and (b[-1] < -97 or c[-1] < -97) and (x[-1] < -80 or y[-1] < -80)) else False
@@ -720,6 +721,9 @@ class Willr(Bot):
                 else:
                     logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Long", True, lot, limit=price-0.5, post_only=True)
+            elif price < low[-1]:
+                logger.info('-- price < low[-1] --')
+                self.exchange.order("Long", True, lot, limit=price-0.5, post_only=True)
             else:
                 pass
 
@@ -733,6 +737,9 @@ class Willr(Bot):
                 else:
                     logger.info('-- bitmex.get_position_size() != 0 / else --')
                     self.exchange.order("Short", False, lot, limit=price+0.5, post_only=True)
+            elif price > high[-1]:
+                logger.info('-- price > high[-1] --')
+                self.exchange.order("Long", False, lot, limit=price+0.5, post_only=True)
             else:
                 pass
 
@@ -772,9 +779,9 @@ class WillnFibo(Bot):
 
         self.start += 1
         flg_changed_timezone = False
-        lot = self.exchange.get_lot()
-        # for test lot
-        # lot = int(round(lot / 20))
+        # lot = self.exchange.get_lot()
+        # # for test lot
+        # # lot = int(round(lot / 20))
         lot = 100
         bitmex = BitMex(threading=False)
         price = bitmex.get_market_price()

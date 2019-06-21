@@ -187,6 +187,7 @@ class BitMexBackTest(BitMexStub):
             time.sleep(2)
 
     def __load_ohlcv(self, bin_size):
+        logger.info('bitmex_backtest >> __load_ohlcv >> %s ' % bin_size)
         """
         データを読み込む。
         :return:
@@ -201,6 +202,7 @@ class BitMexBackTest(BitMexStub):
         else:
             self.download_data(file, bin_size, start_time, end_time)
             self.df_ohlcv = load_data(file)
+        logger.info('bitmex_backtest >> __load_ohlcv >> loading data time : %s' % str(time.time() - start))
         print('load_data time:', time.time() - start)
 
     def show_result(self):
