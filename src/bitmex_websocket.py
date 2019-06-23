@@ -37,7 +37,7 @@ class BitMexWs:
     testnet = False
     # 가동상태
     is_running = True
-    # 보고용 리스터
+    # 보고용 리스너
     handlers = {}
     
     def __init__(self, test=False):
@@ -68,11 +68,11 @@ class BitMexWs:
         # api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.testnet else os.environ.get("BITMEX_APIKEY")
         # api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.testnet else os.environ.get("BITMEX_SECRET")
         # tobby
-        api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
-        api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
+        # api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
+        # api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
         # redlee
-        # api_key = 'NPo11uetPveJeDUMcMW19B_x'
-        # api_secret = 'pcbKMRlLxH_fS3oCyEeDkFNhp1UGmyu8CpxLbwEokOvpd2Ud'
+        api_key = 'NPo11uetPveJeDUMcMW19B_x'
+        api_secret = 'pcbKMRlLxH_fS3oCyEeDkFNhp1UGmyu8CpxLbwEokOvpd2Ud'
 
         if len(api_key) > 0 and len(api_secret):
             nonce = generate_nonce()

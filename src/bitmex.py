@@ -74,11 +74,11 @@ class BitMex:
         # api_key = os.environ.get("BITMEX_TEST_APIKEY") if self.demo else os.environ.get("BITMEX_APIKEY")
         # api_secret = os.environ.get("BITMEX_TEST_SECRET") if self.demo else os.environ.get("BITMEX_SECRET")
         # tobby2002
-        api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
-        api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
+        # api_key = 'KQW_2f_brKDMjonpBTkBC8nK'
+        # api_secret = 'NQ2mXkIWNVClJddk0t3ZdO1jV9Ihq39ISV5DLT1pwcU1ZGpt'
         # redlee80
-        # api_key = 'NPo11uetPveJeDUMcMW19B_x'
-        # api_secret = 'pcbKMRlLxH_fS3oCyEeDkFNhp1UGmyu8CpxLbwEokOvpd2Ud'
+        api_key = 'NPo11uetPveJeDUMcMW19B_x'
+        api_secret = 'pcbKMRlLxH_fS3oCyEeDkFNhp1UGmyu8CpxLbwEokOvpd2Ud'
 
         self.private_client = bitmex_api(test=self.demo, api_key=api_key, api_secret=api_secret)
         self.public_client = bitmex_api(test=self.demo)
@@ -159,7 +159,12 @@ class BitMex:
         :return:
         """
         self.__init_client()
-        return self.get_position()['currentQty']
+        try:
+            currentqty = self.get_position()['currentQty']
+        except Exception as e:  # 에러 종류
+            logger.error(e)
+            logger.error(traceback.format_exc())
+        return currentqty
 
 
     def get_whichpositon(self):
@@ -537,49 +542,31 @@ class BitMex:
         return resample(self.data, bin_size)[:-1]
 
     def __update_ohlcv(self, action, new_data):
-        logger.info('bitmex >> __update_ohlcv >> ' % new_data)
-        start = time.time()
         """
         데이터를 취득한 후, 전략을 실행
         데이터가 없으면 서버와 접속해서 다운로드를 처음 함, 그 후는 어떻게 할까
         """
         if self.data is None:
-            logger.info('self.data is None : %s' % self.data)
             end_time = datetime.now(timezone.utc)
 
-            start_d1 = time.time()
             start_time = end_time - self.ohlcv_len * delta(self.bin_size)
             d1 = self.fetch_ohlcv(self.bin_size, start_time, end_time)
-            logger.info('__update_ohlcv >> only start_data none and d1 processing time : %s' % str(time.time() - start_d1))
 
             if len(d1) > 0:
-                logger.info('len(d1) > 0')
-
-                start_d2 = time.time()
                 d2 = self.fetch_ohlcv(allowed_range[self.bin_size][0],
                                       d1.iloc[-1].name + delta(allowed_range[self.bin_size][0]), end_time)
 
                 self.data = pd.concat([d1, d2], sort=True)
-                logger.info('__update_ohlcv >> only start_d2 processing time : %s' % str(time.time() - start_d2))
-
             else:
-                logger.info('len(d1) <= 0 :: else')
-
                 self.data = d1
         else:
-            start_dataisnotNone = time.time()
             self.data = pd.concat([self.data, new_data], sort=True)
-            logger.info('__update_ohlcv >> only start_dataisnotNone processing time : %s' % str(time.time() - start_dataisnotNone))
-            logger.info('self.data: %s' % self.data)
-            logger.info('new_data: %s' % new_data)
 
-        # 마지막행은 불학정정보이기에 베제한다.
+        # 마지막행은 불학정정보이기에 베제한다. (original)
         # re_sample_data = resample(self.data, self.bin_size)[:-1]
-        # 마지막행도 반영한다.
-        re_sample_data = resample(self.data, self.bin_size)[:]
-        logger.info('no no no re_sample_data')
 
-        logger.info('re_sample_data: %s' % re_sample_data)
+        # 마지막행도 반영한다. (by neo)
+        re_sample_data = resample(self.data, self.bin_size)[:]
 
         if self.data.iloc[-1].name == re_sample_data.iloc[-1].name:
             self.data = re_sample_data.iloc[-1 * self.ohlcv_len:, :]
@@ -595,12 +582,9 @@ class BitMex:
         volume = re_sample_data['volume'].values
 
         try:
-            start_strategy = time.time()
             if self.strategy is not None:
                 self.strategy(open, close, high, low, volume)
             self.last_action_time = re_sample_data.iloc[-1].name
-            logger.info('__update_ohlcv >> only strategy processing time : %s' % str(time.time() - start_strategy))
-
         except FatalError as e:
             # 致命的エラー
             logger.error(f"Fatal error. {e}")
@@ -615,8 +599,6 @@ class BitMex:
 
             notify(f"An error occurred. {e}")
             notify(traceback.format_exc())
-
-        logger.info('__update_ohlcv >> all processing time : %s' % str(time.time() - start))
 
     def __on_update_instrument(self, action, instrument):
         """

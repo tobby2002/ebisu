@@ -30,9 +30,10 @@ class Will_Rci(Bot):
         }
 
     def strategy(self, open, close, high, low, volume):
-        start = time.time()  # 시작 시간 저장
-        lot = self.exchange.get_lot()
-
+        # logger.info('strategy start ctime : %s' % time.ctime())
+        # start = time.time()  # 시작 시간 저장
+        # lot = self.exchange.get_lot()
+        lot = 100
         itv_s = self.input('rcv_short_len', int, 21)
         itv_m = self.input('rcv_medium_len', int, 34)
         itv_l = self.input('rcv_long_len', int, 55)
@@ -125,7 +126,7 @@ class Will_Rci(Bot):
         # if sellCloseCon and self.inlong:
         #     self.exchange.close_all()
         #     self.inshort = False
-        logger.info('all strategy processing time : %s' % str(time.time() - start))
+        # logger.info('all strategy processing time : %s' % str(time.time() - start))
 
 
 # channel break out
